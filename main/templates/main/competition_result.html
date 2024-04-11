@@ -21,39 +21,66 @@
             <div class="col-1">
                 <p>Место</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>Имя участника</p>
             </div>
             <div class="col-2">
+                <p>Собака</p>
+            </div>
+            <div class="col-2">
+                <p>Порода</p>
+            </div>
+            <div class="col-2">
+                <p>Время</p>
+            </div>
+            <div class="col-1">
                 <p>Баллы</p>
             </div>
             <div class="col-2">
                 <p>Оценка</p>
             </div>
-            <div class="col-3">
-                <p>Время</p>
-            </div>
+
         </div>
         {% for competitor in competitors_ro_dety %}
         <div class="row text-center rounded border">
             <div class="col-1">
                 <p>{{ forloop.counter }}</p>
             </div>
-            <div class="col-3">
-                <p>{{ competitor.user.first_name }}</p>
+            <div class="col-2">
+                <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.points }}</p>
+                <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.grade_competitor }}</p>
+                <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
                                                         {% endif %}</p>
             </div>
+            <div class="col-1">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-1">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Посмотреть оценки
+                    </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    {% for score in competitor.additional_scores %}
+                        <li><a class="dropdown-item" >Номер: {{ forloop.counter }} {{ score }}}</a></li>
+                    {% endfor %}
+
+    </ul>
+  </div>
+</div>
+
         </div>
         {% endfor %}
     </div>
@@ -68,40 +95,51 @@
             <div class="col-1">
                 <p>Место</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>Имя участника</p>
             </div>
             <div class="col-2">
+                <p>Собака</p>
+            </div>
+            <div class="col-2">
+                <p>Порода</p>
+            </div>
+            <div class="col-2">
+                <p>Время</p>
+            </div>
+            <div class="col-1">
                 <p>Баллы</p>
             </div>
             <div class="col-2">
                 <p>Оценка</p>
             </div>
-            <div class="col-3">
-                <p>Время</p>
-            </div>
+
         </div>
         {% for competitor in competitors_ro_shenki %}
         <div class="row text-center rounded border">
             <div class="col-1">
                 <p>{{ forloop.counter }}</p>
             </div>
-            <div class="col-3">
-                <p>{{ competitor.user.first_name }}</p>
+            <div class="col-2">
+                <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
+            </div>
+            <div class="col-2">
                 <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
-
             <div class="col-2">
-                <p>{{ competitor.points }}</p>
+                <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.grade_competitor }}</p>
-            </div>
-            <div class="col-3">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
                                                         {% endif %}</p>
+            </div>
+            <div class="col-1">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
             </div>
         </div>
         {% endfor %}
@@ -117,38 +155,51 @@
             <div class="col-1">
                 <p>Место</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>Имя участника</p>
             </div>
             <div class="col-2">
+                <p>Собака</p>
+            </div>
+            <div class="col-2">
+                <p>Порода</p>
+            </div>
+            <div class="col-2">
+                <p>Время</p>
+            </div>
+            <div class="col-1">
                 <p>Баллы</p>
             </div>
             <div class="col-2">
                 <p>Оценка</p>
             </div>
-            <div class="col-3">
-                <p>Время</p>
-            </div>
+
         </div>
         {% for competitor in competitors_ro_debut %}
         <div class="row text-center rounded border">
             <div class="col-1">
                 <p>{{ forloop.counter }}</p>
             </div>
-            <div class="col-3">
-                <p>{{ competitor.user.first_name }}</p>
+            <div class="col-2">
+                <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.points }}</p>
+                <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.grade_competitor }}</p>
+                <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
                                                         {% endif %}</p>
+            </div>
+            <div class="col-1">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
             </div>
         </div>
         {% endfor %}
@@ -164,38 +215,51 @@
             <div class="col-1">
                 <p>Место</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>Имя участника</p>
             </div>
             <div class="col-2">
+                <p>Собака</p>
+            </div>
+            <div class="col-2">
+                <p>Порода</p>
+            </div>
+            <div class="col-2">
+                <p>Время</p>
+            </div>
+            <div class="col-1">
                 <p>Баллы</p>
             </div>
             <div class="col-2">
                 <p>Оценка</p>
             </div>
-            <div class="col-3">
-                <p>Время</p>
-            </div>
+
         </div>
         {% for competitor in competitors_ro_veterany %}
         <div class="row text-center rounded border">
             <div class="col-1">
                 <p>{{ forloop.counter }}</p>
             </div>
-            <div class="col-3">
-                <p>{{ competitor.user.first_name }}</p>
+            <div class="col-2">
+                <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.points }}</p>
+                <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.grade_competitor }}</p>
+                <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
                                                         {% endif %}</p>
+            </div>
+            <div class="col-1">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
             </div>
         </div>
         {% endfor %}
@@ -211,38 +275,51 @@
             <div class="col-1">
                 <p>Место</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>Имя участника</p>
             </div>
             <div class="col-2">
+                <p>Собака</p>
+            </div>
+            <div class="col-2">
+                <p>Порода</p>
+            </div>
+            <div class="col-2">
+                <p>Время</p>
+            </div>
+            <div class="col-1">
                 <p>Баллы</p>
             </div>
             <div class="col-2">
                 <p>Оценка</p>
             </div>
-            <div class="col-3">
-                <p>Время</p>
-            </div>
+
         </div>
         {% for competitor in competitors_ro_1 %}
         <div class="row text-center rounded border">
             <div class="col-1">
                 <p>{{ forloop.counter }}</p>
             </div>
-            <div class="col-3">
-                <p>{{ competitor.user.first_name }}</p>
+            <div class="col-2">
+                <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.points }}</p>
+                <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.grade_competitor }}</p>
+                <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
                                                         {% endif %}</p>
+            </div>
+            <div class="col-1">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
             </div>
         </div>
         {% endfor %}
@@ -259,39 +336,56 @@
             <div class="col-1">
                 <p>Место</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>Имя участника</p>
             </div>
             <div class="col-2">
+                <p>Собака</p>
+            </div>
+            <div class="col-2">
+                <p>Порода</p>
+            </div>
+            <div class="col-2">
+                <p>Время</p>
+            </div>
+            <div class="col-1">
                 <p>Баллы</p>
             </div>
             <div class="col-2">
                 <p>Оценка</p>
             </div>
-            <div class="col-3">
-                <p>Время</p>
+            <div class="col-2">
+                <p>Баллы</p>
             </div>
+
         </div>
         {% for competitor in competitors_ro_2 %}
         <div class="row text-center rounded border">
             <div class="col-1">
                 <p>{{ forloop.counter }}</p>
             </div>
-            <div class="col-3">
-                <p>{{ competitor.user.first_name }}</p>
+            <div class="col-2">
+                <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.points }}</p>
+                <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
             <div class="col-2">
-                <p>{{ competitor.grade_competitor }}</p>
+                <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
                                                         {% endif %}</p>
             </div>
+            <div class="col-1">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+
         </div>
         {% endfor %}
     </div>
@@ -307,18 +401,25 @@
             <div class="col-1">
                 <p>Место</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>Имя участника</p>
             </div>
             <div class="col-2">
+                <p>Собака</p>
+            </div>
+            <div class="col-2">
+                <p>Порода</p>
+            </div>
+            <div class="col-2">
+                <p>Время</p>
+            </div>
+            <div class="col-1">
                 <p>Баллы</p>
             </div>
             <div class="col-2">
                 <p>Оценка</p>
             </div>
-            <div class="col-3">
-                <p>Время</p>
-            </div>
+
         </div>
         {% for competitor in competitors_ro_3 %}
         <div class="row text-center rounded border">
@@ -354,18 +455,25 @@
             <div class="col-1">
                 <p>Место</p>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <p>Имя участника</p>
             </div>
             <div class="col-2">
+                <p>Собака</p>
+            </div>
+            <div class="col-2">
+                <p>Порода</p>
+            </div>
+            <div class="col-2">
+                <p>Время</p>
+            </div>
+            <div class="col-1">
                 <p>Баллы</p>
             </div>
             <div class="col-2">
                 <p>Оценка</p>
             </div>
-            <div class="col-3">
-                <p>Время</p>
-            </div>
+
         </div>
         {% for competitor in competitors_ro_4 %}
         <div class="row text-center rounded border">
