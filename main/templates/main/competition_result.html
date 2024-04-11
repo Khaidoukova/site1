@@ -1,0 +1,397 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <h1 class="text-center">Таблица результатов</h1>
+        <h3 class="text-center">{{ competition.name_competition }}</h3>
+        <div class="col-md-3">
+            <a href="{% url 'detail_com' competition.pk %}" class="btn btn-success btn-sm">Вернуться</a>
+            <a href="{% url 'competition_result' competition.pk %}?download=excel" class="btn btn-primary btn-sm">Скачать файл</a>
+        </div>
+    </div>
+</div>
+
+{% if competitors_ro_dety %}
+<div class="=container mt-5">
+    <h4 class="text-center">РО-дети</h4>
+    <div class="container">
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>Место</p>
+            </div>
+            <div class="col-3">
+                <p>Имя участника</p>
+            </div>
+            <div class="col-2">
+                <p>Баллы</p>
+            </div>
+            <div class="col-2">
+                <p>Оценка</p>
+            </div>
+            <div class="col-3">
+                <p>Время</p>
+            </div>
+        </div>
+        {% for competitor in competitors_ro_dety %}
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>{{ forloop.counter }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.user.first_name }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
+                                                        {% else %}
+                                                            {{ competitor.sec_time_competitor }}
+                                                        {% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if competitors_ro_shenki %}
+<div class="=container mt-5">
+    <h4 class="text-center">РО-Щенки</h4>
+    <div class="container">
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>Место</p>
+            </div>
+            <div class="col-3">
+                <p>Имя участника</p>
+            </div>
+            <div class="col-2">
+                <p>Баллы</p>
+            </div>
+            <div class="col-2">
+                <p>Оценка</p>
+            </div>
+            <div class="col-3">
+                <p>Время</p>
+            </div>
+        </div>
+        {% for competitor in competitors_ro_shenki %}
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>{{ forloop.counter }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.user.first_name }}</p>
+                <p>{{ competitor.selected_dog.dog_name }}</p>
+            </div>
+
+            <div class="col-2">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
+                                                        {% else %}
+                                                            {{ competitor.sec_time_competitor }}
+                                                        {% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if competitors_ro_debut %}
+<div class="=container mt-5">
+    <h4 class="text-center">РО-Дебют</h4>
+    <div class="container">
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>Место</p>
+            </div>
+            <div class="col-3">
+                <p>Имя участника</p>
+            </div>
+            <div class="col-2">
+                <p>Баллы</p>
+            </div>
+            <div class="col-2">
+                <p>Оценка</p>
+            </div>
+            <div class="col-3">
+                <p>Время</p>
+            </div>
+        </div>
+        {% for competitor in competitors_ro_debut %}
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>{{ forloop.counter }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.user.first_name }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
+                                                        {% else %}
+                                                            {{ competitor.sec_time_competitor }}
+                                                        {% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if competitors_ro_veterany %}
+<div class="=container mt-5">
+    <h4 class="text-center">РО-Ветераны</h4>
+    <div class="container">
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>Место</p>
+            </div>
+            <div class="col-3">
+                <p>Имя участника</p>
+            </div>
+            <div class="col-2">
+                <p>Баллы</p>
+            </div>
+            <div class="col-2">
+                <p>Оценка</p>
+            </div>
+            <div class="col-3">
+                <p>Время</p>
+            </div>
+        </div>
+        {% for competitor in competitors_ro_veterany %}
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>{{ forloop.counter }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.user.first_name }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
+                                                        {% else %}
+                                                            {{ competitor.sec_time_competitor }}
+                                                        {% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if competitors_ro_1 %}
+<div class="=container mt-5">
+    <h4 class="text-center">РО-1</h4>
+    <div class="container">
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>Место</p>
+            </div>
+            <div class="col-3">
+                <p>Имя участника</p>
+            </div>
+            <div class="col-2">
+                <p>Баллы</p>
+            </div>
+            <div class="col-2">
+                <p>Оценка</p>
+            </div>
+            <div class="col-3">
+                <p>Время</p>
+            </div>
+        </div>
+        {% for competitor in competitors_ro_1 %}
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>{{ forloop.counter }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.user.first_name }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
+                                                        {% else %}
+                                                            {{ competitor.sec_time_competitor }}
+                                                        {% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+
+{% if competitors_ro_2 %}
+<div class="=container mt-5">
+    <h4 class="text-center">РО-2</h4>
+    <div class="container">
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>Место</p>
+            </div>
+            <div class="col-3">
+                <p>Имя участника</p>
+            </div>
+            <div class="col-2">
+                <p>Баллы</p>
+            </div>
+            <div class="col-2">
+                <p>Оценка</p>
+            </div>
+            <div class="col-3">
+                <p>Время</p>
+            </div>
+        </div>
+        {% for competitor in competitors_ro_2 %}
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>{{ forloop.counter }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.user.first_name }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
+                                                        {% else %}
+                                                            {{ competitor.sec_time_competitor }}
+                                                        {% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+
+{% if competitors_ro_3 %}
+<div class="=container mt-5">
+    <h4 class="text-center">РО-3</h4>
+    <div class="container">
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>Место</p>
+            </div>
+            <div class="col-3">
+                <p>Имя участника</p>
+            </div>
+            <div class="col-2">
+                <p>Баллы</p>
+            </div>
+            <div class="col-2">
+                <p>Оценка</p>
+            </div>
+            <div class="col-3">
+                <p>Время</p>
+            </div>
+        </div>
+        {% for competitor in competitors_ro_3 %}
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>{{ forloop.counter }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.user.first_name }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
+                                                        {% else %}
+                                                            {{ competitor.sec_time_competitor }}
+                                                        {% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if competitors_ro_4 %}
+<div class="=container mt-5">
+    <h4 class="text-center">РО-4 мастера</h4>
+    <div class="container">
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>Место</p>
+            </div>
+            <div class="col-3">
+                <p>Имя участника</p>
+            </div>
+            <div class="col-2">
+                <p>Баллы</p>
+            </div>
+            <div class="col-2">
+                <p>Оценка</p>
+            </div>
+            <div class="col-3">
+                <p>Время</p>
+            </div>
+        </div>
+        {% for competitor in competitors_ro_4 %}
+        <div class="row text-center rounded border">
+            <div class="col-1">
+                <p>{{ forloop.counter }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.user.first_name }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-3">
+                <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
+                                                        {% else %}
+                                                            {{ competitor.sec_time_competitor }}
+                                                        {% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock %}

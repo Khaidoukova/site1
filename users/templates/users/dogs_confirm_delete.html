@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+<div class="row">
+        <div class="6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>Удалить Собаку?</p>
+                        <button type="submit" class="btn btn-success">
+                            Удалить!
+                        </button>
+                        <a href="{% url 'index' %}" class="btn btn-warning">На главную</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,154 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <h1 class="text-center">Форма соревнования</h1>
+
+            <form method="post" class="needs-validation" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        {% for field in form %}
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ field.label_tag }}
+                                </div>
+
+                                <div class="col-md-8 mb-3">
+
+                                    {{ field }}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" name="judge_{{ field.name }}" class="form-control" style="display: none;" placeholder="Добавьте судью">
+                                        </div>
+                                        <!-- Добавляем поле для выбора судьи для данного класса -->
+                                        <div class="col-md-6">
+                                            <input type="text" name="count_{{ field.name }}" class="form-control" style="display: none;" placeholder="Максимум участников">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label id="reserve_label_{{ field.name }}" style="display: none;">
+                                                <span>Резерв</span>
+                                            </label>
+                                            <input type="checkbox" name="reserve_{{ field.name }}" style="display: none;">
+                                        </div>
+                                        <!-- Добавляем поле для выбора судьи для данного класса -->
+                                        <div class="col-md-5">
+                                            <input type="text" name="count_reserve_{{ field.name }}" class="form-control" style="display: none;" placeholder="Максимум резерв">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label id="vnezachet_label_{{ field.name }}" style="display: none;">
+                                                <span>Внезачет</span>
+                                            </label>
+                                            <input type="checkbox" name="vnezachet_{{ field.name }}" style="display: none;">
+                                        </div>
+                                        <!-- Добавляем поле для выбора судьи для данного класса -->
+                                        <div class="col-md-5">
+                                            <input type="text" name="count_vnezachet_{{ field.name }}" class="form-control" style="display: none;" placeholder="Максимум внезачет">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        {% endfor %}
+
+                    <button type="submit" class="btn btn-primary">Сохранить соревнование</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript-скрипт для обработки событий изменения состояния чекбоксов -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Находим все чекбоксы для выбора классов соревнований
+        const classCheckboxes = document.querySelectorAll('input[type="checkbox"][name^="class_"]');
+
+        // Для каждого чекбокса добавляем обработчик события изменения состояния
+        classCheckboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                // Находим поле для выбора судьи, связанное с этим классом
+                const judgeField = document.querySelector('input[name="judge_' + checkbox.name + '"]');
+
+                const count = document.querySelector('input[name="count_' + checkbox.name + '"]');
+                const reserve = document.querySelector('input[name="reserve_' + checkbox.name + '"]');
+                const count_reserve = document.querySelector('input[name="count_reserve_' + checkbox.name + '"]');
+                const vnezachet = document.querySelector('input[name="vnezachet_' + checkbox.name + '"]');
+                const count_vnezachet = document.querySelector('input[name="count_vnezachet_' + checkbox.name + '"]');
+
+                // Если чекбокс выбран, показываем поле для выбора судьи, иначе скрываем
+                if (checkbox.checked) {
+                    judgeField.style.display = 'block';
+                    document.getElementById('reserve_label_' + checkbox.name).style.display = 'block';
+                    document.getElementById('vnezachet_label_' + checkbox.name).style.display = 'block';
+
+                    count.style.display = 'block';
+                    reserve.style.display = 'block';
+                    count_reserve.style.display = 'block';
+                    vnezachet.style.display = 'block';
+                    count_vnezachet.style.display = 'block';
+                } else {
+                    judgeField.style.display = 'none';
+                    document.getElementById('reserve_label_' + checkbox.name).style.display = 'none';
+                    document.getElementById('vnezachet_label_' + checkbox.name).style.display = 'none';
+
+                    count.style.display = 'none';
+                    reserve.style.display = 'none';
+                    count_reserve.style.display = 'none';
+                    vnezachet.style.display = 'none';
+                    count_vnezachet.style.display = 'none';
+                }
+
+            });
+        });
+    });
+</script>
+
+<!-- JavaScript-скрипт для обработки событий изменения состояния чекбоксов
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Находим все чекбоксы для выбора классов соревнований
+        const classCheckboxes = document.querySelectorAll('input[type="checkbox"][name^="class_"]');
+
+        // Для каждого чекбокса добавляем обработчик события изменения состояния
+        classCheckboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                // Находим поле для выбора судьи, связанное с этим классом
+                const judgeField = document.querySelector('input[name="judge_' + checkbox.name + '"]');
+
+                // Если чекбокс выбран, показываем поле для выбора судьи, иначе скрываем
+                if (checkbox.checked) {
+                    judgeField.style.display = 'block';
+                } else {
+                    judgeField.style.display = 'none';
+                }
+
+                // Находим новые поля, связанные с этим классом
+                const newFields = document.querySelectorAll('[name^="count_' + checkbox.name.replace('class_', '') + '"], ' +
+                                                             '[name^="reserve_' + checkbox.name.replace('class_', '') + '"], ' +
+                                                             '[name^="vnezachet_' + checkbox.name.replace('class_', '') + '"], ' +
+                                                             '[name^="count_reserve_' + checkbox.name.replace('class_', '') + '"], ' +
+                                                             '[name^="count_vnezachet_' + checkbox.name.replace('class_', '') + '"]');
+
+                // Показываем или скрываем каждое новое поле в зависимости от состояния чекбокса
+                newFields.forEach(function (field) {
+                    if (checkbox.checked) {
+                        field.style.display = 'block';
+                    } else {
+                        field.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script> -->
+
+{% endblock %}

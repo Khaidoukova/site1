@@ -1,0 +1,600 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+
+<div class="container mt-2 mb-2" xmlns="http://www.w3.org/1999/html">
+
+        <div class="row">
+            <!-- Левая часть с изображением -->
+            <div class="col-md-4">
+                <img src="/media/{{ object_competition.image_competition }}" alt="Баннер соревнования" class="img-fluid">
+            </div>
+
+            <!-- Правая часть с информацией о товаре -->
+            <div class="col-md-8">
+
+                <h2>Название соревнования: {{ object_competition.name_competition }} </h2>
+
+                <p><b>Дата соревнования:</b> {% if object_competition.date_competition %}
+                    {{ object_competition.date_competition }}
+                    {% else %}
+                    {{ object_competition.pre_date_competition }}
+                {% endif %}
+                </p>
+
+                <p>
+                <b>Правила:</b>
+                    {{ object_competition.get_rules_competition_display }}
+                </p>
+                <p>
+                <b>Город проведения:</b>
+                    {{ object_competition.place_competition }}
+                </p>
+                 <p>
+                <b>Ссылка на карту:</b>
+                    {{ object_competition.place_on_map }}
+                </p>
+                <p>
+                <b>Тип площадки:</b>
+                    {{ object_competition.get_play_ground_competition_display }}
+                </p>
+                <p>
+                <b>Клуб организатора:</b>
+                    {{ object_competition.club_organization }}
+                </p>
+
+                <p><b>Контакт организатора:</b> {{ object_competition.contact_organization }}</p>
+                <p><b>Максимум участников:</b> {{ object_competition.max_players }}</p>
+                <p><b>Судья ID:</b> {{ object_competition.judge_competition }}</p>
+
+                <p><b>Классы:</b>
+                    {% if object_competition.class_ro_dety %}
+                        РО-дети
+                    {% endif %}
+                    {% if object_competition.class_ro_shenki %}
+                        РО-щенки
+                    {% endif %}
+                    {% if object_competition.class_ro_debut %}
+                        РО-дебют
+                    {% endif %}
+                    {% if object_competition.class_ro_veterany %}
+                        РО-ветераны
+                    {% endif %}
+                    {% if object_competition.class_ro_1 %}
+                        РО-1
+                    {% endif %}
+                    {% if object_competition.class_ro_2 %}
+                        РО-2
+                    {% endif %}
+                    {% if object_competition.class_ro_3 %}
+                        РО-3
+                    {% endif %}
+                    {% if object_competition.class_ro_4 %}
+                        РО-4(мастера)
+                    {% endif %}
+
+                </p>
+            {% if is_owner %}
+                <!-- кнопка добавление трассы
+                <a class="btn btn-info btn-sm text-white" href="{% url 'drag_and_drop_app:image_list' %}">Добавить трассы</a>
+                -->
+                <a href="{% url 'update_com' object_competition.pk %}" class="btn btn-primary btn-sm">Изменить</a>
+                <a href="{% url 'delete_com' object_competition.pk %}" class="btn btn-danger btn-sm">Удалить</a>
+            {% endif %}
+                <a href="{% url 'competition_result' object_competition.pk %}">Посмотреть результаты</a>
+            </div>
+
+            <div class="row p-3">
+                <div class="col-3"
+                    <h2>Участники соревнования: </h2>
+                </div>
+                <div class="col-3">
+
+                        {% if conductor.id_conductor %}
+                    <!-- Кнопка для создания участника -->
+                        <a href="{% url 'roles:competitor_form' pk=pk %}"  class="btn btn-info btn-sm text-white" name="add_competitor">
+                            Добавиться участником
+                        </a>
+                        {% else %}
+                            <p>Получите статус Проводника и добавьте собаку для участия в соревнованиях</p>
+                        {% endif %}
+                </div>
+            {% if is_owner or request.user.is_staff  %}
+                <div class="col-3">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="class_type" value="all_class">
+                        <button type="submit" class="btn btn-primary">Скачать список участников</button>
+                    </form>
+                </div>
+            {% endif %}
+            </div>
+
+            <div class="container col-12">
+                <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
+                  <div class="row">
+                    <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>Проводник</p>
+                    </div>
+                    <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <p>Собака</p>
+                    </div>
+                    <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <p>Порода</p>
+                    </div>
+                    <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        Класс
+                    </div>
+                    <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        Город
+                    </div>
+                    <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        Примечание
+                    </div>
+                  </div>
+                </div>
+
+                {% if competitors_ro_dety %}
+                <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
+                    <div class="row">
+                        <div class="col-3">
+                            <h3>Класс РО-Дети</h3>
+                        </div>
+                        {% if is_owner or request.user.is_staff  %}
+                        <div class="col-3">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="class_type" value="ro_dety">
+                                <button type="submit" class="btn btn-primary">Скачать оценочные листы</button>
+                            </form>
+                        </div>
+                        <div class="col-3">
+                            <p>За один день до соревнования - тут будет ссылка на трассу</p>
+                        </div>
+                        <div class="col-3">
+                            {% for image in images_by_class.ro_dety|slice:":2" %}
+                                    <a href="{{ image.file_link }}">скачать</a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% for competitor in competitors_ro_dety %}
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
+                            {{ competitor.user.first_name }}</a></p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            {% if competitor.selected_dog.dog_name %}
+                            <p><a href="{% url 'dogs_detail' pk=competitor.selected_dog.pk %}">
+
+
+                                {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
+                            {% endif %}
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.selected_dog.breed_dog }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>РО-Дети</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.user.user_town }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                           <p>Нет комментариев</p>
+                            {% if is_owner or request.user.is_staff  %}
+                            <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if competitors_ro_shenki %}
+                <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
+                    <div class="row">
+                        <div class="col-3">
+                            <h3>Класс РО-Щенки</h3>
+                        </div>
+                        {% if is_owner or request.user.is_staff  %}
+                        <div class="col-3">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="class_type" value="ro_shenki">
+                                <button type="submit" class="btn btn-primary">Скачать оценочные листы</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% for competitor in competitors_ro_shenki %}
+                    <div class="row">
+
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
+                            {{ competitor.user.first_name }}</a></p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            {% if competitor.selected_dog.dog_name %}
+                            <p><a href="{% url 'dogs_detail' pk=competitor.selected_dog.pk %}">
+
+
+                                {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
+                            {% endif %}
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.selected_dog.breed_dog }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>РО-Щенки</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.user.user_town }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                           <p>Нет комментариев</p>
+                            {% if is_owner or request.user.is_staff  %}
+                            <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if competitors_ro_debut %}
+                <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
+                    <div class="row">
+                    <div class="col-3">
+                        <h3>Класс РО-Дебют</h3>
+                    </div>
+                        {% if is_owner or request.user.is_staff  %}
+                    <div class="col-3">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="class_type" value="ro_debut">
+                            <button type="submit" class="btn btn-primary">Скачать оценочные листы</button>
+                        </form>
+                    </div>
+                        {% endif %}
+                    </div>
+                    {% for competitor in competitors_ro_debut %}
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
+                            {{ competitor.user.first_name }}</a></p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            {% if competitor.selected_dog.dog_name %}
+                            <p><a href="{% url 'dogs_detail' pk=competitor.selected_dog.pk %}">
+
+
+                                {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
+                            {% endif %}
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.selected_dog.breed_dog }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>РО-Дебют</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.user.user_town }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                           <p>Нет комментариев</p>
+                            {% if is_owner or request.user.is_staff  %}
+                            <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if competitors_ro_veterany %}
+                <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
+                    <div class="row">
+                        <div class="col-3">
+                            <h3>Класс РО-Ветераны</h3>
+                        </div>
+                        {% if is_owner or request.user.is_staff  %}
+                        <div class="col-3">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="class_type" value="ro_veterany">
+                            <button type="submit" class="btn btn-primary">Скачать оценочные листы</button>
+                        </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% for competitor in competitors_ro_veterany %}
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
+                            {{ competitor.user.first_name }}</a></p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            {% if competitor.selected_dog.dog_name %}
+                            <p><a href="{% url 'dogs_detail' pk=competitor.selected_dog.pk %}">
+
+
+                                {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
+                            {% endif %}
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.selected_dog.breed_dog }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>РО-Ветераны</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.user.user_town }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                           <p>Нет комментариев</p>
+                            {% if is_owner or request.user.is_staff  %}
+                            <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if competitors_ro_1 %}
+                <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
+                    <div class="row">
+                        <div class="col-3">
+                            <h3>Класс РО-1</h3>
+                        </div>
+                        {% if is_owner or request.user.is_staff  %}
+                        <div class="col-3">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="class_type" value="ro_1">
+                            <button type="submit" class="btn btn-primary">Скачать оценочные листы</button>
+                        </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% for competitor in competitors_ro_1 %}
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
+                            {{ competitor.user.first_name }}</a></p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            {% if competitor.selected_dog.dog_name %}
+                            <p><a href="{% url 'dogs_detail' pk=competitor.selected_dog.pk %}">
+
+
+                                {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
+                            {% endif %}
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.selected_dog.breed_dog }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>РО-1</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.user.user_town }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                           <p>Нет комментариев</p>
+                            {% if is_owner or request.user.is_staff  %}
+                            <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if competitors_ro_2 %}
+                <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
+                    <div class="row">
+                        <div class="col-3">
+                            <h3>Класс РО-2</h3>
+                        </div>
+                        {% if is_owner or request.user.is_staff  %}
+                        <div class="col-3">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="class_type" value="ro_2">
+                                <button type="submit" class="btn btn-primary">Скачать оценочные листы</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% for competitor in competitors_ro_2 %}
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
+                            {{ competitor.user.first_name }}</a></p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            {% if competitor.selected_dog.dog_name %}
+                            <p><a href="{% url 'dogs_detail' pk=competitor.selected_dog.pk %}">
+
+
+                                {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
+                            {% endif %}
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.selected_dog.breed_dog }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>РО-2</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.user.user_town }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                           <p>Нет комментариев</p>
+                            {% if is_owner or request.user.is_staff  %}
+                            <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if competitors_ro_3 %}
+                <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
+                    <div class="row">
+                        <div class="col-3">
+                            <h3>Класс РО-3</h3>
+                        </div>
+                        {% if is_owner or request.user.is_staff  %}
+                        <div class="col-3">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="class_type" value="ro_3">
+                                <button type="submit" class="btn btn-primary">Скачать оценочные листы</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% for competitor in competitors_ro_3 %}
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
+                            {{ competitor.user.first_name }}</a></p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            {% if competitor.selected_dog.dog_name %}
+                            <p><a href="{% url 'dogs_detail' pk=competitor.selected_dog.pk %}">
+
+
+                                {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
+                            {% endif %}
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.selected_dog.breed_dog }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>РО-3</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.user.user_town }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                           <p>Нет комментариев</p>
+                            {% if is_owner or request.user.is_staff  %}
+                            <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if competitors_ro_4 %}
+                <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
+                    <div class="row">
+                        <div class="col-3">
+                            <h3>Класс РО-4 (мастера)</h3>
+                        </div>
+                        {% if is_owner or request.user.is_staff  %}
+                        <div class="col-3">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="class_type" value="ro_4">
+                                <button type="submit" class="btn btn-primary">Скачать оценочные листы</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% for competitor in competitors_ro_4 %}
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
+                            {{ competitor.user.first_name }}</a></p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            {% if competitor.selected_dog.dog_name %}
+                            <p><a href="{% url 'dogs_detail' pk=competitor.selected_dog.pk %}">
+
+
+                                {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
+                            {% endif %}
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.selected_dog.breed_dog }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>РО-4</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ competitor.user.user_town }}</p>
+                        </div>
+                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                           <p>Нет комментариев</p>
+                            {% if is_owner or request.user.is_staff  %}
+                            <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

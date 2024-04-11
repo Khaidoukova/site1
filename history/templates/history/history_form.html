@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <h1 class="text-center">Добавьте Ваши предыдущие выступления в соревнованиях</h1>
+            <form method="post" class="needs-validation" enctype="multipart/form-data">
+    {% csrf_token %}
+                <div class="form-group">
+    {{ form.as_p }}
+                </div>
+    <button type="submit" class="btn btn-primary">Сохранить соревнование</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

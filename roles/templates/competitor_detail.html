@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+
+<div class="container mt-2 mb-2" xmlns="http://www.w3.org/1999/html">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Оценки: </h2>
+
+                <form method="post">
+                    <div class="row">
+                        {% csrf_token %}
+                        {% for field in form.visible_fields %}
+
+                                <div class="col-md-1 mb-3">
+                                    {{ field.label_tag }}
+                                    <br>
+                                    <!-- Применяем стили к самому полю ввода -->
+                                    <style>
+                                        input#{{ field.id_for_label }} {
+                                            width: 50px; /* ширина поля */
+                                        }
+                                    </style>
+                                    {{ field }}
+                                </div>
+
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary">Сохранить оценки</button>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-4 md-2 mb-3">
+                        <p>Общие баллы: {{ competitor_info.points }}</p>
+                    </div>
+                    <div class="col-4 md-2 mb-3">
+                        <p>Оценка: {{ competitor_info.grade_competitor }}</p>
+                    </div>
+                    <div class="col-4 md-2 mb-3">
+                        <p>Время: {{ min_time_competitor }}:{% if sec_time_competitor < 10 %}0{{ sec_time_competitor }}{% else %}{{ sec_time_competitor }}{% endif %}</p>
+                    </div>
+                    <p>
+                      {% for score in additional_scores %}
+                        <p>{{ score.additional_scores }}</p>
+                      {% endfor %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

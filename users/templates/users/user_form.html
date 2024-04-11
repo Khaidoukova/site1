@@ -1,0 +1,75 @@
+{% extends 'main/base.html' %}
+
+{% block content%}
+<div class="container mt-2 mb-2">
+    <div class="col-12">
+                <div class="card mb-4 box-shadow">
+                    <div class="card">
+                        <div class="card-body" >
+        <div class="col-6">
+
+                    <div class="card-title">
+                        Здесь вы можете изменить ваши данные
+                    </div>
+            <div class="card">
+                <div class="card-header">
+
+
+
+    {% if user.is_staff == True %}
+                    <div>Вам не нужно авторизовываться - вы администратор</div>
+    {% else %}
+                    {% if user.user_active == False %}
+                  <div>Пройдите авторизацию</div>
+                        <div>
+                           <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+                          {% csrf_token %}
+                           <input type="text" name="kod_active" placeholder="Введите код из почты">
+                           <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Авторизоваться</button>
+                           </form>
+                        </div>
+                    {% else %}
+                    <h3>Вы авторизованы</h3>
+                    {% endif %}
+    {% endif %}
+
+
+                </div>
+                <div class="image-container">
+                    <img src="/media/{{ object.avatar }}" alt="Ваш аватар будет здесь" class="img-fluid">
+                </div>
+
+                    <div class="card-body">
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form %}
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    {{ field.label_tag }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    {{ field }}
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <button type="submit" class="btn btn-success">Сохранить</button>
+                        </form>
+
+                    </div>
+                </div>
+                <a href="" class="btn btn-danger">Сменить пароль</a>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+

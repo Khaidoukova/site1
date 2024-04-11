@@ -1,0 +1,137 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <h1 class="text-center">Ралли обидиенс</h1>
+    </div>
+</div>
+
+
+<div class="container mt-5 sm-1">
+
+    <div style="background-color: #e3ffd4; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+         <div class="row">
+             <div class="col text-center">
+      <h2>Ближайшие соревнования</h2>
+              </div>
+         </div>
+    </div>
+
+    <div class="row">
+        {% for object_competition in pre_date %}
+        <div class="col-md-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p><b>{{ object_competition.name_competition }}</b></p>
+                            <p>{{ object_competition.place_competition }}</p>
+                        </div>
+                        <div class="col-md-1">
+                            <img src="/media/{{ object_competition.logo_club_organization }}" alt="Лого клуба" class="img-fluid"  width="50">
+                        </div>
+                        <div class="col-md-3">
+                            <p>Возможно участников: {{ object_competition.max_players }}</p>
+                            <p>Уже участников:
+                            {% with object_competition.competitor_set.count as competitors_count %}
+                                {{ competitors_count }}
+                            {% endwith %}
+                        </p>
+                        </div>
+                        <div class="col-md-2">
+                            {% if object_competition.date_competition %}
+                                <p class="card-text">Дата проведения: {{ object_competition.date_competition }}</p>
+                            {% else %}
+                                {% if object_competition.pre_date_competition %}
+                                    <p class="card-text">Предварительно: {{ object_competition.pre_date_competition }}</p>
+                                {% else %}
+                                    <p class="card-text">Дата соревнования появится позже</p>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            <a href="{% url 'detail_com' object_competition.pk %}" class="btn btn-success btn-sm">Посмотреть</a>
+                            <p>Комментарии: {{ object_competition.comment_for_competition }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="row">
+        {% for object_competition in future_competitions %}
+        <div class="col-md-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p><b>{{ object_competition.name_competition }}</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Количество участников: {{ object_competition.max_players }}</p>
+                        </div>
+                        <div class="col-md-3">
+                            {% if object_competition.date_competition %}
+                                <p class="card-text">{{ object_competition.date_competition }}</p>
+                            {% else %}
+                                {% if object_competition.pre_date_competition %}
+                                    <p class="card-text">{{ object_competition.pre_date_competition }}</p>
+                                {% else %}
+                                    <p class="card-text">Дата соревнования появится позже</p>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{% url 'detail_com' object_competition.pk %}" class="btn btn-success btn-sm">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div style="background-color: #e3ffd4; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+     <div class="row">
+         <div class="col text-center">
+      <h2>Прошедшие соревнования</h2>
+          </div>
+     </div>
+    </div>
+    <div class="row">
+        {% for object_competition in past_competitions %}
+        <div class="col-md-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p><b>{{ object_competition.name_competition }}</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Количество участников: {{ object_competition.max_players }}</p>
+                        </div>
+                        <div class="col-md-3">
+                            {% if object_competition.date_competition %}
+                                <p class="card-text">{{ object_competition.date_competition }}</p>
+                            {% else %}
+                                <p class="card-text">{{ object_competition.pre_date_competition }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{% url 'detail_com' object_competition.pk %}" class="btn btn-success btn-sm">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

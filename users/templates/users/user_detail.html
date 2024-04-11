@@ -1,0 +1,302 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+<div class="container">
+    {% if is_owner %}
+    <div class="row mt-4 mb-4">
+        <h3>Чтобы у вас появилась много возможностей - заполните данные о себе</h3>
+        <a href="{% url 'users:profile' %}" class="btn btn-secondary text-white">Заполнить</a>
+    </div>
+    {% endif %}
+        <div class="row">
+            <!-- Левая часть с изображением -->
+            <div class="col-md-3">
+                <div class="p-3 m-3">
+                    <img src="/media/{{ object_user.avatar }}" alt="Ваш аватар" class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Правая часть с информацией о юзере -->
+            <div class="col-md-9">
+                <p><b>Имя:</b> {{ object_user.first_name }} </p>
+                <p><b>Фамилия</b> {{ object_user.last_name }}</p>
+                <p><b>Почта</b> {{ object_user.email }}</p>
+                {% if object_user.user_hide_info == False %}
+                <p><b>Город</b> {{ object_user.user_town }}</p>
+                    {% if object_user.user_club %}
+                <p><b>Клуб</b> {{ object_user.user_club }}</p>
+                    {% endif %}
+                    {% if object_user.user_trainer %}
+                <p><b>Тренер</b> {{ object_user.user_trainer }}</p>
+                    {% endif %}
+                <p><b>О себе</b> {{ object_user.user_about }}</p>
+                    {% if object_user.org_status == True %}
+                <p><b>Статус организатора</b> Получен</p>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+{% if object_user.phone %}
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-conductor-tab" data-bs-toggle="pill" data-bs-target="#pills-conductor" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Я проводник</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-dogs-tab" data-bs-toggle="pill" data-bs-target="#pills-dogs" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Мои собаки</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-orgaz-tab" data-bs-toggle="pill" data-bs-target="#pills-orgaz" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Я организатор</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-judge-tab" data-bs-toggle="pill" data-bs-target="#pills-judge" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Я судья</button>
+              </li>
+            </ul>
+
+
+            <div class="tab-content" id="pills-tabContent">
+
+            <div class="tab-pane fade" id="pills-dogs" role="tabpanel" aria-labelledby="pills-dogs-tab">
+                  {% if is_owner %}
+                  <div class="col-md-12">
+                        <a href="{% url 'create_dogs' %}" class="btn btn-info btn-sm text-white" >Добавить собаку</a>
+                  </div>
+                  {% endif %}
+
+
+                            <div class="row">
+                                  <div class="col-md-12 p-3 m-3">
+
+                                        {% if user_dogs %}
+                                            <div class="row">
+                                              {% for dog in user_dogs %}
+                                                <div class="col-3">
+
+                                                    <div class="card mb-4 box-shadow">
+                                                        <div class="card">
+                                                            <div class="card-body" >
+                                                                    <p><b>id собаки:</b> {{ dog.id_dog }}</p>
+                                                                      <p><b>Кличка по родословной:</b> {{ dog.dog_name }}</p>
+                                                                  {% if dog.home_name %}
+                                                                  <p><b>Кличка домашняя:</b> {{ dog.home_name }}</p>
+                                                                  {% endif %}
+                                                                      <p><b>Порода собаки:</b> {{ dog.breed_dog }}</p>
+                                                                    <p><b>Дата рождения:</b> {{ dog.date_borne }}</p>
+                                                                 <a href="{% url 'dogs_detail' pk=dog.pk %}" class="btn btn-info btn-sm text-white" >Подробности о собаке</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              {% endfor %}
+                                            </div>
+
+                                        {% else %}
+                                            <p>Еще не добавлена ни одна собака</p>
+                                        {% endif %}
+
+                                      <div class="row p-2">
+                                            <h4>История соревнований моей собаки</h4>
+                                          {% if is_owner %}
+                                            <div class="col-md-3 p-3">
+                                            <a href="{% url 'history:history_create' %}" class="btn btn-primary">Добавить</a>
+                                            </div>
+                                          {% endif %}
+                                                {% for history in user_history %}
+                                                <div class="col-md-12">
+                                                    <div class="card mb-4 box-shadow">
+                                                        <div class="card-body">
+                                                            <div class="row m-1">
+                                                                <div class="col-md-3">
+                                                                    <p><b>Название соревнований</b> {{ history.competition }} - {{ history.date_competition }}</p>
+                                                                    <p><b>Участинк в классе</b> {{ history.get_class_dog_display }}</p>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <p><b>Трасса 1:</b> Очки - {{ history.track1_points }} Время - {{ history.track1_time }}</p>
+                                                                    <p><b>Оценка</b> {{ history.get_track1_grade_display }} <br>Место - {{ history.track1_place }}</p>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <p><b>Трасса 2:</b> Очки - {{ history.track2_points }} Время - {{ history.track2_time }}</p>
+                                                                    <p><b>Оценка</b> {{ history.get_track2_grade_display }} <br>Место - {{ history.track2_place }}</p>
+                                                                </div>
+                                                                {% if is_owner %}
+                                                                <div class="col-md-3">
+                                                                    <a href="" class="btn btn-primary btn-sm">Изменить</a>
+                                                                    <a href="" class="btn btn-danger btn-sm">Удалить</a>
+                                                                </div>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                  </div>
+                            </div>
+
+
+            <div class="tab-pane fade  show active" id="pills-conductor" role="tabpanel" aria-labelledby="pills-conductor-tab">
+                    {% if is_owner %}
+                        {% if conductor.id_conductor %}
+                        <p>Ваш ID проводника: {{ conductor.id_conductor }}</p>
+                          <p>Теперь вы можете добавить собаку для участие в соревнованиях</p>
+                            <a href="{% url 'roles:add_dog_conductor' %}" class="btn btn-info btn-sm text-white">Добавить собаку</a>
+                    <div class="m-3">
+                                <p>Уже добавленные собаки:</p>
+                                  {% for dog in conductor.dogs.all %}
+                                    <a class="m-2" href="{% url 'dogs_detail' pk=dog.pk %}">
+                                    {{ dog.dog_name }}
+                                    </a><br>
+                                  {% endfor %}
+                    </div>
+                        {% else %}
+                        <a href="{% url 'roles:create_conductor' %}" class="btn btn-info btn-sm text-white">Стать проводником</a>
+                            <div class="border p-3 m-3">
+                                <p>Здесь будут собаки,у которых вы проводник и вы сможете заявиться с
+                                этой собакой на соревнования</p>
+                            </div>
+
+                        {% endif %}
+                    {% else%}
+                        {% if conductor.id_conductor %}
+                            <p>Этот пользователь имеет ID проводника: {{ conductor.id_conductor }}</p>
+                    <div class="m-3">
+                            <p>Он проводник этих собак:</p>
+                            {% for dog in conductor.dogs.all %}
+                                <a class="m-2" href="{% url 'dogs_detail' pk=dog.pk %}">
+                                    {{ dog.dog_name }}
+                                    </a><br>
+                              {% endfor %}
+                     </div>
+
+                        {% else%}
+                            <p>Этот пользователь не имеет ID проводника</p>
+                        {% endif %}
+                    {% endif %}
+
+              </div>
+
+            <div class="tab-pane fade" id="pills-orgaz" role="tabpanel" aria-labelledby="pills-orgaz-tab">
+                {% if is_owner and object_user.org_status %}
+                  <p>Статус организатора получен</p>
+                <a href="/create_com" class="btn btn-info btn-sm text-white">Создать соревнование</a>
+                  {% else %}
+                        {% if object_user.get_check %}
+                    <p>Ваш запрос уже отправлен, если подтверждения долго нет, напишите админу</p>
+                            {% if user.is_staff %}
+                                <p>Чтобы подтвердить права организатора этого юзера, нажмите кнопку</p>
+
+                                <form method="post" action="" name="action1">
+                                    {% csrf_token %}
+                                    <button type="submit" name="action1">Одобрить</button>
+                                </form>
+                            {% endif %}
+
+                        {% else %}
+                    <a href="{% url 'roles:create_organization' %}" class="btn btn-info btn-sm text-white">Стать организатором</a>
+                        {% endif %}
+                {% endif %}
+                    <div class="border p-3 m-3">
+
+                        {% if user_competition %}
+                        {% for competitions in user_competition %}
+
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <div class="rounded border p-3">
+                                    <p><b>Название соревнования</b></p>
+                                      <p>{{ competitions.name_competition }}</p>
+                                  </div>
+                                </div>
+                                  <div class="col-sm-3">
+                                  <div class="rounded border p-3">
+                                      <p><b>Дата проведения:</b></p>
+                                        <p>
+                                        {% if competitions.date_competition %}
+                                        {{ competitions.date_competition }}
+                                        {% else %}
+                                        {{ competitions.pre_date_competition }}
+                                        {% endif %}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  <div class="col-sm-3">
+                                  <div class="rounded border p-3">
+                                    <p><b>Максимум участников {{ competitions.max_players }}</b></p>
+                                      <p><b>Классы:</b>
+                                            {% if competitions.class_ro_dety %}
+                                                РО-дети
+                                            {% endif %}
+                                            {% if competitions.class_ro_shenki %}
+                                                РО-щенки
+                                            {% endif %}
+                                            {% if competitions.class_ro_debut %}
+                                                РО-дебют
+                                            {% endif %}
+                                            {% if competitions.class_ro_veterany %}
+                                                РО-ветераны
+                                            {% endif %}
+                                            {% if competitions.class_ro_1 %}
+                                                РО-1
+                                            {% endif %}
+                                            {% if competitions.class_ro_2 %}
+                                                РО-2
+                                            {% endif %}
+                                            {% if competitions.class_ro_3 %}
+                                                РО-3
+                                            {% endif %}
+                                            {% if competitions.class_ro_4 %}
+                                                РО-4(мастера)
+                                            {% endif %}
+
+                                        </p>
+                                  </div>
+                                </div>
+                                <div class="col-sm-3">
+                                  <div class="rounded border p-3">
+                                    <a href="{% url 'detail_com' competitions.pk %}" class="btn btn-info btn-sm text-white">Подробнее</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                        {% else %}
+                            <p>Здесь будут соревнования, которые организовывал этот пользователь</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+            <div class="tab-pane fade" id="pills-judge" role="tabpanel" aria-labelledby="pills-judge-tab">
+                        {% if judge_info.judge_status %}
+                            {% if judge_info.check_admin %}
+                                <p>Статус судьи получен Ваш ID судьи: {{ judge_info.id_judge }}</p>
+                            {% else %}
+                                <p>Ваш запрос уже отправлен и ждет одобрения, если подтверждения долго нет, напишите админу</p>
+                                {% if user.is_staff %}
+                                        <p>Чтобы разрешить юзеру стать судьей, нажмите кнопку</p>
+
+                                        <form method="post" action="" name="action2">
+                                            {% csrf_token %}
+                                            <button type="submit" name="action2">Одобрить</button>
+                                        </form>
+                                    {% endif %}
+                            {% endif %}
+                        {% else %}
+                            <a href="{% url 'roles:create_judge' %}" class="btn btn-info btn-sm text-white">Стать судьей</a>
+                        {% endif %}
+                        <div class="border p-3 m-3">
+                            <p>Здесь будут соревнования, которые вы судили</p>
+                        </div>
+                    </div>
+            </div>
+{% else %}
+            <div class="row">
+            <H4 class="text-center">Нужно заполнить обязательные данные</H4>
+            </div>
+{% endif %}
+</div>
+{% endblock %}

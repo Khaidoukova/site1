@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div style="background-color: #e3ffd4; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+         <div class="row">
+             <div class="col-12 text-center">
+      <h2>Добавьте трассу к соревнованию</h2>
+              </div>
+             <div class="col-12 p-3 text-center">
+                 <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+             </div>
+         </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+</div>
+
+{% endblock %}

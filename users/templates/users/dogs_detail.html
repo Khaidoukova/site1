@@ -1,0 +1,87 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+
+<div class="container mt-2 mb-2">
+
+    <div class="row">
+        <!-- Левая часть с изображением -->
+        <div class="col-md-4">
+            <img src="/media/{{ dog_info.dog_avatar }}" alt="фото собаки" class="img-fluid">
+        </div>
+
+        <!-- Правая часть с информацией о товаре -->
+        <div class="col-md-4">
+
+            <h2>Имя собаки: {{ dog_info.dog_name }} </h2>
+            <p><b>Хозяин:</b><a href="{% url 'users:user_detail' pk=dog_info.owner.pk %}">
+                {{ dog_info.owner.first_name }} {{ dog_info.owner.last_name }}</a></p>
+            <p><b>Id собаки:</b> {{ dog_info.id_dog }}</p>
+            <p><b>Домашнее имя собаки:</b> {{ dog_info.home_name }}</p>
+            <p><b>Дата рождения:</b> {{ dog_info.date_borne }}</p>
+            <p><b>Порода:</b> {{ dog_info.breed_dog }}</p>
+            <p><b>Родословная:</b> {{ dog_info.pedigree_dog }}</p>
+            <p><b>Федерация:</b> {{ dog_info.other_federation }}</p>
+            <p><b>Номер чипа:</b> {{ dog_info.number_chip }}</p>
+            <p><b>Клеймо:</b> {{ dog_info.brand_dog }}</p>
+            <p><b>Пол собаки:</b> {{ dog_info.female_dog }}</p>
+            <p><b>№ номер рабочей книжки:</b> {{ dog_info.number_bookwork }}</p>
+            {% if is_owner %}
+            <a href="{% url 'dogs_update' dog_info.pk %}" class="btn btn-primary btn-sm">Изменить</a>
+            <a href="{% url 'dogs_delete_com' dog_info.pk %}" class="btn btn-danger btn-sm">Удалить</a>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <img src="/media/{{ dog_info.pedigree_file }}" alt="фото родословной" class="img-fluid">
+        </div>
+
+        <div class="row p-2">
+                <h4>История соревнований моей собаки</h4>
+              {% if is_owner %}
+                <div class="col-md-3 p-3">
+                <a href="{% url 'history:history_create' %}" class="btn btn-primary">Добавить</a>
+                </div>
+              {% endif %}
+
+
+                    {% for history in user_history %}
+                    <div class="col-md-12">
+                        <div class="card mb-4 box-shadow">
+                            <div class="card-body">
+                                <div class="row m-1">
+                                    <div class="col-md-3">
+                                        <p><b>Название соревнований</b> {{ history.competition }} - {{ history.date_competition }}</p>
+                                        <p><b>Участинк в классе</b> {{ history.get_class_dog_display }}</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p><b>Трасса 1:</b> Очки - {{ history.track1_points }} Время - {{ history.track1_time }}</p>
+                                        <p><b>Оценка</b> {{ history.get_track1_grade_display }} <br>Место - {{ history.track1_place }}</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p><b>Трасса 2:</b> Очки - {{ history.track2_points }} Время - {{ history.track2_time }}</p>
+                                        <p><b>Оценка</b> {{ history.get_track2_grade_display }} <br>Место - {{ history.track2_place }}</p>
+                                    </div>
+                                    {% if is_owner %}
+                                    <div class="col-md-3">
+                                        <a href="" class="btn btn-primary btn-sm">Изменить</a>
+                                        <a href="" class="btn btn-danger btn-sm">Удалить</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}

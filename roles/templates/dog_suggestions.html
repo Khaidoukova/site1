@@ -1,0 +1,5 @@
+{% for dog in dogs %}
+<div class="dog-item" data-id="{{ dog.id_dog }}">{{ dog.id_dog }} - {{ dog.dog_name }}</div>
+{% empty %}
+<div>Нет результатов</div>
+{% endfor %}

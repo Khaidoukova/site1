@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block content%}
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    Регистрация
+                </div>
+
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success" onclick="showAlert()">Регистрация</button>
+                </form>
+            </div>
+        </div>
+    </div>
+        </div>
+        <script>
+            function showAlert() {
+                alert("Проверьте почту и перейдите по ссылке в письме для подтверждения.");
+            }
+        </script>
+
+
+
+{% endblock %}

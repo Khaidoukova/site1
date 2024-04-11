@@ -1,0 +1,84 @@
+{% extends 'main/base.html' %}
+
+{% block content%}
+
+<div class="container">
+
+    <div class="row mt-4 mb-4">
+
+        <h3>Подтверждение добавления собаки</h3>
+
+    </div>
+    <div class="row">
+        <p>Id собаки можно посмотреть на странице хозяина или собаки</p>
+
+        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-sm-4">
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group m-2">
+                        <input type="text" name="id_dog" id="id_dog" class="form-control" placeholder="Введите ID или имя собаки">
+
+                    </div>
+                    {% if messages %}
+
+                    <div class="alert alert-danger m-2">
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {{ form.as_p }}
+                    <button class="btn btn-info text-white m-2" type="submit">Стать проводником</button>
+                     <a href="{% url 'users:user_detail' pk=user.pk %}" class="btn btn-warning text-white m-2">Вернуться</a>
+                    <h4 class="m-4">Недавно добавленные собаки</h4>
+                            {% for dog in dogs %}
+                                <p>{{ dog.id_dog }} - {{ dog.dog_name }}</p>
+                            {% endfor %}
+                </form>
+                </div>
+                   <div class="col-sm-6 border border-2">
+                       <h4>Результат поиска</h4>
+                               <h5>Нажмите на собаку, чтобы добавить в поле</h5>
+
+                       <div class="p-2" id="dog_suggestions"></div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ваш скрипт -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Обработчик клика на собаку из списка
+    $(document).on('click', '.dog-item', function() {
+        // Получаем ID собаки из атрибута data-id
+        var dogId = $(this).data('id');
+        // Заполняем поле ввода собачьим ID
+        $('#id_dog').val(dogId);
+    });
+
+    $('#id_dog').keyup(function() {
+        var query = $(this).val();
+        if (query !== '') {
+            $.ajax({
+                url: '{% url 'roles:search_dogs' %}',
+                type: 'GET',
+                data: { 'query': query },
+                success: function(data) {
+                    $('#dog_suggestions').html(data.html);  // Вставляем HTML-код из JSON-ответа
+                }
+            });
+        } else {
+            $('#dog_suggestions').html('');
+        }
+    });
+});
+</script>
+
+{% endblock %}

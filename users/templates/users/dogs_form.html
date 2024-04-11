@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block content%}
+<div class="container g-5 p-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">Создаем собаку</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="row text-left">
+                        <div class="col-md-3 mb-3">
+                            {{ field.label_tag }}
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            {{ field }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                <button class="btn btn-info btn-sm text-white" type="submit">Сохранить собаку</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

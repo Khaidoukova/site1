@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div style="background-color: #e3ffd4; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+         <div class="row">
+             <div class="col-12 text-center">
+      <h2>Список трасс</h2>
+              </div>
+             <div class="col-12 p-3 text-center">
+                 <a href="{% url 'drag_and_drop_app:drag_and_drop_app' %}" class="btn btn-info btn-sm text-white">Создать трассу для соревнования</a>
+             </div>
+         </div>
+    </div>
+
+    <div class="row">
+        {% for image in image_list %}
+        <div class="col-md-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p><b></b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Название трассы: {{ image.image_name }}</p>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="{{ image.file_link }}" class="btn btn-primary btn-sm">Скачать</a>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="{% url 'drag_and_drop_app:image_update' image.pk %}" class="btn btn-success btn-sm">Добавить</a>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="" class="btn btn-danger btn-sm">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
