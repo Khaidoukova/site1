@@ -1,6 +1,8 @@
 {% extends 'main/base.html' %}
 {% block content %}
+{% load static %}
 
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
 <div class="container mt-5">
     <div class="row">
@@ -24,13 +26,13 @@
             <div class="col-2">
                 <p>Имя участника</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Собака</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Порода</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Время</p>
             </div>
             <div class="col-1">
@@ -38,6 +40,9 @@
             </div>
             <div class="col-2">
                 <p>Оценка</p>
+            </div>
+            <div class="col-2">
+                <p>Дополнительные оценки</p>
             </div>
 
         </div>
@@ -49,13 +54,13 @@
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
@@ -68,18 +73,20 @@
                 <p>{{ competitor.grade_competitor }}</p>
             </div>
             <div class="col-1">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Посмотреть оценки
-                    </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    {% for score in competitor.additional_scores %}
-                        <li><a class="dropdown-item" >Номер: {{ forloop.counter }} {{ score }}}</a></li>
-                    {% endfor %}
-
-    </ul>
-  </div>
-</div>
+        <div class="btn-group dropstart">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Посмотреть оценки
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">
+            {% if competitor.additional_scores %}
+                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                    {% else %}
+                    Нет информации
+            {% endif %}</a></li>
+        </ul>
+    </div>
+    </div>
 
         </div>
         {% endfor %}
@@ -98,13 +105,13 @@
             <div class="col-2">
                 <p>Имя участника</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Собака</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Порода</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Время</p>
             </div>
             <div class="col-1">
@@ -112,6 +119,9 @@
             </div>
             <div class="col-2">
                 <p>Оценка</p>
+            </div>
+            <div class="col-2">
+                <p>Дополнительные оценки</p>
             </div>
 
         </div>
@@ -123,13 +133,13 @@
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
@@ -141,6 +151,22 @@
             <div class="col-2">
                 <p>{{ competitor.grade_competitor }}</p>
             </div>
+            <div class="col-1">
+        <div class="btn-group dropstart">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Посмотреть оценки
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">
+            {% if competitor.additional_scores %}
+                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                    {% else %}
+                    Нет информации
+            {% endif %}</a></li>
+        </ul>
+    </div>
+    </div>
+
         </div>
         {% endfor %}
     </div>
@@ -158,13 +184,13 @@
             <div class="col-2">
                 <p>Имя участника</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Собака</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Порода</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Время</p>
             </div>
             <div class="col-1">
@@ -173,6 +199,10 @@
             <div class="col-2">
                 <p>Оценка</p>
             </div>
+            <div class="col-2">
+                <p>Дополнительные оценки</p>
+            </div>
+
 
         </div>
         {% for competitor in competitors_ro_debut %}
@@ -183,13 +213,13 @@
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
@@ -201,6 +231,22 @@
             <div class="col-2">
                 <p>{{ competitor.grade_competitor }}</p>
             </div>
+            <div class="col-1">
+        <div class="btn-group dropstart">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Посмотреть оценки
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">
+            {% if competitor.additional_scores %}
+                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                    {% else %}
+                    Нет информации
+            {% endif %}</a></li>
+        </ul>
+    </div>
+    </div>
+
         </div>
         {% endfor %}
     </div>
@@ -218,13 +264,13 @@
             <div class="col-2">
                 <p>Имя участника</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Собака</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Порода</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Время</p>
             </div>
             <div class="col-1">
@@ -233,6 +279,10 @@
             <div class="col-2">
                 <p>Оценка</p>
             </div>
+            <div class="col-2">
+                <p>Дополнительные оценки</p>
+            </div>
+
 
         </div>
         {% for competitor in competitors_ro_veterany %}
@@ -243,13 +293,13 @@
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
@@ -261,6 +311,22 @@
             <div class="col-2">
                 <p>{{ competitor.grade_competitor }}</p>
             </div>
+            <div class="col-1">
+        <div class="btn-group dropstart">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Посмотреть оценки
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">
+            {% if competitor.additional_scores %}
+                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                    {% else %}
+                    Нет информации
+            {% endif %}</a></li>
+        </ul>
+    </div>
+    </div>
+
         </div>
         {% endfor %}
     </div>
@@ -278,13 +344,13 @@
             <div class="col-2">
                 <p>Имя участника</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Собака</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Порода</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Время</p>
             </div>
             <div class="col-1">
@@ -293,6 +359,10 @@
             <div class="col-2">
                 <p>Оценка</p>
             </div>
+            <div class="col-2">
+                <p>Дополнительные оценки</p>
+            </div>
+
 
         </div>
         {% for competitor in competitors_ro_1 %}
@@ -303,13 +373,13 @@
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
@@ -321,6 +391,22 @@
             <div class="col-2">
                 <p>{{ competitor.grade_competitor }}</p>
             </div>
+            <div class="col-1">
+        <div class="btn-group dropstart">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Посмотреть оценки
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">
+            {% if competitor.additional_scores %}
+                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                    {% else %}
+                    Нет информации
+            {% endif %}</a></li>
+        </ul>
+    </div>
+    </div>
+
         </div>
         {% endfor %}
     </div>
@@ -339,13 +425,13 @@
             <div class="col-2">
                 <p>Имя участника</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Собака</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Порода</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Время</p>
             </div>
             <div class="col-1">
@@ -355,8 +441,9 @@
                 <p>Оценка</p>
             </div>
             <div class="col-2">
-                <p>Баллы</p>
+                <p>Дополнительные оценки</p>
             </div>
+
 
         </div>
         {% for competitor in competitors_ro_2 %}
@@ -367,13 +454,13 @@
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.selected_dog.breed_dog }}</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
@@ -385,6 +472,21 @@
             <div class="col-2">
                 <p>{{ competitor.grade_competitor }}</p>
             </div>
+            <div class="col-1">
+        <div class="btn-group dropstart">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Посмотреть оценки
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">
+            {% if competitor.additional_scores %}
+                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                    {% else %}
+                    Нет информации
+            {% endif %}</a></li>
+        </ul>
+    </div>
+    </div>
 
         </div>
         {% endfor %}
@@ -404,13 +506,13 @@
             <div class="col-2">
                 <p>Имя участника</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Собака</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Порода</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Время</p>
             </div>
             <div class="col-1">
@@ -419,6 +521,10 @@
             <div class="col-2">
                 <p>Оценка</p>
             </div>
+            <div class="col-2">
+                <p>Дополнительные оценки</p>
+            </div>
+
 
         </div>
         {% for competitor in competitors_ro_3 %}
@@ -426,21 +532,43 @@
             <div class="col-1">
                 <p>{{ forloop.counter }}</p>
             </div>
-            <div class="col-3">
-                <p>{{ competitor.user.first_name }}</p>
-            </div>
             <div class="col-2">
-                <p>{{ competitor.points }}</p>
+                <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
-            <div class="col-2">
-                <p>{{ competitor.grade_competitor }}</p>
+            <div class="col-1">
+                <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
-            <div class="col-3">
+            <div class="col-1">
+                <p>{{ competitor.selected_dog.breed_dog }}</p>
+            </div>
+            <div class="col-1">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
                                                         {% endif %}</p>
             </div>
+            <div class="col-1">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-1">
+        <div class="btn-group dropstart">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Посмотреть оценки
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">
+            {% if competitor.additional_scores %}
+                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                    {% else %}
+                    Нет информации
+            {% endif %}</a></li>
+        </ul>
+    </div>
+    </div>
+
         </div>
         {% endfor %}
     </div>
@@ -458,13 +586,13 @@
             <div class="col-2">
                 <p>Имя участника</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Собака</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Порода</p>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 <p>Время</p>
             </div>
             <div class="col-1">
@@ -473,6 +601,10 @@
             <div class="col-2">
                 <p>Оценка</p>
             </div>
+            <div class="col-2">
+                <p>Дополнительные оценки</p>
+            </div>
+
 
         </div>
         {% for competitor in competitors_ro_4 %}
@@ -480,21 +612,43 @@
             <div class="col-1">
                 <p>{{ forloop.counter }}</p>
             </div>
-            <div class="col-3">
-                <p>{{ competitor.user.first_name }}</p>
-            </div>
             <div class="col-2">
-                <p>{{ competitor.points }}</p>
+                <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
             </div>
-            <div class="col-2">
-                <p>{{ competitor.grade_competitor }}</p>
+            <div class="col-1">
+                <p>{{ competitor.selected_dog.dog_name }}</p>
             </div>
-            <div class="col-3">
+            <div class="col-1">
+                <p>{{ competitor.selected_dog.breed_dog }}</p>
+            </div>
+            <div class="col-1">
                 <p>{{ competitor.min_time_competitor }}:{% if competitor.sec_time_competitor < 10 %}0{{ competitor.sec_time_competitor }}
                                                         {% else %}
                                                             {{ competitor.sec_time_competitor }}
                                                         {% endif %}</p>
             </div>
+            <div class="col-1">
+                <p>{{ competitor.points }}</p>
+            </div>
+            <div class="col-2">
+                <p>{{ competitor.grade_competitor }}</p>
+            </div>
+            <div class="col-1">
+        <div class="btn-group dropstart">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Посмотреть оценки
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">
+            {% if competitor.additional_scores %}
+                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                    {% else %}
+                    Нет информации
+            {% endif %}</a></li>
+        </ul>
+    </div>
+    </div>
+
         </div>
         {% endfor %}
     </div>

@@ -2,6 +2,7 @@ import os
 import zipfile
 from datetime import date
 import openpyxl
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
@@ -14,7 +15,7 @@ from main.all_competitors_list import create_excel_file
 from main.competitor_list import create_xls
 from main.forms import CompetitionForm
 from main.models import Competition
-from roles.models import Competitor, Conductor
+from roles.models import Competitor, Conductor, AdditionalScore
 from django.http import FileResponse
 
 
@@ -176,13 +177,85 @@ class CompetitionResult(View):
         competitors = Competitor.objects.filter(competition_id=competition_id).order_by('-points')
 
         competitors_ro_dety = competitors.filter(class_comp='ro_dety').order_by('-points')
+        # присваиваю каждому участнику в группе дополнительный параметр
+        for competitor in competitors_ro_dety:
+            try:
+                additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
+            except ObjectDoesNotExist:
+                additional_scores = None
+
+            competitor.additional_scores = additional_scores
+            competitor.save()
         competitors_ro_shenki = competitors.filter(class_comp='ro_shenki').order_by('-points')
+        # присваиваю каждому участнику в группе дополнительный параметр
+        for competitor in competitors_ro_shenki:
+            try:
+                additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
+            except ObjectDoesNotExist:
+                additional_scores = None
+
+            competitor.additional_scores = additional_scores
+            competitor.save()  # Сохранить изменения
         competitors_ro_debut = competitors.filter(class_comp='ro_debut').order_by('-points')
+        # присваиваю каждому участнику в группе дополнительный параметр
+        for competitor in competitors_ro_debut:
+            try:
+                additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
+            except ObjectDoesNotExist:
+                additional_scores = None
+
+            competitor.additional_scores = additional_scores
+            competitor.save()
         competitors_ro_veterany = competitors.filter(class_comp='ro_veterany').order_by('-points')
+        # присваиваю каждому участнику в группе дополнительный параметр
+        for competitor in competitors_ro_veterany:
+            try:
+                additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
+            except ObjectDoesNotExist:
+                additional_scores = None
+
+            competitor.additional_scores = additional_scores
+            competitor.save()
         competitors_ro_1 = competitors.filter(class_comp='ro_1').order_by('-points')
+        # присваиваю каждому участнику в группе дополнительный параметр
+        for competitor in competitors_ro_1:
+            try:
+                additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
+            except ObjectDoesNotExist:
+                additional_scores = None
+
+            competitor.additional_scores = additional_scores
+            competitor.save()
         competitors_ro_2 = competitors.filter(class_comp='ro_2').order_by('-points')
+        # присваиваю каждому участнику в группе дополнительный параметр
+        for competitor in competitors_ro_2:
+            try:
+                additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
+            except ObjectDoesNotExist:
+                additional_scores = None
+
+            competitor.additional_scores = additional_scores
+            competitor.save()
         competitors_ro_3 = competitors.filter(class_comp='ro_3').order_by('-points')
+        # присваиваю каждому участнику в группе дополнительный параметр
+        for competitor in competitors_ro_3:
+            try:
+                additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
+            except ObjectDoesNotExist:
+                additional_scores = None
+
+            competitor.additional_scores = additional_scores
+            competitor.save()
         competitors_ro_4 = competitors.filter(class_comp='ro_4').order_by('-points')
+        # присваиваю каждому участнику в группе дополнительный параметр
+        for competitor in competitors_ro_4:
+            try:
+                additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
+            except ObjectDoesNotExist:
+                additional_scores = None
+
+            competitor.additional_scores = additional_scores
+            competitor.save()
 
         context = {
             'competition': competition,
