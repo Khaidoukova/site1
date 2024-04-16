@@ -113,6 +113,8 @@ class Competitor(models.Model):
     # Поле для связи с выбранной собакой участника
     selected_dog = models.ForeignKey(Dogs, on_delete=models.SET_NULL, null=True, blank=True,
                                      verbose_name='Собака для участия')
+    competitor_reserve = models.BooleanField(default=False, verbose_name='Участник в резерве')
+    competitior_vnezachet = models.BooleanField(default=False, verbose_name='Участник внезачет')
 
     def __str__(self):
         return self.user.email

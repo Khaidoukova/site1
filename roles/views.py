@@ -173,14 +173,39 @@ class CreateCompetitorView(CreateView):
         form.instance.user = self.request.user
         # Устанавливаем текущего conductor в качестве кондуктора участника
         form.instance.conductor = Conductor.objects.get(user=self.request.user)
+        # количество уже добавленных участников
+        current_competitors_count = Competitor.objects.filter(competition=competition).count()
+        max_players = competition.max_players
+
+        if current_competitors_count >= max_players:
+            # Если количество участников равно или больше максимального, устанавливаю статус участника в резерве
+            form.instance.competitor_reserve = True
+        else:
+            form.instance.competitor_reserve = False
 
         return super().form_valid(form)
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
+        competition_id = self.kwargs['pk']
+        competition = Competition.objects.get(id=competition_id)
         conductor = Conductor.objects.get(user=self.request.user)
+        kwargs['selected_classes'] = competition.get_selected_classes()
         kwargs['conductor'] = conductor
         return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        competition_id = self.kwargs['pk']
+        competition = Competition.objects.get(pk=competition_id)
+        current_competitors_count = Competitor.objects.filter(competition=competition).count()
+        max_players = competition.max_players
+        if current_competitors_count >= max_players:
+            context['competitors_limit_reached'] = True
+        else:
+            context['competitors_limit_reached'] = False
+        context['competition_name'] = competition.name_competition
+        return context
 
     def get_success_url(self):
         competition_id = self.kwargs['pk']

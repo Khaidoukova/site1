@@ -5,15 +5,19 @@ from roles.models import Competitor, AdditionalScore
 
 
 class CreateCompetitorForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        selected_classes = kwargs.pop('selected_classes', None)
+        conductor = kwargs.pop('conductor', None)
+        super(CreateCompetitorForm, self).__init__(*args, **kwargs)
+        if selected_classes:
+            self.fields['class_comp'].choices = selected_classes
+        if conductor:
+            self.fields['selected_dog'].queryset = conductor.dogs.all()
+
     class Meta:
         model = Competitor
         fields = ['class_comp', 'selected_dog']
-
-    def __init__(self, *args, **kwargs):
-        conductor = kwargs.pop('conductor', None)  # Извлекаем аргумент conductor из kwargs
-        super(CreateCompetitorForm, self).__init__(*args, **kwargs)
-        if conductor:
-            self.fields['selected_dog'].queryset = conductor.dogs.all()
 
 
 class CompetitorUpdateForm(forms.ModelForm):
