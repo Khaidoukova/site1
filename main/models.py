@@ -150,21 +150,22 @@ class Competition(models.Model):
         # метод для добавления выбранных классов соревнования для привязки к соревнованию
         selected_classes = []
         if self.class_ro_dety:
-            selected_classes.append(('class_ro_dety', 'РО-дети'))
+            selected_classes.append(('ro_dety', 'РО-дети'))
         if self.class_ro_shenki:
-            selected_classes.append(('class_ro_shenki', 'РО-щенки'))
+            selected_classes.append(('ro_shenki', 'РО-щенки'))
         if self.class_ro_debut:
-            selected_classes.append(('class_ro_class_ro_debut', 'РО-дебют'))
+            selected_classes.append(('ro_class_ro_debut', 'РО-дебют'))
         if self.class_ro_veterany:
-            selected_classes.append(('class_ro_veterany', 'РО-ветераны'))
+            selected_classes.append(('ro_veterany', 'РО-ветераны'))
         if self.class_ro_1:
-            selected_classes.append(('class_ro_1', 'РО-1'))
+            selected_classes.append(('ro_1', 'РО-1'))
         if self.class_ro_2:
-            selected_classes.append(('class_ro_2', 'РО-2'))
+            selected_classes.append(('ro_2', 'РО-2'))
         if self.class_ro_3:
-            selected_classes.append(('class_ro_3', 'РО-3'))
+            selected_classes.append(('ro_3', 'РО-3'))
         if self.class_ro_4:
-            selected_classes.append(('class_ro_4', 'РО-4(мастера)'))
+            selected_classes.append(('ro_4', 'РО-4(мастера)'))
+        print(selected_classes)
 
         return selected_classes
 
