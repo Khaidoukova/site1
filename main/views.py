@@ -2,6 +2,7 @@ import os
 import zipfile
 from datetime import date
 import openpyxl
+from django.contrib.auth.views import LoginView
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
@@ -18,6 +19,12 @@ from main.models import Competition
 from roles.models import Competitor, Conductor, AdditionalScore
 from django.http import FileResponse
 
+from users.forms import UserLoginForm
+
+
+class RulesView(View):
+    def get(self, request):
+        return render(request, 'main/rules.html')
 
 
 # Create your views here.
@@ -35,8 +42,14 @@ class CompetitionList(ListView):
         context['pre_date'] = Competition.objects.filter(date_competition=None)  # если нет конкретной даты
 
         context['competitors'] = Competitor.objects.all()
+        # Добавляем информацию о текущем пользователе в контекст
+        context['current_user'] = self.request.user
 
         return context
+
+    def post(self, request, *args, **kwargs):
+        login_view = LoginView.as_view(template_name='users/login.html')
+        return login_view(request, *args, **kwargs)
 
 
 class CompetitionCreate(CreateView):
@@ -342,3 +355,4 @@ class CompetitionResult(View):
 
         # Если запрос не содержит параметра 'download', возвращаем шаблон с таблицей
         return render(request, 'main/competition_result.html', context)
+

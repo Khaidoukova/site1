@@ -39,8 +39,8 @@ urlpatterns = [
     path('update_dogs/<int:pk>', DogsUpdateView.as_view(), name='dogs_update'),
     path('dogs_delete/<int:pk>', DogsDelete.as_view(), name='dogs_delete_com'),  # Удаление соревнования
 
-    path('roles/', include('roles.urls', namespace='roles')),
-    path('news/', include('news.urls', namespace='news')),
+    path('roles/', include('roles.urls', namespace='roles')),  # ссылки ролей
+    path('news/', include('news.urls', namespace='news')),  # ссылки новостей
 
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'),
          name='password_reset'),
