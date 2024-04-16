@@ -20,7 +20,7 @@ class CompetitionForm(forms.ModelForm):
                    'count_vnezachet_class_ro_dety', 'count_vnezachet_class_ro_shenki', 'count_vnezachet_class_ro_debut',
                    'count_vnezachet_class_ro_veterany', 'count_vnezachet_class_ro_1', 'count_vnezachet_class_ro_2',
                    'count_vnezachet_class_ro_3', 'count_vnezachet_class_ro_4',
-                   'max_players', 'more_players'
+                   'max_players', 'more_players', 'invitation_competition'
                    ]
 
         widgets = {

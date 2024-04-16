@@ -18,9 +18,9 @@ class Competition(models.Model):
     """Модель соревнования"""
 
     RULES = (
-        ('Mankovoi', 'Спб Маньковой 2024'),
-        ('FCI', 'Правила FCI'),
-        ('Over', 'Маньково старое')
+        ('Mankovoi', 'СПб, А. Маньковой, 2024'),
+        ('FCI', 'FCI, 2024'),
+        ('Over', 'СПб (А. Маньковой), 2018')
     )
 
     PLAY_GROUND = (
@@ -38,7 +38,7 @@ class Competition(models.Model):
     start_date_competition = models.DateField(verbose_name='Дата начала регистрации', **NULLABLE)
     end_date_competition = models.DateField(verbose_name='Дата окончания регистарции', **NULLABLE)
 
-    send_message_start_competition = models.BooleanField(default=False, verbose_name='Уведомелние о начале регистрации (организатору)')
+    send_message_start_competition = models.BooleanField(default=False, verbose_name='Уведомление о начале регистрации (организатору)')
     invitation_competition = models.BooleanField(default=False, verbose_name='Разослать приглашения')
 
     rules_competition = models.CharField(max_length=20, choices=RULES, verbose_name='Правила')  #радио кнопка выбор из 3-х
@@ -51,6 +51,7 @@ class Competition(models.Model):
     status_Quality = models.BooleanField(default=False, verbose_name='Квалификационные соревнования')
     status_Certificate = models.BooleanField(default=False, verbose_name='Сертификатные CACROb и CACIROb')
     status_Training = models.BooleanField(default=False, verbose_name='Тренировочное')
+    status_other = models.CharField(max_length=200, verbose_name='Другой статус (заполнить)', **NULLABLE)
 
     place_competition = models.CharField(max_length=50, verbose_name='Город соревнования')
     play_ground_competition = models.CharField(max_length=20, choices=PLAY_GROUND, verbose_name='Тип площадки')

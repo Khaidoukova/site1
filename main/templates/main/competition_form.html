@@ -12,12 +12,38 @@
                         {% for field in form %}
                             <div class="row">
                                 <div class="col-md-4 mb-3">
+                                    {% if field.label == 'Предполагаемый период соревновний' %}
+                                    <div class="text-left font-weight-bold">ИЛИ</div>
+                                    {% endif %}
+
                                     {{ field.label_tag }}
                                 </div>
 
                                 <div class="col-md-8 mb-3">
 
                                     {{ field }}
+                                     {% if field.name == 'rules_competition' %}
+
+                                <div class="row my-2">
+                                    <div class="col-md-12">
+                                        <p></p>
+                                        <p></p>
+                                        <h5><b>Статус соревнований (заполнить обязательно, возможно несколько отметок)</b></h5>
+                                        <hr>
+                                    </div>
+                                </div>
+                            {% endif %}
+                                        {% if field.name == 'status_other' %}
+
+                                <div class="row my-2">
+                                    <div class="col-md-12">
+                                        <p></p>
+                                        <p></p>
+                                        <h5><b>Данные об организаторе и месте проведения</b></h5>
+                                        <hr>
+                                    </div>
+                                </div>
+                            {% endif %}
                                     <div class="row">
                                         <div class="col-md-6">
                                             <input type="text" name="judge_{{ field.name }}" class="form-control" style="display: none;" placeholder="Добавьте судью">
