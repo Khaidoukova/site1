@@ -20,20 +20,20 @@
 <body>
 
 <header class="p-3" style="background-color: #e3ffd4;">
+    <!--
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img src="/static/logo.webp" alt="Баннер соревнования" class="img-fluid" style="max-width: 70px; max-height: 70px;">
+                <img src="/static/logo.webp" alt="Логотип" class="img-fluid" style="max-width: 70px; max-height: 70px;">
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
             </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="/" class="nav-link px-2 text-black">Главная</a></li>
           <li><a href="/news/" class="nav-link px-2 text-black">Новости</a></li>
-            <!--
-          <li><a href="/blog/" class="nav-link px-2 text-black">Календарь</a></li>
-          <li><a href="/blog/" class="nav-link px-2 text-black">Правила</a></li>
-          -->
+          <li><a href="/rules/" class="nav-link px-2 text-black">Правила</a></li>
+          <li><a href="https://calendar.yandex.ru/week?uid=1892071114" class="nav-link px-2 text-black" target="_blank">Календарь</a></li>
+
 
         </ul>
 
@@ -56,7 +56,51 @@
         </div>
       </div>
     </div>
-  </header>
+    -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/static/logo.webp" alt="Логотип" class="img-fluid me-2" style="max-width: 70px; max-height: 70px;">
+      <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/news/">Новости</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/rules/">Правила</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="https://calendar.yandex.ru/week?uid=1892071114" target="_blank">Календарь</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        {% if user.is_authenticated %}
+        <div class="d-flex">
+          <form method="post" action="{% url 'users:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger me-2">Выйти</button>
+          </form>
+          <a class="btn btn-warning" href="{% url 'users:user_detail' pk=user.pk %}">Профиль</a>
+        </div>
+        {% else %}
+        <a class="btn btn-outline-dark me-2" href="{% url 'users:login' %}">Войти</a>
+        <a class="btn btn-warning" href="{% url 'users:register' %}">Регистрация</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+</header>
 
 
 {% block content%}

@@ -1,0 +1,3 @@
+/.idea
+site1/config/settings.py
+site1/config/wsgi.py

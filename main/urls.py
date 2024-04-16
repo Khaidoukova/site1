@@ -1,6 +1,6 @@
 from django.urls import path
 from main.views import CompetitionCreate, CompetitionList, CompetitionDelete, CompetitionUpdate, CompetitionDetail, \
-    CompetitionResult
+    CompetitionResult, RulesView
 
 urlpatterns = [
     path('', CompetitionList.as_view(), name='index'),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('detail/<int:pk>', CompetitionDetail.as_view(), name='detail_com'),  # Детали , вьюлист соревнования
     path('competition_result/<int:pk>', CompetitionResult.as_view(), name='competition_result'),  # страница результатов соревнования
 
+    path('rules/', RulesView.as_view(), name='rules'),  # страница с правилами
 ]
