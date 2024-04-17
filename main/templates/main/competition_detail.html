@@ -74,7 +74,7 @@
                     {% endif %}
 
                 </p>
-            {% if is_owner %}
+            {% if is_owner or user.is_staff %}
                 <!-- кнопка добавление трассы
                 <a class="btn btn-info btn-sm text-white" href="{% url 'drag_and_drop_app:image_list' %}">Добавить трассы</a>
                 -->
