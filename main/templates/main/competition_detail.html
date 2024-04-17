@@ -91,13 +91,16 @@
                 <div class="col-3">
 
                         {% if conductor.id_conductor %}
+                            {% if object_competition.status == 'Открыто' %}
                     <!-- Кнопка для создания участника -->
                         <a href="{% url 'roles:competitor_form' pk=pk %}"  class="btn btn-info btn-sm text-white" name="add_competitor">
                             Добавиться участником
                         </a>
+                    {% endif %}
                         {% else %}
                             <p>Получите статус Проводника и добавьте собаку для участия в соревнованиях</p>
                         {% endif %}
+
                 </div>
             {% if is_owner or request.user.is_staff  %}
                 <div class="col-3">

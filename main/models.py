@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
+from django.utils import timezone
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -168,6 +169,18 @@ class Competition(models.Model):
         print(selected_classes)
 
         return selected_classes
+
+    def registration_status(self):
+
+        today = timezone.now().date()
+        if not self.start_date_competition or not self.end_date_competition:
+            return "Запланировано"
+        elif today < self.start_date_competition:
+            return "Запланировано"
+        elif self.start_date_competition <= today <= self.end_date_competition:
+            return "Открыто"
+        else:
+            return "Завершено"
 
     class Meta:
         verbose_name = 'Соревнование'
