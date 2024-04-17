@@ -41,6 +41,7 @@ urlpatterns = [
 
     path('roles/', include('roles.urls', namespace='roles')),  # ссылки ролей
     path('news/', include('news.urls', namespace='news')),  # ссылки новостей
+    path('trainer/', include('trainer.urls', namespace='trainer')),  # подгрузка урлов для тренеров
 
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'),
          name='password_reset'),

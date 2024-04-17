@@ -50,6 +50,9 @@
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-judge-tab" data-bs-toggle="pill" data-bs-target="#pills-judge" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Я судья</button>
               </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-trainer-tab" data-bs-toggle="pill" data-bs-target="#pills-trainer" type="button" role="tab" aria-controls="pills-trainer" aria-selected="false">Я тренер</button>
+              </li>
             </ul>
 
 
@@ -291,12 +294,70 @@
                         <div class="border p-3 m-3">
                             <p>Здесь будут соревнования, которые вы судили</p>
                         </div>
+            </div>
+
+
+
+
+            <div class="tab-pane fade" id="pills-trainer" role="tabpanel" aria-labelledby="pills-trainer-tab">
+
+                {% if trainer %}
+                {% for object in trainer %}
+                <div class="border p-3 m-3">
+                    <div class="row">
+                        <div class="col-4" style="display: flex;">
+                            <img src="/media/{{ object.trainer_banner }}" alt="Описание изображения" style="height: 250px;">
+                            <div style="margin-left: 10px;">
+                                <div>{{ object.trainer_title }}</div>
+                                <div>{{ object.trainer_text }}</div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+
+                            <a href="{% url 'trainer:edit_trainer' object.pk %}"
+                               class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                            <a href="{% url 'trainer:delete_trainer' object.pk %}"
+                               class="btn btn-sm btn-outline-danger">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+                {% else %}
+                <div class="border p-3 m-3">
+                    <p>Здесь будет информация от тренера</p>
+                </div>
+                {% endif %}
+                 {% if is_owner %}
+                <div class="col-12 mb-5">
+                    <a class="btn btn-outline-primary" href="{% url 'trainer:create_trainer' %}">Добавить сообщение</a>
+                </div>
+
+                {% endif %}
             </div>
-{% else %}
-            <div class="row">
-            <H4 class="text-center">Нужно заполнить обязательные данные</H4>
+
+
+
+
+
+
+
+
+
             </div>
-{% endif %}
+
+
+        {% else %}
+                    <div class="row">
+                    <H4 class="text-center">Нужно заполнить обязательные данные</H4>
+                    </div>
+        {% endif %}
 </div>
+
+
+
+
 {% endblock %}

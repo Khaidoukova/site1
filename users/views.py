@@ -10,6 +10,7 @@ import random
 from history.models import History
 from main.models import Competition
 from roles.models import Judge, Conductor,Competitor
+from trainer.models import Trainer
 from users.forms import UserRegisterForm, UserProfileForm, DogsForm, UserLoginForm
 from users.models import User, Dogs
 
@@ -138,6 +139,9 @@ class UserDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.get_object()
+
+        trainer = Trainer.objects.filter(user=user)
+        context['trainer'] = trainer
 
         dogs = Dogs.objects.filter(owner=user)
         context['user_dogs'] = dogs
