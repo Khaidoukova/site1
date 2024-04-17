@@ -10,7 +10,12 @@
 
     </div>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-8">
+             {% if competitors_limit_reached %}
+                <div class="alert alert-warning" role="alert">
+                    Максимальное количество участников в соревновании {{ competition_name }} уже достигнуто. Вы можете добавиться только в резерв.
+                </div>
+            {% endif %}
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
