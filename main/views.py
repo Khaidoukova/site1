@@ -38,14 +38,20 @@ class CompetitionList(ListView):
         context = super().get_context_data(**kwargs)
         today = date.today()
         context['past_competitions'] = Competition.objects.filter(date_competition__lt=today)  # Прошедшие соревнования
-        context['future_competitions'] = Competition.objects.filter(date_competition__gte=today)  # Будущие соревнования
+        future_competitions = Competition.objects.filter(date_competition__gte=today)  # Будущие соревнования
         context['pre_date'] = Competition.objects.filter(date_competition=None)  # если нет конкретной даты
+        for competition in future_competitions:
+            competition.status = competition.registration_status()
+        context['future_competitions'] = future_competitions
 
         context['competitors'] = Competitor.objects.all()
         # Добавляем информацию о текущем пользователе в контекст
         context['current_user'] = self.request.user
 
         return context
+
+    def get_queryset(self):
+        return super().get_queryset()
 
     def post(self, request, *args, **kwargs):
         login_view = LoginView.as_view(template_name='users/login.html')
@@ -99,7 +105,7 @@ class CompetitionDetail(DetailView):
             images_by_class[image_class] = filtered_images
 
         context['images_by_class'] = images_by_class
-
+        context['status'] = competition.registration_status()
         context['competitors'] = competition.competitor_set.all()
 
         context['competitors_ro_dety'] = competition.competitor_set.filter(class_comp='ro_dety')
