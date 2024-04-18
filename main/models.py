@@ -95,14 +95,14 @@ class Competition(models.Model):
     count_class_ro_4 = models.IntegerField(verbose_name='Максимум участников РО-4(мастера)', **NULLABLE)
 
     # Возможность участия в резерв
-    reserve_class_ro_dety = models.IntegerField(default=False, verbose_name='Возможность резерва РО-дети', **NULLABLE)
-    reserve_class_ro_shenki = models.IntegerField(default=False, verbose_name='Возможность резерва РО-щенки', **NULLABLE)
-    reserve_class_ro_debut = models.IntegerField(default=False, verbose_name='Возможность резерва РО-дебют', **NULLABLE)
-    reserve_class_ro_veterany = models.IntegerField(default=False, verbose_name='Возможность резерва РО-ветераны', **NULLABLE)
-    reserve_class_ro_1 = models.IntegerField(default=False, verbose_name='Возможность резерва РО-1', **NULLABLE)
-    reserve_class_ro_2 = models.IntegerField(default=False, verbose_name='Возможность резерва РО-2', **NULLABLE)
-    reserve_class_ro_3 = models.IntegerField(default=False, verbose_name='Возможность резерва РО-3', **NULLABLE)
-    reserve_class_ro_4 = models.IntegerField(default=False, verbose_name='Возможность резерва РО-4(мастера)', **NULLABLE)
+    reserve_class_ro_dety = models.BooleanField(default=False, verbose_name='Возможность резерва РО-дети', **NULLABLE)
+    reserve_class_ro_shenki = models.BooleanField(default=False, verbose_name='Возможность резерва РО-щенки', **NULLABLE)
+    reserve_class_ro_debut = models.BooleanField(default=False, verbose_name='Возможность резерва РО-дебют', **NULLABLE)
+    reserve_class_ro_veterany = models.BooleanField(default=False, verbose_name='Возможность резерва РО-ветераны', **NULLABLE)
+    reserve_class_ro_1 = models.BooleanField(default=False, verbose_name='Возможность резерва РО-1', **NULLABLE)
+    reserve_class_ro_2 = models.BooleanField(default=False, verbose_name='Возможность резерва РО-2', **NULLABLE)
+    reserve_class_ro_3 = models.BooleanField(default=False, verbose_name='Возможность резерва РО-3', **NULLABLE)
+    reserve_class_ro_4 = models.BooleanField(default=False, verbose_name='Возможность резерва РО-4(мастера)', **NULLABLE)
 
     # кол-во возможных регистраций в резерв
     count_reserve_class_ro_dety = models.IntegerField(verbose_name='Максимум участников в резерве РО-дети', **NULLABLE)
