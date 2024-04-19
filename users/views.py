@@ -6,6 +6,7 @@ from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, DeleteView
 import random
+from django.utils import timezone
 
 from history.models import History
 from main.models import Competition
@@ -139,6 +140,7 @@ class UserDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.get_object()
+        today = timezone.now().date()
 
         trainer = Trainer.objects.filter(user=user)
         context['trainer'] = trainer
@@ -161,6 +163,12 @@ class UserDetailView(DetailView):
         # Проверяем, является ли текущий пользователь владельцем страницы
         is_owner = self.request.user == user
         context['is_owner'] = is_owner
+
+        competitor_events = Competitor.objects.filter(
+            user=user,
+            competition__date_competition__gte=today
+        ).order_by('competition__date_competition')
+        context['competitor_events'] = competitor_events
 
         return context
 

@@ -1,5 +1,12 @@
 {% extends 'main/base.html' %}
 {% block content%}
+<style>
+    /* Стили для ссылок */
+    .link-black {
+        color: black; /* Черный цвет текста */
+        text-decoration: none; /* Убираем подчеркивание */
+    }
+</style>
 
 <div class="container">
     {% if is_owner %}
@@ -356,6 +363,20 @@
                     </div>
         {% endif %}
 </div>
+<h3>Текущие заявки</h3>
+    {% if competitor_events %}
+    <ul>
+        {% for event in competitor_events %}
+        <li><a href="{% url 'detail_com' event.pk %}" class="link-black">{{ event.competition.date_competition }}, {{ event.competition.name_competition }} - Класс участия: {{ event.get_class_comp_display }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Здесь будет информация о ваших заявках на соревнования</p>
+
+    {% endif %}
+
+
+
 
 
 
