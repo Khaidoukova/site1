@@ -51,7 +51,8 @@ class DogsForm(forms.ModelForm):
         model = Dogs
         fields = ('dog_name', 'dog_avatar', 'home_name',
                   'date_borne', 'breed_dog', 'pedigree_dog', 'other_federation',
-                  'pedigree_file', 'number_chip', 'brand_dog', 'female_dog', 'number_bookwork')
+                  'pedigree_file', 'number_chip', 'brand_dog', 'female_dog', 'number_bookwork', 'father_name',
+                  'father_pedigree_number', 'father_titles', 'mother_name', 'mother_pedigree_number', 'mother_titles')
         widgets = {
             'date_borne': forms.DateInput(attrs={'type': 'date'}),
         }

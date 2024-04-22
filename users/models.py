@@ -32,12 +32,12 @@ class Dogs(models.Model):
 
     id_dog = models.CharField(max_length=7, verbose_name='Id собаки', unique=True)
 
-    dog_name = models.CharField(max_length=20, verbose_name='Кличка по родословной', **NULLABLE)
+    dog_name = models.CharField(max_length=20, verbose_name='Кличка по родословной*', **NULLABLE)
     dog_avatar = models.ImageField(upload_to='dogs_photo', verbose_name='Аватар собаки (не более 1мб, 600х600px)', **NULLABLE)
-    home_name = models.CharField(max_length=20, verbose_name='Домашняя кличка(обяз.)', **NULLABLE)
+    home_name = models.CharField(max_length=20, verbose_name='Домашняя кличка*', **NULLABLE)
 
     date_borne = models.DateField(verbose_name='Дата рождения', **NULLABLE)
-    breed_dog = models.CharField(max_length=20, verbose_name='Порода собаки(обяз.)')
+    breed_dog = models.CharField(max_length=20, verbose_name='Порода собаки*')
     pedigree_dog = models.CharField(max_length=20, choices=PEDIGREE, verbose_name='Родословная', **NULLABLE)
 
     other_federation = models.CharField(max_length=20, verbose_name='Другая федерация', **NULLABLE)
@@ -46,12 +46,18 @@ class Dogs(models.Model):
 
     brand_dog = models.CharField(max_length=20, verbose_name='Клеймо', **NULLABLE)  # уточнить тип поля
 
-    female_dog = models.CharField(max_length=20, choices=FEMALE, verbose_name='Пол собаки(обяз.)', **NULLABLE)
+    female_dog = models.CharField(max_length=20, choices=FEMALE, verbose_name='Пол собаки*', **NULLABLE)
     number_bookwork = models.IntegerField(verbose_name='№ Рабочей книжки', **NULLABLE)
 
     # Зависимость от создателя
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='Владелец Собаки',
                               **NULLABLE)
+    father_name = models.CharField(max_length=50, verbose_name='Имя отца по родословной', **NULLABLE)
+    father_pedigree_number = models.CharField(max_length=50, verbose_name='Номер родословной отца', **NULLABLE)
+    father_titles = models.TextField(verbose_name='Титулы отца', **NULLABLE)
+    mother_name = models.CharField(max_length=50, verbose_name='Имя матери по родословной', **NULLABLE)
+    mother_pedigree_number = models.CharField(max_length=50, verbose_name='Номер родословной матери', **NULLABLE)
+    mother_titles = models.TextField(verbose_name='Титулы матери', **NULLABLE)
 
     def save(self, *args, **kwargs):
         if not self.id_dog:

@@ -195,7 +195,12 @@
                             <p>{{ competitor.user.user_town }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
-                           <p>Нет комментариев</p>
+                           {% if competitor.competitior_vnezachet %}
+                            <p>Внезачет</p>
+                            {% endif %}
+                            {% if competitor.competitor_reserve %}
+                            <p>Участник в резерве</p>
+                            {% endif %}
                             {% if is_owner or request.user.is_staff  %}
                             <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
                             {% endif %}
@@ -252,7 +257,12 @@
                             <p>{{ competitor.user.user_town }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
-                           <p>Нет комментариев</p>
+                            {% if competitor.competitior_vnezachet %}
+                            <p>Внезачет</p>
+                            {% endif %}
+                            {% if competitor.competitor_reserve %}
+                            <p>Участник в резерве</p>
+                            {% endif %}
                             {% if is_owner or request.user.is_staff  %}
                             <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
                             {% endif %}
@@ -308,7 +318,12 @@
                             <p>{{ competitor.user.user_town }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
-                           <p>Нет комментариев</p>
+                          {% if competitor.competitior_vnezachet %}
+                            <p>Внезачет</p>
+                            {% endif %}
+                            {% if competitor.competitor_reserve %}
+                            <p>Участник в резерве</p>
+                            {% endif %}
                             {% if is_owner or request.user.is_staff  %}
                             <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
                             {% endif %}
@@ -364,7 +379,12 @@
                             <p>{{ competitor.user.user_town }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
-                           <p>Нет комментариев</p>
+                           {% if competitor.competitior_vnezachet %}
+                            <p>Внезачет</p>
+                            {% endif %}
+                            {% if competitor.competitor_reserve %}
+                            <p>Участник в резерве</p>
+                            {% endif %}
                             {% if is_owner or request.user.is_staff  %}
                             <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
                             {% endif %}
@@ -420,7 +440,12 @@
                             <p>{{ competitor.user.user_town }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
-                           <p>Нет комментариев</p>
+                           {% if competitor.competitior_vnezachet %}
+                            <p>Внезачет</p>
+                            {% endif %}
+                            {% if competitor.competitor_reserve %}
+                            <p>Участник в резерве</p>
+                            {% endif %}
                             {% if is_owner or request.user.is_staff  %}
                             <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
                             {% endif %}
@@ -476,7 +501,12 @@
                             <p>{{ competitor.user.user_town }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
-                           <p>Нет комментариев</p>
+                           {% if competitor.competitior_vnezachet %}
+                            <p>Внезачет</p>
+                            {% endif %}
+                            {% if competitor.competitor_reserve %}
+                            <p>Участник в резерве</p>
+                            {% endif %}
                             {% if is_owner or request.user.is_staff  %}
                             <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
                             {% endif %}
@@ -532,7 +562,12 @@
                             <p>{{ competitor.user.user_town }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
-                           <p>Нет комментариев</p>
+                           {% if competitor.competitior_vnezachet %}
+                            <p>Внезачет</p>
+                            {% endif %}
+                            {% if competitor.competitor_reserve %}
+                            <p>Участник в резерве</p>
+                            {% endif %}
                             {% if is_owner or request.user.is_staff  %}
                             <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
                             {% endif %}
@@ -588,7 +623,12 @@
                             <p>{{ competitor.user.user_town }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
-                           <p>Нет комментариев</p>
+                           {% if competitor.competitior_vnezachet %}
+                            <p>Внезачет</p>
+                            {% endif %}
+                            {% if competitor.competitor_reserve %}
+                            <p>Участник в резерве</p>
+                            {% endif %}
                             {% if is_owner or request.user.is_staff  %}
                             <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставит оценки</a>
                             {% endif %}

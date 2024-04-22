@@ -17,7 +17,7 @@ class CreateCompetitorForm(forms.ModelForm):
 
     class Meta:
         model = Competitor
-        fields = ['class_comp', 'selected_dog']
+        fields = ['class_comp', 'selected_dog', 'competitior_vnezachet']
 
 
 class CompetitorUpdateForm(forms.ModelForm):
