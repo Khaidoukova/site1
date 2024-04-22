@@ -92,7 +92,11 @@
                         {% endif %}
                     </div>
                     <div class="col-md-4">
-                        <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Статус регистрации: {{ object_competition.comment_for_competition }}</a></p>
+                        {% if object_competition.status %}
+                        <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Статус регистрации: {{ object_competition.status }}</a></p>
+                        {% else %}
+                        <p>Нет даты соревнования</p>
+                        {% endif %}
                         <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Комментарии: {{ object_competition.comment_for_competition }}</a></p>
                     </div>
                 </div>
