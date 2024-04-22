@@ -42,6 +42,8 @@ class CompetitionList(ListView):
         context['pre_date'] = Competition.objects.filter(date_competition=None)  # если нет конкретной даты
         for competition in future_competitions:
             competition.status = competition.registration_status()
+            context['status'] = competition.status
+
         context['future_competitions'] = future_competitions
 
         context['competitors'] = Competitor.objects.all()
