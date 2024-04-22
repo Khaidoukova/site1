@@ -96,6 +96,8 @@ class Competitor(models.Model):
     points = models.IntegerField(validators=[MaxValueValidator(limit_value=100)], verbose_name='Количество очков', **NULLABLE)
 
     class_comp = models.CharField(max_length=20, choices=CLASSES, verbose_name='Класс участия', **NULLABLE)
+
+    # Поля времени для выставления
     min_time_competitor = models.IntegerField(verbose_name='Мин', **NULLABLE,
                                               validators=[
                                                   MaxValueValidator(9),
@@ -115,6 +117,31 @@ class Competitor(models.Model):
                                      verbose_name='Собака для участия')
     competitor_reserve = models.BooleanField(default=False, verbose_name='Участник в резерве')
     competitior_vnezachet = models.BooleanField(default=False, verbose_name='Участник внезачет')
+
+    # Поля для выставления оценок
+    start_field = models.IntegerField(verbose_name='Старт', **NULLABLE)
+    finish_field = models.IntegerField(verbose_name='Финиш', **NULLABLE)
+    show_field = models.IntegerField(verbose_name='Общие впечатления', **NULLABLE)
+    additional_field_1 = models.IntegerField(verbose_name='Знак 1', **NULLABLE)
+    additional_field_2 = models.IntegerField(verbose_name='Знак 2', **NULLABLE)
+    additional_field_3 = models.IntegerField(verbose_name='Знак 3', **NULLABLE)
+    additional_field_4 = models.IntegerField(verbose_name='Знак 4', **NULLABLE)
+    additional_field_5 = models.IntegerField(verbose_name='Знак 5', **NULLABLE)
+    additional_field_6 = models.IntegerField(verbose_name='Знак 6', **NULLABLE)
+    additional_field_7 = models.IntegerField(verbose_name='Знак 7', **NULLABLE)
+    additional_field_8 = models.IntegerField(verbose_name='Знак 8', **NULLABLE)
+    additional_field_9 = models.IntegerField(verbose_name='Знак 9', **NULLABLE)
+    additional_field_10 = models.IntegerField(verbose_name='Знак 10', **NULLABLE)
+    additional_field_11 = models.IntegerField(verbose_name='Знак 11', **NULLABLE)
+    additional_field_12 = models.IntegerField(verbose_name='Знак 12', **NULLABLE)
+    additional_field_13 = models.IntegerField(verbose_name='Знак 13', **NULLABLE)
+    additional_field_14 = models.IntegerField(verbose_name='Знак 14', **NULLABLE)
+    additional_field_15 = models.IntegerField(verbose_name='Знак 15', **NULLABLE)
+    additional_field_16 = models.IntegerField(verbose_name='Знак 16', **NULLABLE)
+    additional_field_17 = models.IntegerField(verbose_name='Знак 17', **NULLABLE)
+    additional_field_18 = models.IntegerField(verbose_name='Знак 18', **NULLABLE)
+    additional_field_19 = models.IntegerField(verbose_name='Знак 19', **NULLABLE)
+    additional_field_20 = models.IntegerField(verbose_name='Знак 20', **NULLABLE)
 
     def __str__(self):
         return self.user.email
