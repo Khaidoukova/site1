@@ -2,20 +2,94 @@
 {% block content%}
 
 
+
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-6 mx-auto">
-            <h1 class="text-center">Добавьте Ваши предыдущие выступления в соревнованиях</h1>
+        <div class="col-8 mx-auto">
+            <h1 class="text-center">Форма добавления истории участия в соревнованиях</h1>
+
             <form method="post" class="needs-validation" enctype="multipart/form-data">
-    {% csrf_token %}
-                <div class="form-group">
-    {{ form.as_p }}
-                </div>
-    <button type="submit" class="btn btn-primary">Сохранить соревнование</button>
+                    {% csrf_token %}
+                        {% for field in form %}
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {% if field.label == 'Предполагаемый период соревновний' %}
+                                    <div class="text-left font-weight-bold">ИЛИ</div>
+                                    {% endif %}
+
+                                    {{ field.label_tag }}
+                                </div>
+
+                                <div class="col-md-8 mb-3">
+
+                                    {{ field }}
+                                     {% if field.name == 'rules_competition' %}
+
+                                <div class="row my-2">
+                                    <div class="col-md-12">
+                                        <p></p>
+                                        <p></p>
+                                        <h5><b>Статус соревнований (заполнить обязательно, возможно несколько отметок)</b></h5>
+                                        <hr>
+                                    </div>
+                                </div>
+                            {% endif %}
+                                        {% if field.name == 'status_other' %}
+
+                                <div class="row my-2">
+                                    <div class="col-md-12">
+                                        <p></p>
+                                        <p></p>
+                                        <h5><b>Данные об организаторе и месте проведения</b></h5>
+                                        <hr>
+                                    </div>
+                                </div>
+                            {% endif %}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" name="judge_{{ field.name }}" class="form-control" style="display: none;" placeholder="Добавьте судью">
+                                        </div>
+                                        <!-- Добавляем поле для выбора судьи для данного класса -->
+                                        <div class="col-md-6">
+                                            <input type="text" name="count_{{ field.name }}" class="form-control" style="display: none;" placeholder="Максимум участников">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label id="reserve_label_{{ field.name }}" style="display: none;">
+                                                <span>Резерв</span>
+                                            </label>
+                                            <input type="checkbox" name="reserve_{{ field.name }}" style="display: none;">
+                                        </div>
+                                        <!-- Добавляем поле для выбора судьи для данного класса -->
+                                        <div class="col-md-5">
+                                            <input type="text" name="count_reserve_{{ field.name }}" class="form-control" style="display: none;" placeholder="Максимум резерв">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label id="vnezachet_label_{{ field.name }}" style="display: none;">
+                                                <span>Внезачет</span>
+                                            </label>
+                                            <input type="checkbox" name="vnezachet_{{ field.name }}" style="display: none;">
+                                        </div>
+                                        <!-- Добавляем поле для выбора судьи для данного класса -->
+                                        <div class="col-md-5">
+                                            <input type="text" name="count_vnezachet_{{ field.name }}" class="form-control" style="display: none;" placeholder="Максимум внезачет">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        {% endfor %}
+
+                    <button type="submit" class="btn btn-primary">Сохранить соревнование</button>
+
             </form>
         </div>
     </div>
 </div>
-
-
 {% endblock %}

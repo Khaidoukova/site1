@@ -1,5 +1,5 @@
 from datetime import timedelta
-
+from users.models import Dogs
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
@@ -29,21 +29,24 @@ class History(models.Model):
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
                              verbose_name='Владелец собаки', null=True, blank=True)
+    dog = models.ForeignKey(Dogs, on_delete=models.CASCADE, verbose_name='Собака', null=True, blank=True)
     class_dog = models.CharField(max_length=20, choices=CLASSES, verbose_name='Класс собаки', null=True, blank=True)
     # first_name = models.ForeignKey(User.first_name, on_delete=models.CASCADE, verbose_name='Имя')
     competition = models.CharField(max_length=20, verbose_name='Название соревнования', null=True, blank=True)
+    place = models.IntegerField(verbose_name='Город проведения', null=True, blank=True)
     date_competition = models.DateField(verbose_name='Дата соревнования', null=True, blank=True)
-    track1_points = models.IntegerField(verbose_name='Количество очков, трасса 1', null=True, blank=True)
-    track1_grade = models.CharField(max_length=20, choices=GRADES,verbose_name='Оценка собаки, трасса 1', null=True, blank=True)
-    track1_time = models.DurationField(validators=[MaxValueValidator(timedelta(minutes=60))],
-                                       verbose_name='Время на трассе 1', null=True, blank=True)
-    track1_place = models.IntegerField(verbose_name='Место, трасса 1', null=True, blank=True)
+    status_not_official = models.BooleanField(default=False, verbose_name='Неофициальные (не в графике ркф)')
+    status_RKF = models.BooleanField(default=False, verbose_name='В графике РКФ')
+    status_open = models.BooleanField(default=False, verbose_name='Открытое')
+    status_Tests = models.BooleanField(default=False, verbose_name='Испытания')
+    status_Quality = models.BooleanField(default=False, verbose_name='Квалификационные соревнования')
+    status_Certificate = models.BooleanField(default=False, verbose_name='Сертификатные CACROb и CACIROb')
+    status_Training = models.BooleanField(default=False, verbose_name='Тренировочное')
+    points = models.IntegerField(verbose_name='Баллы', null=True, blank=True)
+    grade = models.CharField(max_length=20, choices=GRADES,verbose_name='Оценка собаки', null=True, blank=True)
 
-    track2_points = models.IntegerField(verbose_name='Количество очков, трасса 2', null=True, blank=True)
-    track2_grade = models.CharField(max_length=20, choices=GRADES, verbose_name='Оценка собаки, трасса 2', null=True, blank=True)
-    track2_time = models.DurationField(validators=[MaxValueValidator(timedelta(minutes=60))],
-                                       verbose_name='Время на трассе 2', null=True, blank=True)
-    track2_place = models.IntegerField(verbose_name='Место, трасса 2', null=True, blank=True)
+
+
 
     def __str__(self):
         return self.user.email

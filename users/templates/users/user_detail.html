@@ -103,42 +103,7 @@
                                             <p>Еще не добавлена ни одна собака</p>
                                         {% endif %}
 
-                                      <div class="row p-2">
-                                            <h4>История соревнований моей собаки</h4>
-                                          {% if is_owner %}
-                                            <div class="col-md-3 p-3">
-                                            <a href="{% url 'history:history_create' %}" class="btn btn-primary">Добавить</a>
-                                            </div>
-                                          {% endif %}
-                                                {% for history in user_history %}
-                                                <div class="col-md-12">
-                                                    <div class="card mb-4 box-shadow">
-                                                        <div class="card-body">
-                                                            <div class="row m-1">
-                                                                <div class="col-md-3">
-                                                                    <p><b>Название соревнований</b> {{ history.competition }} - {{ history.date_competition }}</p>
-                                                                    <p><b>Участинк в классе</b> {{ history.get_class_dog_display }}</p>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <p><b>Трасса 1:</b> Очки - {{ history.track1_points }} Время - {{ history.track1_time }}</p>
-                                                                    <p><b>Оценка</b> {{ history.get_track1_grade_display }} <br>Место - {{ history.track1_place }}</p>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <p><b>Трасса 2:</b> Очки - {{ history.track2_points }} Время - {{ history.track2_time }}</p>
-                                                                    <p><b>Оценка</b> {{ history.get_track2_grade_display }} <br>Место - {{ history.track2_place }}</p>
-                                                                </div>
-                                                                {% if is_owner %}
-                                                                <div class="col-md-3">
-                                                                    <a href="" class="btn btn-primary btn-sm">Изменить</a>
-                                                                    <a href="" class="btn btn-danger btn-sm">Удалить</a>
-                                                                </div>
-                                                                {% endif %}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {% endfor %}
-                                            </div>
+
                                         </div>
 
                                   </div>
@@ -338,7 +303,7 @@
                     <p>Здесь будет информация от тренера</p>
                 </div>
                 {% endif %}
-                 {% if is_owner %}
+                {% if is_owner %}
                 <div class="col-12 mb-5">
                     <a class="btn btn-outline-primary" href="{% url 'trainer:create_trainer' %}">Добавить сообщение</a>
                 </div>
@@ -347,23 +312,25 @@
             </div>
 
 
-
-
-
-
-
-
-
             </div>
 
 
-        {% else %}
-                    <div class="row">
-                    <H4 class="text-center">Нужно заполнить обязательные данные</H4>
-                    </div>
+            {% else %}
+            <div class="row">
+                <H4 class="text-center">Нужно заполнить обязательные данные</H4>
+            </div>
+            {% endif %}
+        </div>
+    <div class="row p-2">
+        <h4>История соревнований моей собаки</h4>
+        {% if is_owner %}
+        <div class="col-md-3 p-3">
+            <p><a href="{% url 'history:history' %}" class="btn btn-primary">История соревнований</a></p>
+        </div>
         {% endif %}
-</div>
-<h3>Текущие заявки</h3>
+
+    </div>
+    <h3>Текущие заявки</h3>
     {% if competitor_events %}
     <ul>
         {% for event in competitor_events %}
@@ -374,11 +341,5 @@
         <p>Здесь будет информация о ваших заявках на соревнования</p>
 
     {% endif %}
-
-
-
-
-
-
 
 {% endblock %}
