@@ -61,51 +61,48 @@
          </div>
     </div>
 
- <div class="row">
-    {% for object_competition in pre_date %}
-    <div class="col-md-12">
-        <div class="card mb-4 box-shadow">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-2">
-                        <a href="{% url 'detail_com' object_competition.pk %}" class="link-black"><b>{{ object_competition.name_competition }}</b></a>
-                        <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">{{ object_competition.place_competition }}</a></p>
-                    </div>
-                    <div class="col-md-1">
-                        <a href="{% url 'detail_com' object_competition.pk %}" class="link-black">
-                            <img src="/media/{{ object_competition.logo_club_organization }}" alt="Лого клуба" class="img-fluid"  width="50">
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Возможно участников:{{ object_competition.max_players }}</a></p>
-                        <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Уже участников:{{ object_competition.competitor_set.count }}</a></p>
-                    </div>
-                    <div class="col-md-2">
-                        {% if object_competition.date_competition %}
-                        <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Дата проведения: {{ object_competition.date_competition }}</a></p>
-                        {% else %}
-                            {% if object_competition.pre_date_competition %}
-                                <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Предварительно: {{ object_competition.pre_date_competition }}</a></p>
+     <div class="row">
+        {% for object_competition in pre_date %}
+        <div class="col-md-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a href="{% url 'detail_com' object_competition.pk %}" class="link-black"><b>{{ object_competition.name_competition }}</b></a>
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">{{ object_competition.place_competition }}</a></p>
+                        </div>
+                        <div class="col-md-1">
+                                <img src="/media/{{ object_competition.logo_club_organization }}" alt="Лого клуба" class="img-fluid"  width="50">
+                        </div>
+                        <div class="col-md-3">
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Возможно участников:{{ object_competition.max_players }}</a></p>
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Уже участников:{{ object_competition.competitor_set.count }}</a></p>
+                        </div>
+                        <div class="col-md-2">
+                            {% if object_competition.date_competition %}
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Дата проведения: {{ object_competition.date_competition }}</a></p>
                             {% else %}
-                        <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Дата соревнования появится позже</a></p>
+                                {% if object_competition.pre_date_competition %}
+                                    <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Предварительно: {{ object_competition.pre_date_competition }}</a></p>
+                                {% else %}
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Дата соревнования появится позже</a></p>
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    </div>
-                    <div class="col-md-4">
-                        {% if object_competition.status %}
-                        <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Статус регистрации: {{ object_competition.status }}</a></p>
-                        {% else %}
-                        <p>Нет даты соревнования</p>
-                        {% endif %}
-                        <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Комментарии: {{ object_competition.comment_for_competition }}</a></p>
+                        </div>
+                        <div class="col-md-4">
+                            {% if object_competition.status %}
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Статус регистрации: {{ status }}</a></p>
+                            {% else %}
+                            <p>Нет даты соревнования</p>
+                            {% endif %}
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Комментарии: {{ object_competition.comment_for_competition }}</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
-
 
     <div class="row">
         {% for object_competition in future_competitions %}
@@ -133,7 +130,7 @@
                             {% endif %}
                         </div>
                         <div class="col-md-3">
-                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Статус регистрации: {{ object_competition.status }}</a><p>
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Статус регистрации: {{ status }}</a><p>
                         </div>
                     </div>
                 </div>
@@ -171,7 +168,7 @@
                             {% endif %}
                         </div>
                         <div class="col-md-3">
-                            <a href="{% url 'detail_com' object_competition.pk %}">Статус регистрации: {{ object_competition.status }}</a>
+                            <a href="{% url 'detail_com' object_competition.pk %}">Статус регистрации: {{ status }}</a>
                         </div>
                     </div>
                 </div>
