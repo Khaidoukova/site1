@@ -1,6 +1,6 @@
 import os
 import zipfile
-from datetime import date
+from datetime import date, timedelta
 import openpyxl
 from django.contrib.auth.views import LoginView
 from django.core.exceptions import ObjectDoesNotExist
@@ -37,7 +37,9 @@ class CompetitionList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = date.today()
-        context['past_competitions'] = Competition.objects.filter(date_competition__lt=today)  # Прошедшие соревнования
+        past_limit = today - timedelta(days=7)  # предел для прошедших соревнований (не более 7 дней назад)
+        context['past_competitions'] = Competition.objects.filter(date_competition__lt=today,
+                                                                  date_competition__gte=past_limit)  # Прошедшие соревнования
         future_competitions = Competition.objects.filter(date_competition__gte=today)  # Будущие соревнования
         context['pre_date'] = Competition.objects.filter(date_competition=None)  # если нет конкретной даты
         for competition in future_competitions:
@@ -364,3 +366,12 @@ class CompetitionResult(View):
         # Если запрос не содержит параметра 'download', возвращаем шаблон с таблицей
         return render(request, 'main/competition_result.html', context)
 
+class CompetitionArchiveView(ListView):
+    """Показываем архив прошедших соревнований"""
+    model = Competition
+    template_name = 'main/competition_archive.html'
+    context_object_name = 'past_competitions'
+
+    def get_queryset(self):
+        today = date.today()
+        return Competition.objects.filter(date_competition__lt=today)
