@@ -128,7 +128,7 @@
                         {% endif %}</p>
                     </td>
                     <td>{{ competition.dog.dog_name }} ({{ competition.dog }})</td>
-                    <td>{{ competition.get_class_comp_display }}</td>
+                    <td>{{ competition.get_class_dog_display }}</td>
                     <td>
                         <ul>
 
@@ -139,7 +139,15 @@
 
                         </ul>
                     </td>
+                    <td>
+                        <a href="{% url 'history:history_update' competition.pk %}" class="btn btn-warning" style="margin-bottom: 1mm;">Редактировать</a>
+<form action="{% url 'history:history_delete' competition.pk %}" method="post" style="display: inline; margin-top: 1mm;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Удалить</button>
+</form>
+                    </td>
                 </tr>
+
                 {% endfor %}
 
             </tbody>

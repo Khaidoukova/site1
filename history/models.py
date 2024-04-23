@@ -33,7 +33,7 @@ class History(models.Model):
     class_dog = models.CharField(max_length=20, choices=CLASSES, verbose_name='Класс собаки', null=True, blank=True)
     # first_name = models.ForeignKey(User.first_name, on_delete=models.CASCADE, verbose_name='Имя')
     competition = models.CharField(max_length=20, verbose_name='Название соревнования', null=True, blank=True)
-    place = models.IntegerField(verbose_name='Город проведения', null=True, blank=True)
+    place = models.CharField(verbose_name='Город проведения', null=True, blank=True)
     date_competition = models.DateField(verbose_name='Дата соревнования', null=True, blank=True)
     status_not_official = models.BooleanField(default=False, verbose_name='Неофициальные (не в графике ркф)')
     status_RKF = models.BooleanField(default=False, verbose_name='В графике РКФ')

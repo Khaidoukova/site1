@@ -55,3 +55,12 @@ class HistoryCreate(CreateView):
 
         return super().form_valid(form)
 
+class HistoryUpdate(UpdateView):
+    model = History
+    form_class = HistoryForm
+    success_url = reverse_lazy('history:history')
+
+
+class HistoryDelete(DeleteView):
+    model = History
+    success_url = reverse_lazy('history:history')
