@@ -155,20 +155,20 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <p><b>{{ object_competition.name_competition }}</b></p>
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black"><b>{{ object_competition.name_competition }}</b></a></p>
                         </div>
                         <div class="col-md-3">
-                            <p>Количество участников: {{ object_competition.max_players }}</p>
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Количество участников: {{ object_competition.max_players }}</a></p>
                         </div>
                         <div class="col-md-3">
                             {% if object_competition.date_competition %}
-                                <p class="card-text">{{ object_competition.date_competition }}</p>
+                            <p class="card-text"><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">{{ object_competition.date_competition }}</a></p>
                             {% else %}
-                                <p class="card-text">{{ object_competition.pre_date_competition }}</p>
+                            <p class="card-text"><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">{{ object_competition.pre_date_competition }}</a></p>
                             {% endif %}
                         </div>
                         <div class="col-md-3">
-                            <a href="{% url 'detail_com' object_competition.pk %}">Статус регистрации: {{ status }}</a>
+                            <a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Статус регистрации: Завершено</a>
                         </div>
                     </div>
                 </div>
