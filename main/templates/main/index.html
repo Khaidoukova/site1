@@ -144,11 +144,12 @@
     <div style="background-color: #e3ffd4; border-top-left-radius: 20px; border-top-right-radius: 20px;">
      <div class="row">
          <div class="col text-center">
-      <h2>Прошедшие соревнования</h2>
+             <h2><a href="{% url 'competition_archive' %}" class="link-black">Прошедшие соревнования (архив)</a></h2>
           </div>
      </div>
     </div>
     <div class="row">
+        {% if past_competitions %}
         {% for object_competition in past_competitions %}
         <div class="col-md-12">
             <div class="card mb-4 box-shadow">
@@ -175,6 +176,7 @@
             </div>
         </div>
         {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

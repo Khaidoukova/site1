@@ -39,6 +39,13 @@ class UserProfileForm(UserChangeForm):
                   'user_tegram', 'user_whatsup', 'user_vk', 'user_other',
                   'user_town', 'user_club', 'user_trainer', 'user_about', 'user_hide_info',
                   )
+        labels = {
+            'first_name': 'Имя*',
+            'last_name': 'Фамилия*',
+            'phone': 'Телефон*',
+            'user_town': 'Город*',
+
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
