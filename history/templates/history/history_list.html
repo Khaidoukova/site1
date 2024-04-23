@@ -1,0 +1,160 @@
+{% extends 'main/base.html' %}
+{% block content%}
+<style>
+    /* Стили для ссылок */
+    .link-black {
+        color: black; /* Черный цвет текста */
+        text-decoration: none; /* Убираем подчеркивание */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <h1 class="text-center">Моя история соревнований</h1>
+    </div>
+</div>
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        <h3 class="text-center">Соревнования, пройденные в рамках Ралли обидиенс</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Дата соревнования</th>
+                    <th>Город</th>
+                    <th>Название соревнования</th>
+                    <th>Статус соревнования</th>
+                    <th>Собака</th>
+                    <th>Класс</th>
+                    <th>Результаты участия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for competition in competitions %}
+                {% for competitor in competition.competitor_set.all %}
+                <tr>
+                    <td>{{ competition.date_competition }}</td>
+                    <td>{{ competition.place_competition }}</td>
+                    <td>{{ competition.name_competition }}</td>
+                    <td>{% if competition.status_not_official %}
+                            - Неофициальные (не в графике РКФ)
+                            {% endif %}
+                        <p>{% if competition.status_RKF %}
+                            - В графике РКФ
+                        {% endif %}</p>
+                        <p>{% if competition.status_open %}
+                            - Открытое
+                        {% endif %}</p>
+                        <p>{% if competition.status_Tests %}
+                            - Испытания
+                        {% endif %}</p>
+                        <p>{% if competition.status_Quality %}
+                            - Квалификационные соревнования
+                        {% endif %}</p>
+                        <p>{% if competition.status_Certificate %}
+                            - Сертификатные CACROb и CACIROb
+                        {% endif %}</p>
+                        <p>{% if competition.status_Training %}
+                            - Тренировочные
+                        {% endif %}</p>
+                    </td>
+                    <td>{{ competitor.selected_dog.dog_name }} ({{ competitor.selected_dog }})</td>
+                    <td>{{ competitor.get_class_comp_display }}</td>
+                    <td>
+                        <ul>
+
+                            <li>
+                                Оценка: {{ competitor.grade_competitor }}<br>
+                                Баллы: {{ competitor.points }}
+                            </li>
+
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <h3 class="text-center">История выступлений проводника (в соответствие с рабочей книжкой)</h3>
+        <div class="col-md-3 p-3">
+            <p><a href="{% url 'history:history_create' %}" class="btn btn-primary">Добавить выступление</a></p>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Дата соревнования</th>
+                    <th>Город</th>
+                    <th>Название соревнования</th>
+                    <th>Статус соревнования</th>
+                    <th>Собака</th>
+                    <th>Класс</th>
+                    <th>Результаты участия</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for competition in history %}
+                <tr>
+                    <td>{{ competition.date_competition }}</td>
+                    <td>{{ competition.place }}</td>
+                    <td>{{ competition.competition }}</td>
+                    <td>{% if competition.status_not_official %}
+                            - Неофициальные (не в графике РКФ)
+                            {% endif %}
+                        <p>{% if competition.status_RKF %}
+                            - В графике РКФ
+                        {% endif %}</p>
+                        <p>{% if competition.status_open %}
+                            - Открытое
+                        {% endif %}</p>
+                        <p>{% if competition.status_Tests %}
+                            - Испытания
+                        {% endif %}</p>
+                        <p>{% if competition.status_Quality %}
+                            - Квалификационные соревнования
+                        {% endif %}</p>
+                        <p>{% if competition.status_Certificate %}
+                            - Сертификатные CACROb и CACIROb
+                        {% endif %}</p>
+                        <p>{% if competition.status_Training %}
+                            - Тренировочные
+                        {% endif %}</p>
+                    </td>
+                    <td>{{ competition.dog.dog_name }} ({{ competition.dog }})</td>
+                    <td>{{ competition.get_class_dog_display }}</td>
+                    <td>
+                        <ul>
+
+                            <li>
+                                Оценка: {{ competition.get_grade_display }}<br>
+                                Баллы: {{ competition.points }}
+                            </li>
+
+                        </ul>
+                    </td>
+                    <td>
+                        <a href="{% url 'history:history_update' competition.pk %}" class="btn btn-warning"
+                           style="margin-bottom: 1mm;">Редактировать</a>
+                        <form action="{% url 'history:history_delete' competition.pk %}" method="post"
+                              style="display: inline; margin-top: 1mm;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

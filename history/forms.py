@@ -1,5 +1,6 @@
 from django import forms
 from history.models import History
+from users.models import Dogs
 
 
 class StyleFormMixin:
@@ -10,7 +11,7 @@ class StyleFormMixin:
             field.widget.attrs['class'] = 'form-control'
 
 
-class HistoryForm(StyleFormMixin, forms.ModelForm):
+class HistoryForm(forms.ModelForm):
 
     class Meta:
         model = History
@@ -18,9 +19,13 @@ class HistoryForm(StyleFormMixin, forms.ModelForm):
 
         widgets = {
             'date_competition': forms.DateInput(attrs={'type': 'date'}),
-            'track1_time': forms.TimeInput(format='%M:%S', attrs={'type':'time'}),
-            'track2_time': forms.TimeInput(format='%M:%S', attrs={'type':'time'}),
+
         }
 
-
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # Получаем текущего пользователя из kwargs
+        super().__init__(*args, **kwargs)
+        if user:
+            # Фильтруем queryset собак по пользователю
+            self.fields['dog'].queryset = Dogs.objects.filter(owner=user)
 
