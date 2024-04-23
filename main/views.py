@@ -363,6 +363,7 @@ class CompetitionResult(View):
         # Если запрос не содержит параметра 'download', возвращаем шаблон с таблицей
         return render(request, 'main/competition_result.html', context)
 
+
 class CompetitionArchiveView(ListView):
     """Показываем архив прошедших соревнований"""
     model = Competition

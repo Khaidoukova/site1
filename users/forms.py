@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 from django.utils.crypto import get_random_string
 
 from users.models import User, Dogs
+
 UserModel = get_user_model()
 
 
@@ -31,9 +32,7 @@ class UserRegisterForm(StyleFormMixin, UserCreationForm):
         return user
 
 
-
 class UserProfileForm(UserChangeForm):
-
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'phone', 'avatar',
@@ -54,7 +53,6 @@ class UserProfileForm(UserChangeForm):
         self.fields['password'].widget = forms.HiddenInput()
 
 
-
 class DogsForm(forms.ModelForm):
     class Meta:
         model = Dogs
@@ -69,6 +67,7 @@ class DogsForm(forms.ModelForm):
 
 class UserLoginForm(StyleFormMixin, AuthenticationForm):
     """Форма для контроля авторизации пользователей с подтвержденным почтовым адресом"""
+
     def clean(self):
         email = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
