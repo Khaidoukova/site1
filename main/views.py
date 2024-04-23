@@ -9,7 +9,6 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
-
 from drag_and_drop_app.models import Image
 from main.all_competitors_list import create_excel_file
 from main.competitor_list import create_xls

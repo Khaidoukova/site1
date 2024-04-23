@@ -14,3 +14,4 @@ urlpatterns = [
     path('rules/', RulesView.as_view(), name='rules'),  # страница с правилами
 ]
 
+
