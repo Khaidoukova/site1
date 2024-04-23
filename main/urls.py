@@ -13,3 +13,4 @@ urlpatterns = [
     path('archive/', CompetitionArchiveView.as_view(), name='competition_archive'),
     path('rules/', RulesView.as_view(), name='rules'),  # страница с правилами
 ]
+

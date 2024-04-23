@@ -31,6 +31,7 @@ class UserRegisterForm(StyleFormMixin, UserCreationForm):
         return user
 
 
+
 class UserProfileForm(UserChangeForm):
 
     class Meta:
@@ -51,6 +52,7 @@ class UserProfileForm(UserChangeForm):
         super().__init__(*args, **kwargs)
 
         self.fields['password'].widget = forms.HiddenInput()
+
 
 
 class DogsForm(forms.ModelForm):
