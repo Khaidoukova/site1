@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'roles',
     'history',
     'news',
+    'trainer',
+
 ]
 
 MIDDLEWARE = [
