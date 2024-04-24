@@ -2,15 +2,26 @@
 {% block content%}
 
 
-<div class="container mt-2 mb-2" xmlns="http://www.w3.org/1999/html">
+<div class="container mt-2 mb-2">
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Оценки: </h2>
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-3">
+                        <h2>Оценки: </h2>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{% url 'detail_com' competitor_info.competition.pk %}" class="btn btn-success btn-sm">Вернуться</a>
+                    </div>
+                </div>
+
+
+
 
                 <form method="post">
                     <div class="row">
                         {% csrf_token %}
+
                         {% for field in form.visible_fields %}
 
                                 <div class="col-md-1 mb-3">
@@ -31,6 +42,74 @@
                 </form>
 
                 <div class="row">
+
+                    <p>Выставленные оценки</p>
+
+                    <table class="table table-bordered text-center">
+                        <tbody>
+                            <tr>
+                                <td>Старт</td>
+                                <td>{{ competitor_info.start_field }}</td>
+
+                            </tr>
+                            <tr>
+                                <td>Знак 1</td>
+                                <td>Знак 2</td>
+                                <td>Знак 3</td>
+                                <td>Знак 4</td>
+                                <td>Знак 5</td>
+                                <td>Знак 6</td>
+                                <td>Знак 7</td>
+                                <td>Знак 8</td>
+                                <td>Знак 9</td>
+                                <td>Знак 10</td>
+                            </tr>
+                            <tr>
+                                <td>{{ competitor_info.additional_field_1 }}</td>
+                                <td>{{ competitor_info.additional_field_2 }}</td>
+                                <td>{{ competitor_info.additional_field_3 }}</td>
+                                <td>{{ competitor_info.additional_field_4 }}</td>
+                                <td>{{ competitor_info.additional_field_5 }}</td>
+                                <td>{{ competitor_info.additional_field_6 }}</td>
+                                <td>{{ competitor_info.additional_field_7 }}</td>
+                                <td>{{ competitor_info.additional_field_8 }}</td>
+                                <td>{{ competitor_info.additional_field_9 }}</td>
+                                <td>{{ competitor_info.additional_field_10 }}</td>
+                            </tr>
+                            <tr class="font-weight-bold">
+                                <td>Знак 11</td>
+                                <td>Знак 12</td>
+                                <td>Знак 13</td>
+                                <td>Знак 14</td>
+                                <td>Знак 15</td>
+                                <td>Знак 16</td>
+                                <td>Знак 17</td>
+                                <td>Знак 18</td>
+                                <td>Знак 19</td>
+                                <td>Знак 20</td>
+                            </tr>
+                            <tr>
+                                <td>{{ competitor_info.additional_field_11 }}</td>
+                                <td>{{ competitor_info.additional_field_12 }}</td>
+                                <td>{{ competitor_info.additional_field_13 }}</td>
+                                <td>{{ competitor_info.additional_field_14 }}</td>
+                                <td>{{ competitor_info.additional_field_15 }}</td>
+                                <td>{{ competitor_info.additional_field_16 }}</td>
+                                <td>{{ competitor_info.additional_field_17 }}</td>
+                                <td>{{ competitor_info.additional_field_18 }}</td>
+                                <td>{{ competitor_info.additional_field_19 }}</td>
+                                <td>{{ competitor_info.additional_field_20 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Финиш</td>
+                                <td>{{ competitor_info.finish_field }}</td>
+                                <td>Общее впечатление</td>
+                                <td>{{ competitor_info.show_field }}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
                     <div class="col-4 md-2 mb-3">
                         <p>Общие баллы: {{ competitor_info.points }}</p>
                     </div>
@@ -38,13 +117,14 @@
                         <p>Оценка: {{ competitor_info.grade_competitor }}</p>
                     </div>
                     <div class="col-4 md-2 mb-3">
+                        {% if min_time_competitor and sec_time_competitor %}
                         <p>Время: {{ min_time_competitor }}:{% if sec_time_competitor < 10 %}0{{ sec_time_competitor }}{% else %}{{ sec_time_competitor }}{% endif %}</p>
+                        {% else %}
+                        <p>Время не выставленно</p>
+                        {% endif %}
                     </div>
-                    <p>
-                      {% for score in additional_scores %}
-                        <p>{{ score.additional_scores }}</p>
-                      {% endfor %}
-                    </p>
+
+
                 </div>
             </div>
         </div>
