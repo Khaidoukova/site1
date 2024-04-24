@@ -54,6 +54,15 @@ class UserProfileForm(UserChangeForm):
 
 
 class DogsForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        instance = kwargs.get('instance')
+
+    # Если объект уже существует и имеет значения дат, то добавляем их к label_suffix
+        if instance and instance.date_borne:
+            date_label = instance.date_borne.strftime('%d.%m.%Y')
+            self.fields['date_borne'].label = f'Дата рождения (ранее указанная дата {date_label})'
     class Meta:
         model = Dogs
         fields = ('dog_name', 'dog_avatar', 'home_name',

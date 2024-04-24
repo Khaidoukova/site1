@@ -12,7 +12,7 @@
     {% if is_owner %}
     <div class="row mt-4 mb-4">
         <h3>Чтобы у вас появилась много возможностей - заполните данные о себе</h3>
-        <a href="{% url 'users:profile' %}" class="btn btn-secondary text-white">Заполнить</a>
+        <a href="{% url 'users:profile' %}" class="btn btn-secondary text-white">Внести изменения в анкету</a>
     </div>
     {% endif %}
         <div class="row">
@@ -114,7 +114,7 @@
                     {% if is_owner %}
                         {% if conductor.id_conductor %}
                         <p>Ваш ID проводника: {{ conductor.id_conductor }}</p>
-                          <p>Теперь вы можете добавить собаку для участие в соревнованиях</p>
+                          <p>Теперь вы можете добавить собаку для участия в соревнованиях</p>
                             <a href="{% url 'roles:add_dog_conductor' %}" class="btn btn-info btn-sm text-white">Добавить собаку</a>
                     <div class="m-3">
                                 <p>Уже добавленные собаки:</p>

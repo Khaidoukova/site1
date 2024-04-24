@@ -3,6 +3,25 @@ from main.models import Competition
 
 
 class CompetitionForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Получаем экземпляр объекта, если он уже существует
+        instance = kwargs.get('instance')
+
+        # Если объект уже существует и имеет значения дат, то добавляем их к label_suffix
+        if instance and instance.date_competition:
+            date_label = instance.date_competition.strftime('%d.%m.%Y')
+            self.fields['date_competition'].label = f'Дата соревнований (ранее указанная дата {date_label})'
+        if instance and instance.start_date_competition:
+            date_label1 = instance.start_date_competition.strftime('%d.%m.%Y')
+            self.fields['start_date_competition'].label = f'Дата начала регистрации (ранее указанная дата {date_label1})'
+        if instance and instance.end_date_competition:
+            date_label3 = instance.end_date_competition.strftime('%d.%m.%Y')
+            self.fields['end_date_competition'].label = f'Дата окончания регистрации (ранее указанная дата {date_label3})'
+
+
     class Meta:
         model = Competition
         exclude = ['owner', 'judge_class_ro_dety', 'judge_class_ro_shenki', 'judge_class_ro_debut',
