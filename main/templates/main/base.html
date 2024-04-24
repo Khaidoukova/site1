@@ -8,6 +8,8 @@
     <link rel="canonical" href="https://bootstrap-4.ru/docs/5.3/examples/headers/">
 	<!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Подключение Font Awesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 	<!-- Favicons -->
 	<meta name="theme-color" content="#712cf9">
@@ -20,43 +22,7 @@
 <body>
 
 <header class="p-3" style="background-color: #e3ffd4;">
-    <!--
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img src="/static/logo.webp" alt="Логотип" class="img-fluid" style="max-width: 70px; max-height: 70px;">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-            </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" class="nav-link px-2 text-black">Главная</a></li>
-          <li><a href="/news/" class="nav-link px-2 text-black">Новости</a></li>
-          <li><a href="/rules/" class="nav-link px-2 text-black">Правила</a></li>
-          <li><a href="https://calendar.yandex.ru/week?uid=1892071114" class="nav-link px-2 text-black" target="_blank">Календарь</a></li>
-
-
-        </ul>
-
-        <div class="text-end">
-                {% if user.is_authenticated %}
-
-           <div class="d-flex">
-                <form method="post" action="{% url 'users:logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="p-2 btn btn-danger me-2">Выйти</button>
-                </form>
-
-                <a class="p-2 btn btn-warning mx-2" href="{% url 'users:user_detail' pk=user.pk %}">Профиль</a>
-            </div>
-                {% else %}
-            <a class="btn btn-outline-dark me-2" href="{% url 'users:login' %}">Войти</a>
-            <a class="p-2 btn btn-warning" href="{% url 'users:register' %}">Регистрация</a>
-                {% endif %}
-
-        </div>
-      </div>
-    </div>
-    -->
+<div class="container">
  <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center" href="/">
@@ -98,8 +64,7 @@
     </div>
   </div>
 </nav>
-
-
+</div>
 </header>
 
 
@@ -109,7 +74,58 @@
 
 {% endblock %}
 
+
+
 <script src="/static/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
 </body>
+
+<div class="container">
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 p-3" style="background-color: #e3ffd4;">
+
+    <div class="col mb-3">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+          <img src="/static/logo.webp" alt="Логотип" class="img-fluid me-2" style="max-width: 70px; max-height: 70px;">
+          <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+      </a>
+      <p class="text-body-secondary">© 2024</p>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Меню</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-body-secondary">Home</a></li>
+        <li class="nav-item mb-2"><a href="/news/" class="nav-link p-0 text-body-secondary">Новости</a></li>
+        <li class="nav-item mb-2"><a href="/rules/" class="nav-link p-0 text-body-secondary">Правила</a></li>
+        <li class="nav-item mb-2"><a href="https://calendar.yandex.ru/week?uid=1892071114" class="nav-link p-0 text-body-secondary">Календарь</a></li>
+      </ul>
+    </div>
+
+
+    <div class="col mb-3">
+      <h5>Контакты</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><p>Контактная информация</p></li>
+
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+          <h5>Соц.сети</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+                <a href="https://vk.com" target="_blank" class="rounded-circle d-inline-block p-2" ">
+                    <i class="fab fa-vk text-dark fa-3x"></i>
+                </a>
+                <a href="https://wa.me/your_phone_number" target="_blank" class="rounded-circle d-inline-block p-2"">
+                    <i class="fab fa-whatsapp text-dark fa-3x"></i>
+                </a>
+            </li>
+          </ul>
+        </div>
+
+</footer>
+  </div>
+
+
 </html>

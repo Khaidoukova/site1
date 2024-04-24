@@ -240,6 +240,7 @@ class CompetitorUpdateView(UpdateView):
         context['min_time_competitor'] = self.object.min_time_competitor
         context['sec_time_competitor'] = self.object.sec_time_competitor
 
+
         # Получаем список дополнительных оценок для текущего участника
         additional_scores = AdditionalScore.objects.filter(competitor=self.object)
         context['additional_scores'] = additional_scores
