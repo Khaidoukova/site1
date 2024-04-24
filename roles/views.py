@@ -112,7 +112,7 @@ def add_dog_conductor(request):
             messages.error(request, 'Произошла ошибка при поиске проводника.')
 
         # Получаем все собаки из базы данных
-    dogs = Dogs.objects.all()
+    dogs = Dogs.objects.all().order_by('-id_dog')
 
     # Передаем собак в контекст шаблона
     context = {'dogs': dogs}
