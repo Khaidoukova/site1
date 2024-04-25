@@ -36,51 +36,167 @@
             <img src="/media/{{ dog_info.pedigree_file }}" alt="фото родословной" class="img-fluid">
         </div>
 
-        <div class="row p-2">
-                <h4>История соревнований моей собаки</h4>
-              {% if is_owner %}
-                <div class="col-md-3 p-3">
-                <a href="{% url 'history:history_create' %}" class="btn btn-primary">Добавить</a>
-                </div>
-              {% endif %}
+        <style>
+    /* Стили для ссылок */
+    .link-black {
+        color: black; /* Черный цвет текста */
+        text-decoration: none; /* Убираем подчеркивание */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <h1 class="text-center">Моя история соревнований</h1>
+    </div>
+</div>
 
 
-                    {% for history in user_history %}
-                    <div class="col-md-12">
-                        <div class="card mb-4 box-shadow">
-                            <div class="card-body">
-                                <div class="row m-1">
-                                    <div class="col-md-3">
-                                        <p><b>Название соревнований</b> {{ history.competition }} - {{ history.date_competition }}</p>
-                                        <p><b>Участинк в классе</b> {{ history.get_class_dog_display }}</p>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <p><b>Трасса 1:</b> Очки - {{ history.track1_points }} Время - {{ history.track1_time }}</p>
-                                        <p><b>Оценка</b> {{ history.get_track1_grade_display }} <br>Место - {{ history.track1_place }}</p>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <p><b>Трасса 2:</b> Очки - {{ history.track2_points }} Время - {{ history.track2_time }}</p>
-                                        <p><b>Оценка</b> {{ history.get_track2_grade_display }} <br>Место - {{ history.track2_place }}</p>
-                                    </div>
-                                    {% if is_owner %}
-                                    <div class="col-md-3">
-                                        <a href="" class="btn btn-primary btn-sm">Изменить</a>
-                                        <a href="" class="btn btn-danger btn-sm">Удалить</a>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container mt-5">
+            <div class="row">
+                <h3 class="text-left">Соревнования, пройденные в рамках Ралли обидиенс</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Дата соревнования</th>
+                        <th>Город</th>
+                        <th>Название соревнования</th>
+                        <th>Статус соревнования</th>
+                        <th>Класс</th>
+                        <th>Результаты участия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for competition, competitors in competitions_dict.items %}
+                    {% for competitor in competitors %}
+                    <tr>
+                        <td><a href="{% url 'detail_com' competition.pk %}" class="link-black">{{ competition.date_competition }}</a></td>
+                        <td><a href="{% url 'detail_com' competition.pk %}" class="link-black">{{ competition.place_competition }}</a></td>
+                        <td><a href="{% url 'detail_com' competition.pk %}" class="link-black">{{ competition.name_competition }}</a></td>
+                        <td><p>{% if competition.status_not_official %}
+                            - Неофициальные (не в графике РКФ)
+                            {% endif %}</p>
+                        <p>{% if competition.status_RKF %}
+                            - В графике РКФ
+                        {% endif %}</p>
+                        <p>{% if competition.status_open %}
+                            - Открытое
+                        {% endif %}</p>
+                        <p>{% if competition.status_Tests %}
+                            - Испытания
+                        {% endif %}</p>
+                        <p>{% if competition.status_Quality %}
+                            - Квалификационные соревнования
+                        {% endif %}</p>
+                        <p>{% if competition.status_Certificate %}
+                            - Сертификатные CACROb и CACIROb
+                        {% endif %}</p>
+                        <p>{% if competition.status_Training %}
+                            - Тренировочные
+                        {% endif %}</p>
+                    </td>
+                        <td>{{ competitor.get_class_comp_display }}</td>
+                        <td>
+                            <ul>
+
+                                <li>Оценка: {{ competitor.grade_competitor }}<br>
+                                    Баллы: {{ competitor.points }}
+                                </li>
+
+                            </ul>
+                        </td>
+
+                    </tr>
                     {% endfor %}
-
-
-                </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 
+        <div class="container mt-5">
+            <div class="row">
+                <h3 class="text-left">История выступлений собаки вне Ралли обидиенс (в соответствие с рабочей
+                    книжкой)</h3>
+                <div class="col-md-3 p-3">
+                    <p><a href="{% url 'history:history_create' %}" class="btn btn-primary">Добавить выступление</a>
+                    </p>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Дата соревнования</th>
+                        <th>Город</th>
+                        <th>Название соревнования</th>
+                        <th>Статус соревнования</th>
+
+                        <th>Класс</th>
+                        <th>Результаты участия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for competition in history %}
+                    <tr>
+                        <td>{{ competition.date_competition }}</td>
+                        <td>{{ competition.place }}</td>
+                        <td>{{ competition.competition }}</td>
+                        <td>{% if competition.status_not_official %}
+                            - Неофициальные (не в графике РКФ)
+                            {% endif %}
+                            <p>{% if competition.status_RKF %}
+                                - В графике РКФ
+                                {% endif %}</p>
+                            <p>{% if competition.status_open %}
+                                - Открытое
+                                {% endif %}</p>
+                            <p>{% if competition.status_Tests %}
+                                - Испытания
+                                {% endif %}</p>
+                            <p>{% if competition.status_Quality %}
+                                - Квалификационные соревнования
+                                {% endif %}</p>
+                            <p>{% if competition.status_Certificate %}
+                                - Сертификатные CACROb и CACIROb
+                                {% endif %}</p>
+                            <p>{% if competition.status_Training %}
+                                - Тренировочные
+                                {% endif %}</p>
+                        </td>
+
+                        <td>{{ competition.get_class_dog_display }}</td>
+                        <td>
+                            <ul>
+
+                                <li>
+                                    Оценка: {{ competition.get_grade_display }}<br>
+                                    Баллы: {{ competition.points }}
+                                </li>
+
+                            </ul>
+                        </td>
+                        {% if is_owner %}
+                        <td>
+                            <a href="{% url 'history:history_update' competition.pk %}" class="btn btn-warning"
+                               style="margin-bottom: 1mm;">Редактировать</a>
+                            <form action="{% url 'history:history_delete' competition.pk %}" method="post"
+                                  style="display: inline; margin-top: 1mm;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Удалить</button>
+                            </form>
+                        </td>
+                        {% endif %}
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     </div>
+</div>
 </div>
 
 

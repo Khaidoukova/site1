@@ -43,21 +43,22 @@ class DogsDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         dog = self.get_object()
-        if Competitor.objects.filter(selected_dog=dog):
-            # Получаем всех участников собаки
-            competitors = Competitor.objects.filter(selected_dog=dog)
 
-            # Получаем все соревнования, в которых участвуют собаки этого участника
-            competitions = [competitor.competition for competitor in competitors]
+        competitions_dict = {}
+        competitors = Competitor.objects.filter(selected_dog=dog)
+        for competitor in competitors:
+            competition = competitor.competition
+            if competition not in competitions_dict:
+                competitions_dict[competition] = []
+            competitions_dict[competition].append(competitor)
 
-            context['competitions'] = competitions
+        context['competitions_dict'] = competitions_dict
 
-        # Проверяем, является ли текущий пользователь владельцем собаки
         is_owner = self.request.user == dog.owner
         context['is_owner'] = is_owner
 
-        history = History.objects.filter(user=dog.owner)
-        context['user_history'] = history
+        history = History.objects.filter(dog_id=dog.pk)
+        context['history'] = history
 
         return context
 

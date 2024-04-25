@@ -316,7 +316,7 @@
             {% endif %}
         </div>
     <div class="row p-2">
-        <h4>История соревнований моей собаки</h4>
+        <h4>История соревнований моих собак</h4>
         {% if is_owner %}
         <div class="col-md-3 p-3">
             <p><a href="{% url 'history:history' %}" class="btn btn-primary">История соревнований</a></p>
@@ -328,7 +328,7 @@
     {% if competitor_events %}
     <ul>
         {% for event in competitor_events %}
-        <li><a href="{% url 'detail_com' event.pk %}" class="link-black">{{ event.competition.date_competition }}, {{ event.competition.name_competition }} - Класс участия: {{ event.get_class_comp_display }}</a></li>
+        <li><a href="{% url 'detail_com' event.competition_id %}" class="link-black">{{ event.competition.date_competition }}, {{ event.competition.name_competition }} - Класс участия: {{ event.get_class_comp_display }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
