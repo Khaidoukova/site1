@@ -35,9 +35,9 @@
                 {% for competition in competitions %}
                 {% for competitor in competition.competitor_set.all %}
                 <tr>
-                    <td>{{ competition.date_competition }}</td>
-                    <td>{{ competition.place_competition }}</td>
-                    <td>{{ competition.name_competition }}</td>
+                    <td><a href="{% url 'detail_com' competition.pk %}" class="link-black">{{ competition.date_competition }}</a></td>
+                    <td><a href="{% url 'detail_com' competition.pk %}" class="link-black">{{ competition.place_competition }}</a></td>
+                    <td><a href="{% url 'detail_com' competition.pk %}" class="link-black">{{ competition.name_competition }}</a></td>
                     <td>{% if competition.status_not_official %}
                             - Неофициальные (не в графике РКФ)
                             {% endif %}
