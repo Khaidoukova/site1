@@ -85,6 +85,13 @@ class CompetitionUpdate(UpdateView):
     model = Competition
     form_class = CompetitionForm
 
+    def get(self, request, *args, **kwargs):
+        # Получаем форму для обновления объекта
+        self.object = self.get_object()
+        form = self.get_form()
+
+        return self.render_to_response(self.get_context_data(form=form))
+
     def get_success_url(self):
         return reverse('detail_com', kwargs={'pk': self.object.pk})
 
