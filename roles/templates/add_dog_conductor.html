@@ -35,7 +35,7 @@
                     <button class="btn btn-info text-white m-2" type="submit">Стать проводником</button>
                      <a href="{% url 'users:user_detail' pk=user.pk %}" class="btn btn-warning text-white m-2">Вернуться</a>
                     <h4 class="m-4">Недавно добавленные собаки</h4>
-                            {% for dog in dogs %}
+                            {% for dog in dogs|slice:":10"  %}
                                 <p>{{ dog.id_dog }} - {{ dog.dog_name }}</p>
                             {% endfor %}
                 </form>
