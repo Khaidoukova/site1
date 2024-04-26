@@ -28,10 +28,38 @@ class CompetitionForm(forms.ModelForm):
                    ]
 
         widgets = {
-
+            # Виджеты для даты
             'date_competition': forms.DateInput(attrs={'type': 'date'}),
             'start_date_competition': forms.DateInput(attrs={'type': 'date'}),
             'end_date_competition': forms.DateInput(attrs={'type': 'date'}),
+            # Плейсхолдеры для полей
+            'judge_class_ro_dety': forms.TextInput(attrs={'placeholder': 'Добавьте судью'}),
+            'judge_class_ro_shenki': forms.TextInput(attrs={'placeholder': 'Добавьте судью '}),
+            'judge_class_ro_debut': forms.TextInput(attrs={'placeholder': 'Добавьте судью '}),
+            'judge_class_ro_veterany': forms.TextInput(attrs={'placeholder': 'Добавьте судью '}),
+            'judge_class_ro_1': forms.TextInput(attrs={'placeholder': 'Добавьте судью '}),
+            'judge_class_ro_2': forms.TextInput(attrs={'placeholder': 'Добавьте судью '}),
+            'judge_class_ro_3': forms.TextInput(attrs={'placeholder': 'Добавьте судью '}),
+            'judge_class_ro_4': forms.TextInput(attrs={'placeholder': 'Добавьте судью '}),
+
+            'count_class_ro_dety': forms.TextInput(attrs={'placeholder': 'Максимум участников'}),
+            'count_class_ro_shenki': forms.TextInput(attrs={'placeholder': 'Максимум участников'}),
+            'count_class_ro_debut': forms.TextInput(attrs={'placeholder': 'Максимум участников'}),
+            'count_class_ro_veterany': forms.TextInput(attrs={'placeholder': 'Максимум участников'}),
+            'count_class_ro_1': forms.TextInput(attrs={'placeholder': 'Максимум участников'}),
+            'count_class_ro_2': forms.TextInput(attrs={'placeholder': 'Максимум участников'}),
+            'count_class_ro_3': forms.TextInput(attrs={'placeholder': 'Максимум участников'}),
+            'count_class_ro_4': forms.TextInput(attrs={'placeholder': 'Максимум участников'}),
+
+            'count_vnezachet_class_ro_dety': forms.TextInput(attrs={'placeholder': 'Максимум внезачет'}),
+            'count_vnezachet_class_ro_shenki': forms.TextInput(attrs={'placeholder': 'Максимум внезачет'}),
+            'count_vnezachet_class_ro_debut': forms.TextInput(attrs={'placeholder': 'Максимум внезачет'}),
+            'count_vnezachet_class_ro_veterany': forms.TextInput(attrs={'placeholder': 'Максимум внезачет'}),
+            'count_vnezachet_class_ro_1': forms.TextInput(attrs={'placeholder': 'Максимум внезачет'}),
+            'count_vnezachet_class_ro_2': forms.TextInput(attrs={'placeholder': 'Максимум внезачет'}),
+            'count_vnezachet_class_ro_3': forms.TextInput(attrs={'placeholder': 'Максимум внезачет'}),
+            'count_vnezachet_class_ro_4': forms.TextInput(attrs={'placeholder': 'Максимум внезачет'}),
+
         }
 
     # def save(self, commit=True):

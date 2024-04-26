@@ -9,87 +9,399 @@
 
             <form method="post" class="needs-validation" enctype="multipart/form-data">
                     {% csrf_token %}
-                        {% for field in form %}
                             <div class="row">
                                 <div class="col-md-4 mb-3">
-                                    {% if field.label == 'Предполагаемый период соревновний' %}
-                                    <div class="text-left font-weight-bold">ИЛИ</div>
-                                    {% endif %}
-
-                                    {{ field.label_tag }}
+                                    {{ form.name_competition.label_tag }}
                                 </div>
-
                                 <div class="col-md-8 mb-3">
-
-                                    {{ field }}
-                                     {% if field.name == 'rules_competition' %}
-
-                                <div class="row my-2">
-                                    <div class="col-md-12">
-                                        <p></p>
-                                        <p></p>
-                                        <h5><b>Статус соревнований (заполнить обязательно, возможно несколько отметок)</b></h5>
-                                        <hr>
-                                    </div>
+                                    {{ form.name_competition }}
                                 </div>
-                            {% endif %}
-
-                            {% if field.name == 'status_other' %}
-
-                                <div class="row my-2">
-                                    <div class="col-md-12">
-                                        <p></p>
-                                        <p></p>
-                                        <h5><b>Данные об организаторе и месте проведения</b></h5>
-                                        <hr>
-                                    </div>
-                                </div>
-                            {% endif %}
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" name="judge_{{ field.name }}" class="form-control" style="display: none;" placeholder="Добавьте судью">
-                                        </div>
-                                        <!-- Добавляем поле для выбора судьи для данного класса -->
-                                        <div class="col-md-6">
-                                            <input type="text" name="count_{{ field.name }}" class="form-control" style="display: none;" placeholder="Максимум участников">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <label id="reserve_label_{{ field.name }}" style="display: none;">
-                                                <span>Резерв</span>
-                                            </label>
-                                            <input type="checkbox" name="reserve_{{ field.name }}" style="display: none;">
-                                        </div>
-                                        <!-- Добавляем поле для выбора судьи для данного класса -->
-                                        <div class="col-md-5">
-                                            <input type="text" name="count_reserve_{{ field.name }}" class="form-control" style="display: none;" placeholder="Максимум резерв">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <label id="vnezachet_label_{{ field.name }}" style="display: none;">
-                                                <span>Внезачет</span>
-                                            </label>
-                                            <input type="checkbox" name="vnezachet_{{ field.name }}" style="display: none;">
-                                        </div>
-                                        <!-- Добавляем поле для выбора судьи для данного класса -->
-                                        <div class="col-md-5">
-                                            <input type="text" name="count_vnezachet_{{ field.name }}" class="form-control" style="display: none;" placeholder="Максимум внезачет">
-                                        </div>
-                                    </div>
-
-
-
-
-                                </div>
-
                             </div>
-                        {% endfor %}
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.image_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.image_competition }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.date_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.date_competition }}
+                                </div>
+                    <p>ИЛИ</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.pre_date_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.pre_date_competition }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.start_date_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.start_date_competition }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.end_date_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.end_date_competition }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.send_message_start_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.send_message_start_competition }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.invitation_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.invitation_competition }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.rules_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.rules_competition }}
+                                </div>
+                    <p><h5>Статус соревнований (заполнить обязательно, возможно несколько отметок)</h5></p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.status_not_official.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.status_not_official }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.status_RKF.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.status_RKF }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.status_open.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.status_open }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.status_Tests.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.status_Tests }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.status_Quality.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.status_Quality }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.status_Certificate.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.status_Certificate }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.status_Training.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.status_Training }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.status_other.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.status_other }}
+                                </div>
+                            </div>
+                <p><h5>Данные об организаторе и месте проведения</h5></p>
 
-                    <button type="submit" class="btn btn-primary">Сохранить соревнование</button>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.place_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.place_competition }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.play_ground_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.play_ground_competition }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.place_on_map.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.place_on_map }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.contact_organization.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.contact_organization }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.club_organization.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.club_organization }}
+                                </div>
+                            </div>
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.logo_club_organization.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.logo_club_organization }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.judge_competition.label_tag }}
+                                </div>
+                                <div class="col-md-8 mb-3">
+                                    {{ form.judge_competition }}
+                                </div>
+                            </div>
+                <!-- Здесь начинаются чек боксы с классами -->
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.class_ro_dety.label_tag }}
+                                </div>
+                                <div class="col-md-1 mb-3">
+                                    {{ form.class_ro_dety }}
+                                </div>
+
+                                <div class="col-md-7 mb-3 border-bottom" id="additionalFieldsBlock" style="display: none;">
+                                    <div class="col-md-12 mb-3">
+                                        {{ form.judge_class_ro_dety }}  {{ form.count_class_ro_dety }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        Резерв {{ form.reserve_class_ro_dety }} Внезачет {{ form.vnezachet_class_ro_dety }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                         {{ form.count_vnezachet_class_ro_dety }}
+                                    </div>
+                                </div>
+
+                </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.class_ro_shenki.label_tag }}
+                                </div>
+                                <div class="col-md-1 mb-3">
+                                    {{ form.class_ro_shenki }}
+                                </div>
+                                <div class="col-md-7 mb-3 border-bottom" id="additionalFieldsBlock1" style="display: none;">
+                                    <div class="col-md-12 mb-3">
+                                        {{ form.judge_class_ro_shenki }}  {{ form.count_class_ro_shenki }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        Резерв {{ form.reserve_class_ro_shenki }} Внезачет {{ form.vnezachet_class_ro_shenki }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                         {{ form.count_vnezachet_class_ro_shenki }}
+                                    </div>
+                                </div>
+                            </div>
+
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.class_ro_debut.label_tag }}
+                                </div>
+                                <div class="col-md-1 mb-3">
+                                    {{ form.class_ro_debut }}
+                                </div>
+                                <div class="col-md-7 mb-3 border-bottom" id="additionalFieldsBlock2" style="display: none;">
+                                    <div class="col-md-12 mb-3">
+                                        {{ form.judge_class_ro_debut }}  {{ form.count_class_ro_debut }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        Резерв {{ form.reserve_class_ro_debut }} Внезачет {{ form.vnezachet_class_ro_debut }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                         {{ form.count_vnezachet_class_ro_debut }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.class_ro_veterany.label_tag }}
+                                </div>
+                                <div class="col-md-1 mb-3">
+                                    {{ form.class_ro_veterany }}
+                                </div>
+                                <div class="col-md-7 mb-3 border-bottom" id="additionalFieldsBlock3" style="display: none;">
+                                    <div class="col-md-12 mb-3">
+                                        {{ form.judge_class_ro_veterany }}  {{ form.count_class_ro_veterany }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        Резерв {{ form.reserve_class_ro_veterany }} Внезачет {{ form.vnezachet_class_ro_veterany }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                         {{ form.count_vnezachet_class_ro_veterany }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.class_ro_1.label_tag }}
+                                </div>
+                                <div class="col-md-1 mb-3">
+                                    {{ form.class_ro_1 }}
+                                </div>
+                                <div class="col-md-7 mb-3 border-bottom" id="additionalFieldsBlock4" style="display: none;">
+                                    <div class="col-md-12 mb-3">
+                                        {{ form.judge_class_ro_1 }}  {{ form.count_class_ro_1 }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        Резерв {{ form.reserve_class_ro_1 }} Внезачет {{ form.vnezachet_class_ro_1 }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                         {{ form.count_vnezachet_class_ro_1 }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.class_ro_2.label_tag }}
+                                </div>
+                                <div class="col-md-1 mb-3">
+                                    {{ form.class_ro_2 }}
+                                </div>
+                                <div class="col-md-7 mb-3 border-bottom" id="additionalFieldsBlock5" style="display: none;">
+                                    <div class="col-md-12 mb-3">
+                                        {{ form.judge_class_ro_2 }}  {{ form.count_class_ro_2 }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        Резерв {{ form.reserve_class_ro_2 }} Внезачет {{ form.vnezachet_class_ro_2 }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                         {{ form.count_vnezachet_class_ro_2 }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.class_ro_3.label_tag }}
+                                </div>
+                                <div class="col-md-1 mb-3">
+                                    {{ form.class_ro_3 }}
+                                </div>
+                              <div class="col-md-7 mb-3 border-bottom" id="additionalFieldsBlock6" style="display: none;">
+                                    <div class="col-md-12 mb-3">
+                                        {{ form.judge_class_ro_3 }}  {{ form.count_class_ro_3 }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        Резерв {{ form.reserve_class_ro_3 }} Внезачет {{ form.vnezachet_class_ro_3 }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                         {{ form.count_vnezachet_class_ro_3 }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.class_ro_4.label_tag }}
+                                </div>
+                                <div class="col-md-1 mb-3">
+                                    {{ form.class_ro_4 }}
+                                </div>
+                                <div class="col-md-7 mb-3 border-bottom" id="additionalFieldsBlock7" style="display: none;">
+                                    <div class="col-md-12 mb-3">
+                                        {{ form.judge_class_ro_4 }}  {{ form.count_class_ro_4 }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        Резерв {{ form.reserve_class_ro_4 }} Внезачет {{ form.vnezachet_class_ro_4 }}
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                         {{ form.count_vnezachet_class_ro_4 }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    {{ form.comment_for_competition.label_tag }}
+                </div>
+                <div class="col-md-8 mb-3">
+                    {{ form.comment_for_competition }}
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Сохранить соревнование</button>
 
             </form>
         </div>
@@ -100,48 +412,107 @@
 
 <!-- JavaScript-скрипт для обработки событий изменения состояния чекбоксов-->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Находим все чекбоксы для выбора классов соревнований
-        const classCheckboxes = document.querySelectorAll('input[type="checkbox"][name^="class_"]');
+    function toggleAdditionalFields(checkboxId, additionalFieldsBlockId) {
+        var checkbox = document.getElementById(checkboxId);
+        var additionalFieldsBlock = document.getElementById(additionalFieldsBlockId);
 
-        // Для каждого чекбокса добавляем обработчик события изменения состояния
-        classCheckboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                // Находим поле для выбора судьи, связанное с этим классом
-                const judgeField = document.querySelector('input[name="judge_' + checkbox.name + '"]');
+        if (checkbox.checked) {
+            additionalFieldsBlock.style.display = 'block';
+        } else {
+            additionalFieldsBlock.style.display = 'none';
+        }
+    }
 
-                const count = document.querySelector('input[name="count_' + checkbox.name + '"]');
-                const reserve = document.querySelector('input[name="reserve_' + checkbox.name + '"]');
-                const count_reserve = document.querySelector('input[name="count_reserve_' + checkbox.name + '"]');
-                const vnezachet = document.querySelector('input[name="vnezachet_' + checkbox.name + '"]');
-                const count_vnezachet = document.querySelector('input[name="count_vnezachet_' + checkbox.name + '"]');
+    window.onload = function() {
+        toggleAdditionalFields('id_class_ro_dety', 'additionalFieldsBlock');
+        toggleAdditionalFields('id_class_ro_shenki', 'additionalFieldsBlock1');
+        toggleAdditionalFields('id_class_ro_debut', 'additionalFieldsBlock2');
+        toggleAdditionalFields('id_class_ro_veterany', 'additionalFieldsBlock3');
+        toggleAdditionalFields('id_class_ro_1', 'additionalFieldsBlock4');
+        toggleAdditionalFields('id_class_ro_2', 'additionalFieldsBlock5');
+        toggleAdditionalFields('id_class_ro_3', 'additionalFieldsBlock6');
+        toggleAdditionalFields('id_class_ro_4', 'additionalFieldsBlock7');
+    }
 
-                // Если чекбокс выбран, показываем поле для выбора судьи, иначе скрываем
-                if (checkbox.checked) {
-                    judgeField.style.display = 'block';
-                    document.getElementById('reserve_label_' + checkbox.name).style.display = 'block';
-                    document.getElementById('vnezachet_label_' + checkbox.name).style.display = 'block';
-
-                    count.style.display = 'block';
-                    reserve.style.display = 'block';
-                    count_reserve.style.display = 'none'; // Hide reserve count field
-                    vnezachet.style.display = 'block';
-                    count_vnezachet.style.display = 'block';
-                } else {
-                    judgeField.style.display = 'none';
-                    document.getElementById('reserve_label_' + checkbox.name).style.display = 'none';
-                    document.getElementById('vnezachet_label_' + checkbox.name).style.display = 'none';
-
-                    count.style.display = 'none';
-                    reserve.style.display = 'none';
-                    count_reserve.style.display = 'none'; // Hide reserve count field
-                    vnezachet.style.display = 'none';
-                    count_vnezachet.style.display = 'none';
-                }
-
-            });
-        });
+    document.getElementById('id_class_ro_dety').addEventListener('change', function() {
+        toggleAdditionalFields('id_class_ro_dety', 'additionalFieldsBlock');
     });
+
+    document.getElementById('id_class_ro_shenki').addEventListener('change', function() {
+        toggleAdditionalFields('id_class_ro_shenki', 'additionalFieldsBlock1');
+    });
+
+    document.getElementById('id_class_ro_debut').addEventListener('change', function() {
+        toggleAdditionalFields('id_class_ro_debut', 'additionalFieldsBlock2');
+    });
+
+    document.getElementById('id_class_ro_veterany').addEventListener('change', function() {
+        toggleAdditionalFields('id_class_ro_veterany', 'additionalFieldsBlock3');
+    });
+
+    document.getElementById('id_class_ro_1').addEventListener('change', function() {
+        toggleAdditionalFields('id_class_ro_1', 'additionalFieldsBlock4');
+    });
+
+    document.getElementById('id_class_ro_2').addEventListener('change', function() {
+        toggleAdditionalFields('id_class_ro_2', 'additionalFieldsBlock5');
+    });
+
+    document.getElementById('id_class_ro_3').addEventListener('change', function() {
+        toggleAdditionalFields('id_class_ro_3', 'additionalFieldsBlock6');
+    });
+
+    document.getElementById('id_class_ro_4').addEventListener('change', function() {
+        toggleAdditionalFields('id_class_ro_4', 'additionalFieldsBlock7');
+    });
+</script>
+<!-- Скрипт сохранения даты в полях дат-->
+<script>
+    window.onload = function() {
+        // Получаем элементы полей даты
+        var dateInput = document.getElementById('id_date_competition');
+        var startDateInput = document.getElementById('id_start_date_competition');
+        var endDateInput = document.getElementById('id_end_date_competition');
+
+        // Получаем сохраненные значения из локального хранилища
+        var savedDate = localStorage.getItem('date_competition');
+        var savedStartDate = localStorage.getItem('start_date_competition');
+        var savedEndDate = localStorage.getItem('end_date_competition');
+
+        // Если есть сохраненные значения, устанавливаем их в соответствующие поля даты
+        if (savedDate) {
+            dateInput.value = savedDate;
+        }
+        if (savedStartDate) {
+            startDateInput.value = savedStartDate;
+        }
+        if (savedEndDate) {
+            endDateInput.value = savedEndDate;
+        }
+
+        // Добавляем обработчики событий изменения полей даты
+        dateInput.addEventListener('change', function() {
+            localStorage.setItem('date_competition', dateInput.value);
+        });
+        startDateInput.addEventListener('change', function() {
+            localStorage.setItem('start_date_competition', startDateInput.value);
+        });
+        endDateInput.addEventListener('change', function() {
+            localStorage.setItem('end_date_competition', endDateInput.value);
+        });
+
+        // Проверяем, если сохраненные значения в локальном хранилище не совпадают с значениями в полях,
+        // то обновляем локальное хранилище значениями из полей
+        if (savedDate && savedDate !== dateInput.value) {
+            localStorage.setItem('date_competition', dateInput.value);
+        }
+        if (savedStartDate && savedStartDate !== startDateInput.value) {
+            localStorage.setItem('start_date_competition', startDateInput.value);
+        }
+        if (savedEndDate && savedEndDate !== endDateInput.value) {
+            localStorage.setItem('end_date_competition', endDateInput.value);
+        }
+    }
 </script>
 
 
