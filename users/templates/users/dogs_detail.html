@@ -46,14 +46,14 @@
 
 <div class="container mt-5">
     <div class="row">
-        <h1 class="text-center">Моя история соревнований</h1>
+        <h1 class="text-center">История соревнований</h1>
     </div>
 </div>
 
 
         <div class="container mt-5">
             <div class="row">
-                <h3 class="text-left">Соревнования, пройденные в рамках Ралли обидиенс</h3>
+                <h3 class="text-left">Соревнования</h3>
                 <table class="table">
                     <thead>
                     <tr>
@@ -94,12 +94,32 @@
                             - Тренировочные
                         {% endif %}</p>
                     </td>
-                        <td>{{ competitor.get_class_comp_display }}</td>
+                        <td>{{ competitor.get_class_comp_display }}
+                        <p>"Отлично":
+                        {% if competitor.class_comp == 'ro_dety' %}
+                        {{ competitor.selected_dog.ex_count_ro_dety }}
+                    {% elif competitor.class_comp == 'ro_shenki' %}
+                        {{ competitor.selected_dog.ex_count_ro_shenki }}
+                    {% elif competitor.class_comp == 'ro_debut' %}
+                        {{ competitor.selected_dog.ex_count_ro_debut }}
+                    {% elif competitor.class_comp == 'ro_veterany' %}
+                        {{ competitor.selected_dog.ex_count_ro_veterany }}
+                    {% elif competitor.class_comp == 'ro_1' %}
+                        {{ competitor.selected_dog.ex_count_ro_1 }}
+                    {% elif competitor.class_comp == 'ro_2' %}
+                        {{ competitor.selected_dog.ex_count_ro_2 }}
+                    {% elif competitor.class_comp == 'ro_3' %}
+                        {{ competitor.selected_dog.ex_count_ro_3 }}
+                    {% elif competitor.class_comp == 'ro_4' %}
+                        {{ competitor.selected_dog.ex_count_ro_4 }}
+                    {% endif %}</p>
+                   </td>
                         <td>
                             <ul>
 
                                 <li>Оценка: {{ competitor.grade_competitor }}<br>
-                                    Баллы: {{ competitor.points }}
+                                    Баллы: {{ competitor.points }}<br>
+                                    Место: {{ competitor.place_in_competition }}<br>
                                 </li>
 
                             </ul>
@@ -116,10 +136,11 @@
 
         <div class="container mt-5">
             <div class="row">
-                <h3 class="text-left">История выступлений собаки вне Ралли обидиенс (в соответствие с рабочей
-                    книжкой)</h3>
+                <h3 class="text-left">История выступлений (в соответствие с рабочей книжкой)</h3>
                 <div class="col-md-3 p-3">
+                    {% if is_owner or user.is_staff %}
                     <p><a href="{% url 'history:history_create' %}" class="btn btn-primary">Добавить выступление</a>
+                        {% endif %}
                     </p>
                 </div>
                 <table class="table">

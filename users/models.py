@@ -58,6 +58,14 @@ class Dogs(models.Model):
     mother_name = models.CharField(max_length=50, verbose_name='Имя матери по родословной', **NULLABLE)
     mother_pedigree_number = models.CharField(max_length=50, verbose_name='Номер родословной матери', **NULLABLE)
     mother_titles = models.TextField(verbose_name='Титулы матери', **NULLABLE)
+    ex_count_ro_dety = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-дети', **NULLABLE)
+    ex_count_ro_shenki = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-щенки', **NULLABLE)
+    ex_count_ro_debut = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-дебют', **NULLABLE)
+    ex_count_ro_veterany = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-ветераны', **NULLABLE)
+    ex_count_ro_1 = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-1', **NULLABLE)
+    ex_count_ro_2 = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-2', **NULLABLE)
+    ex_count_ro_3 = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-3', **NULLABLE)
+    ex_count_ro_4 = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-4(мастера)', **NULLABLE)
 
     def save(self, *args, **kwargs):
         if not self.id_dog:
@@ -113,6 +121,14 @@ class User(AbstractUser):
     org_status = models.BooleanField(default=False, verbose_name='Статус организатора')
     get_check = models.BooleanField(default=False,
                                     verbose_name='Запрос на организатора отправлен')  # запрос на подтверждение адмионм (письмо)
+    ex_count_ro_dety = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-дети', **NULLABLE)
+    ex_count_ro_shenki = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-щенки', **NULLABLE)
+    ex_count_ro_debut = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-дебют', **NULLABLE)
+    ex_count_ro_veterany = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-ветераны', **NULLABLE)
+    ex_count_ro_1 = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-1', **NULLABLE)
+    ex_count_ro_2 = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-2', **NULLABLE)
+    ex_count_ro_3 = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-3', **NULLABLE)
+    ex_count_ro_4 = models.IntegerField(default=0, verbose_name='Количество "отлично" в РО-4(мастера)', **NULLABLE)
 
     class Meta:
         verbose_name = 'Юзер'

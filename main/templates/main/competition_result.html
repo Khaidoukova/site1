@@ -41,14 +41,16 @@
                 <p>Оценка</p>
             </div>
             <div class="col-2">
-                <p>Дополнительные оценки</p>
+                <p>Баллы по знакам</p>
             </div>
 
         </div>
         {% for competitor in competitors_ro_dety %}
+          {% if competitor.place_in_competition is not 0 %}
         <div class="row text-center rounded border">
             <div class="col-1">
-                <p>{{ forloop.counter }}</p>
+
+                <p>{{ competitor.place_in_competition }}</p>
             </div>
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
@@ -74,20 +76,23 @@
             <div class="col-1">
         <div class="btn-group dropstart">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Посмотреть оценки
+            Посмотреть баллы
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">
             {% if competitor.additional_scores %}
-                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                Баллы: {{ competitor.additional_scores.additional_scores }}
                     {% else %}
                     Нет информации
             {% endif %}</a></li>
+
         </ul>
     </div>
+
     </div>
 
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -120,14 +125,15 @@
                 <p>Оценка</p>
             </div>
             <div class="col-2">
-                <p>Дополнительные оценки</p>
+                <p>Баллы по знакам</p>
             </div>
 
         </div>
         {% for competitor in competitors_ro_shenki %}
+        {% if competitor.place_in_competition is not 0 %}
         <div class="row text-center rounded border">
             <div class="col-1">
-                <p>{{ forloop.counter }}</p>
+                <p>{{ competitor.place_in_competition }}</p>
             </div>
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
@@ -153,12 +159,12 @@
             <div class="col-1">
         <div class="btn-group dropstart">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Посмотреть оценки
+            Посмотреть баллы
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">
             {% if competitor.additional_scores %}
-                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                Баллы: {{ competitor.additional_scores.additional_scores }}
                     {% else %}
                     Нет информации
             {% endif %}</a></li>
@@ -167,6 +173,7 @@
     </div>
 
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -199,15 +206,16 @@
                 <p>Оценка</p>
             </div>
             <div class="col-2">
-                <p>Дополнительные оценки</p>
+                <p>Баллы по знакам</p>
             </div>
 
 
         </div>
         {% for competitor in competitors_ro_debut %}
+        {% if competitor.place_in_competition is not 0 %}
         <div class="row text-center rounded border">
             <div class="col-1">
-                <p>{{ forloop.counter }}</p>
+                <p>{{ competitor.place_in_competition }}</p>
             </div>
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
@@ -233,12 +241,12 @@
             <div class="col-1">
         <div class="btn-group dropstart">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Посмотреть оценки
+            Посмотреть баллы
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">
             {% if competitor.additional_scores %}
-                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                Баллы: {{ competitor.additional_scores.additional_scores }}
                     {% else %}
                     Нет информации
             {% endif %}</a></li>
@@ -247,6 +255,7 @@
     </div>
 
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -279,15 +288,16 @@
                 <p>Оценка</p>
             </div>
             <div class="col-2">
-                <p>Дополнительные оценки</p>
+                <p>Баллы по знакам</p>
             </div>
 
 
         </div>
         {% for competitor in competitors_ro_veterany %}
+        {% if competitor.place_in_competition is not 0 %}
         <div class="row text-center rounded border">
             <div class="col-1">
-                <p>{{ forloop.counter }}</p>
+                <p>{{ competitor.place_in_competition }}</p>
             </div>
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
@@ -313,12 +323,12 @@
             <div class="col-1">
         <div class="btn-group dropstart">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Посмотреть оценки
+            Посмотреть баллы
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">
             {% if competitor.additional_scores %}
-                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                Баллы: {{ competitor.additional_scores.additional_scores }}
                     {% else %}
                     Нет информации
             {% endif %}</a></li>
@@ -327,6 +337,7 @@
     </div>
 
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -359,15 +370,16 @@
                 <p>Оценка</p>
             </div>
             <div class="col-2">
-                <p>Дополнительные оценки</p>
+                <p>Баллы по знакам</p>
             </div>
 
 
         </div>
         {% for competitor in competitors_ro_1 %}
+        {% if competitor.place_in_competition is not 0 %}
         <div class="row text-center rounded border">
             <div class="col-1">
-                <p>{{ forloop.counter }}</p>
+                <p>{{ competitor.place_in_competition }}</p>
             </div>
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
@@ -393,12 +405,12 @@
             <div class="col-1">
         <div class="btn-group dropstart">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Посмотреть оценки
+            Посмотреть баллы
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">
             {% if competitor.additional_scores %}
-                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                Баллы: {{ competitor.additional_scores.additional_scores }}
                     {% else %}
                     Нет информации
             {% endif %}</a></li>
@@ -407,6 +419,7 @@
     </div>
 
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -440,15 +453,16 @@
                 <p>Оценка</p>
             </div>
             <div class="col-2">
-                <p>Дополнительные оценки</p>
+                <p>Баллы по знакам</p>
             </div>
 
 
         </div>
         {% for competitor in competitors_ro_2 %}
+        {% if competitor.place_in_competition is not 0 %}
         <div class="row text-center rounded border">
             <div class="col-1">
-                <p>{{ forloop.counter }}</p>
+                <p>{{ competitor.place_in_competition }}</p>
             </div>
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
@@ -474,12 +488,12 @@
             <div class="col-1">
         <div class="btn-group dropstart">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Посмотреть оценки
+            Посмотреть баллы
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">
             {% if competitor.additional_scores %}
-                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                Баллы: {{ competitor.additional_scores.additional_scores }}
                     {% else %}
                     Нет информации
             {% endif %}</a></li>
@@ -488,6 +502,7 @@
     </div>
 
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -521,15 +536,16 @@
                 <p>Оценка</p>
             </div>
             <div class="col-2">
-                <p>Дополнительные оценки</p>
+                <p>Баллы по знакам</p>
             </div>
 
 
         </div>
         {% for competitor in competitors_ro_3 %}
+        {% if competitor.place_in_competition is not 0 %}
         <div class="row text-center rounded border">
             <div class="col-1">
-                <p>{{ forloop.counter }}</p>
+                <p>{{ competitor.place_in_competition }}</p>
             </div>
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
@@ -555,12 +571,12 @@
             <div class="col-1">
         <div class="btn-group dropstart">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Посмотреть оценки
+            Посмотреть баллы
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">
             {% if competitor.additional_scores %}
-                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                Баллы: {{ competitor.additional_scores.additional_scores }}
                     {% else %}
                     Нет информации
             {% endif %}</a></li>
@@ -569,6 +585,7 @@
     </div>
 
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -601,15 +618,16 @@
                 <p>Оценка</p>
             </div>
             <div class="col-2">
-                <p>Дополнительные оценки</p>
+                <p>Баллы по знакам</p>
             </div>
 
 
         </div>
         {% for competitor in competitors_ro_4 %}
+        {% if competitor.place_in_competition is not 0 %}
         <div class="row text-center rounded border">
             <div class="col-1">
-                <p>{{ forloop.counter }}</p>
+                <p>{{ competitor.place_in_competition }}</p>
             </div>
             <div class="col-2">
                 <p>{{ competitor.user.first_name }} {{ competitor.user.last_name }}</p>
@@ -635,12 +653,12 @@
             <div class="col-1">
         <div class="btn-group dropstart">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Посмотреть оценки
+            Посмотреть баллы
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">
             {% if competitor.additional_scores %}
-                Дополнительные оценки: {{ competitor.additional_scores.additional_scores }}
+                Баллы: {{ competitor.additional_scores.additional_scores }}
                     {% else %}
                     Нет информации
             {% endif %}</a></li>
@@ -649,6 +667,7 @@
     </div>
 
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
