@@ -205,6 +205,7 @@ class CompetitionResult(View):
 
         competitors_ro_dety = competitors.filter(class_comp='ro_dety').order_by('-points')
         # присваиваю каждому участнику в группе дополнительный параметр
+        place = 1
         for competitor in competitors_ro_dety:
             try:
                 additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
@@ -212,9 +213,16 @@ class CompetitionResult(View):
                 additional_scores = None
 
             competitor.additional_scores = additional_scores
+            if competitor.points is not None:
+                competitor.place_in_competition = place
+                place += 1
+            else:
+                competitor.place_in_competition = 0
             competitor.save()
+
         competitors_ro_shenki = competitors.filter(class_comp='ro_shenki').order_by('-points')
         # присваиваю каждому участнику в группе дополнительный параметр
+        place = 1
         for competitor in competitors_ro_shenki:
             try:
                 additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
@@ -222,9 +230,16 @@ class CompetitionResult(View):
                 additional_scores = None
 
             competitor.additional_scores = additional_scores
-            competitor.save()  # Сохранить изменения
+            if competitor.points is not None:
+                competitor.place_in_competition = place
+                place += 1
+            else:
+                competitor.place_in_competition = 0
+            competitor.save()
+
         competitors_ro_debut = competitors.filter(class_comp='ro_debut').order_by('-points')
         # присваиваю каждому участнику в группе дополнительный параметр
+        place = 1
         for competitor in competitors_ro_debut:
             try:
                 additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
@@ -232,9 +247,15 @@ class CompetitionResult(View):
                 additional_scores = None
 
             competitor.additional_scores = additional_scores
+            if competitor.points is not None:
+                competitor.place_in_competition = place
+                place += 1
+            else:
+                competitor.place_in_competition = 0
             competitor.save()
         competitors_ro_veterany = competitors.filter(class_comp='ro_veterany').order_by('-points')
         # присваиваю каждому участнику в группе дополнительный параметр
+        place = 1
         for competitor in competitors_ro_veterany:
             try:
                 additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
@@ -242,9 +263,16 @@ class CompetitionResult(View):
                 additional_scores = None
 
             competitor.additional_scores = additional_scores
+            if competitor.points is not None:
+                competitor.place_in_competition = place
+                place += 1
+            else:
+                competitor.place_in_competition = 0
             competitor.save()
+
         competitors_ro_1 = competitors.filter(class_comp='ro_1').order_by('-points')
         # присваиваю каждому участнику в группе дополнительный параметр
+        place = 1
         for competitor in competitors_ro_1:
             try:
                 additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
@@ -252,9 +280,15 @@ class CompetitionResult(View):
                 additional_scores = None
 
             competitor.additional_scores = additional_scores
+            if competitor.points is not None:
+                competitor.place_in_competition = place
+                place += 1
+            else:
+                competitor.place_in_competition = 0
             competitor.save()
         competitors_ro_2 = competitors.filter(class_comp='ro_2').order_by('-points')
         # присваиваю каждому участнику в группе дополнительный параметр
+        place = 1
         for competitor in competitors_ro_2:
             try:
                 additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
@@ -262,9 +296,16 @@ class CompetitionResult(View):
                 additional_scores = None
 
             competitor.additional_scores = additional_scores
+            if competitor.points is not None:
+                competitor.place_in_competition = place
+                place += 1
+            else:
+                competitor.place_in_competition = 0
             competitor.save()
+
         competitors_ro_3 = competitors.filter(class_comp='ro_3').order_by('-points')
         # присваиваю каждому участнику в группе дополнительный параметр
+        place = 1
         for competitor in competitors_ro_3:
             try:
                 additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
@@ -272,9 +313,18 @@ class CompetitionResult(View):
                 additional_scores = None
 
             competitor.additional_scores = additional_scores
+            if competitor.points is not None:
+                competitor.place_in_competition = place
+                place += 1
+            else:
+                competitor.place_in_competition = 0
             competitor.save()
-        competitors_ro_4 = competitors.filter(class_comp='ro_4').order_by('-points')
+
+        competitors_ro_4 = sorted(competitors.filter(class_comp='ro_4'),
+                                  key=lambda x: (x.points is None, -x.points if x.points is not None else 0),
+                                  reverse=True)
         # присваиваю каждому участнику в группе дополнительный параметр
+        place = 1
         for competitor in competitors_ro_4:
             try:
                 additional_scores = AdditionalScore.objects.get(competitor_id=competitor.pk)
@@ -282,6 +332,11 @@ class CompetitionResult(View):
                 additional_scores = None
 
             competitor.additional_scores = additional_scores
+            if competitor.points is not None:
+                competitor.place_in_competition = place
+                place += 1
+            else:
+                competitor.place_in_competition = 0
             competitor.save()
 
         context = {
@@ -290,7 +345,7 @@ class CompetitionResult(View):
 
             'competitors_ro_dety': competitors_ro_dety,
             'competitors_ro_shenki': competitors_ro_shenki,
-            'competitors_ro_debut':  competitors_ro_debut,
+            'competitors_ro_debut': competitors_ro_debut,
             'competitors_ro_veterany': competitors_ro_veterany,
             'competitors_ro_1': competitors_ro_1,
             'competitors_ro_2': competitors_ro_2,

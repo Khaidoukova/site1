@@ -4,6 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
+from django.db.models import F
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, DeleteView
 import random
 from django.utils import timezone
@@ -46,11 +47,26 @@ class DogsDetailView(DetailView):
 
         competitions_dict = {}
         competitors = Competitor.objects.filter(selected_dog=dog)
+        ex_counts = {
+            'ex_count_ro_dety': 0,
+            'ex_count_ro_shenki': 0,
+            'ex_count_ro_debut': 0,
+            'ex_count_ro_veterany': 0,
+            'ex_count_ro_1': 0,
+            'ex_count_ro_2': 0,
+            'ex_count_ro_3': 0,
+            'ex_count_ro_4': 0
+        }
         for competitor in competitors:
             competition = competitor.competition
             if competition not in competitions_dict:
                 competitions_dict[competition] = []
             competitions_dict[competition].append(competitor)
+
+            if competitor.grade_competitor == "Отлично":
+                competition_class = competitor.class_comp
+                print(competition_class)
+                ex_counts[f'ex_count_{competition_class}'] += 1
 
         context['competitions_dict'] = competitions_dict
 
@@ -59,6 +75,17 @@ class DogsDetailView(DetailView):
 
         history = History.objects.filter(dog_id=dog.pk)
         context['history'] = history
+
+        # Обновление полей модели Dogs
+        dog.ex_count_ro_dety = ex_counts['ex_count_ro_dety']
+        dog.ex_count_ro_shenki = ex_counts['ex_count_ro_shenki']
+        dog.ex_count_ro_debut = ex_counts['ex_count_ro_debut']
+        dog.ex_count_ro_veterany = ex_counts['ex_count_ro_veterany']
+        dog.ex_count_ro_1 = ex_counts['ex_count_ro_1']
+        dog.ex_count_ro_2 = ex_counts['ex_count_ro_2']
+        dog.ex_count_ro_3 = ex_counts['ex_count_ro_3']
+        dog.ex_count_ro_4 = ex_counts['ex_count_ro_4']
+        dog.save()
 
         return context
 

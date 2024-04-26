@@ -117,6 +117,7 @@ class Competitor(models.Model):
                                      verbose_name='Собака для участия')
     competitor_reserve = models.BooleanField(default=False, verbose_name='Участник в резерве')
     competitior_vnezachet = models.BooleanField(default=False, verbose_name='Участник внезачет')
+    place_in_competition = models.PositiveIntegerField(verbose_name='Место в соревновании', **NULLABLE)
 
     # Поля для выставления оценок
     start_field = models.IntegerField(verbose_name='Старт', **NULLABLE)
