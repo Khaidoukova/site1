@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+
+<div class="container mt-2 mb-2">
+
+    <div class="text-center mt-5"><H1>Поиск собак</H1></div>
+
+    <div class="row">
+                <form id="dogs" method="POST" action="{% url 'users:search_list_dogs' %}">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="Поиск по кличке, фамилии или имени владельца">
+                    </div>
+                    <div class="mt-4 mb-4">
+                        <button type="submit" class="btn btn-danger">Найти</button> *Чтобы показать всех, нажмите не заполняя поле
+                    </div>
+                </form>
+                <ul id="userList">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Кличка</th>
+                                        <th>Порода</th>
+                                        <th>Владелец</th>
+                                        <th>Страница собаки</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for dog in dogs %}
+                                        <tr>
+                                            <td>{{ dog.dog_name }}</td>
+                                            <td>{{ dog.breed_dog }}</td>
+                                            <td><a href="{% url 'users:user_detail' dog.owner.pk %}">{{ dog.owner.first_name }}</a></td>
+                                            <th><a href="{% url 'users:user_detail' dog.pk %}">Перейти</a></th>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                </ul>
+
+    </div>
+</div>
+
+
+{% endblock %}

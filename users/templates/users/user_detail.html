@@ -27,9 +27,10 @@
             <div class="col-md-9">
                 <p><b>Имя:</b> {{ object_user.first_name }} </p>
                 <p><b>Фамилия</b> {{ object_user.last_name }}</p>
-                <p><b>Почта</b> {{ object_user.email }}</p>
-                {% if object_user.user_hide_info == False %}
                 <p><b>Город</b> {{ object_user.user_town }}</p>
+                {% if object_user.user_hide_info == False or user.is_staff %}
+                <p><b>Почта</b> {{ object_user.email }}</p>
+                <p><b>Телефон</b> {{ object_user.email }}</p>
                     {% if object_user.user_club %}
                 <p><b>Клуб</b> {{ object_user.user_club }}</p>
                     {% endif %}

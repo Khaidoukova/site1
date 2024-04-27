@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+
+<div class="container mt-2 mb-2">
+
+    <div class="text-center mt-5"><H1>Поиск</H1></div>
+    <div>
+        <a class="btn btn-danger" href="{% url 'users:search_list_users' %}">Искать юзеров</a>
+        <a class="btn btn-danger" href="{% url 'users:search_list_dogs' %}">Искать собак</a>
+        <a class="btn btn-danger" href="{% url 'users:search_list_judge' %}">Искать Судей</a>
+    </div>
+</div>
+
+
+{% endblock %}

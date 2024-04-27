@@ -2,9 +2,11 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
+from django.http import JsonResponse
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.db.models import F
+from django.views import View
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, DeleteView
 import random
 from django.utils import timezone
@@ -250,3 +252,7 @@ def generate_new_password(request):
     request.user.set_password(new_password)
     request.user.save()
     return redirect(reverse_lazy('index'))
+
+
+class SearchListView(TemplateView):
+    template_name = 'users/search_list.html'

@@ -48,6 +48,18 @@
         </li>
       </ul>
       <div class="d-flex">
+          <!-- Выпадающий поиск -->
+            <div class="btn-group me-2">
+              <button type="button" class="btn btn-info dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+                Поиск
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'users:search_list_users' %}">Поиск юзеров</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:search_list_dogs' %}">Поиск собак</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:search_list_judge' %}">Поиск судей</a></li>
+              </ul>
+            </div>
+
         {% if user.is_authenticated %}
         <div class="d-flex">
           <form method="post" action="{% url 'users:logout' %}">
