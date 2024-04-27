@@ -2,9 +2,11 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
+from django.http import JsonResponse
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.db.models import F
+from django.views import View
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, DeleteView
 import random
 from django.utils import timezone
@@ -44,6 +46,7 @@ class DogsDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         dog = self.get_object()
+        today = timezone.now().date()
 
         competitions_dict = {}
         competitors = Competitor.objects.filter(selected_dog=dog)
@@ -65,7 +68,7 @@ class DogsDetailView(DetailView):
 
             if competitor.grade_competitor == "Отлично":
                 competition_class = competitor.class_comp
-                print(competition_class)
+
                 ex_counts[f'ex_count_{competition_class}'] += 1
 
         context['competitions_dict'] = competitions_dict
@@ -86,6 +89,12 @@ class DogsDetailView(DetailView):
         dog.ex_count_ro_3 = ex_counts['ex_count_ro_3']
         dog.ex_count_ro_4 = ex_counts['ex_count_ro_4']
         dog.save()
+
+        dog_future_events = Competitor.objects.filter(
+            selected_dog=dog,
+            competition__date_competition__gte=today
+        ).order_by('competition__date_competition')
+        context['dog_future_events'] = dog_future_events
 
         return context
 
@@ -243,3 +252,7 @@ def generate_new_password(request):
     request.user.set_password(new_password)
     request.user.save()
     return redirect(reverse_lazy('index'))
+
+
+class SearchListView(TemplateView):
+    template_name = 'users/search_list.html'

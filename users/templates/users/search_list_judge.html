@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+
+<div class="container mt-2 mb-2">
+
+    <div class="text-center mt-5"><H1>Поиск судей</H1></div>
+
+    <div class="row">
+                <form id="judge" method="POST" action="{% url 'users:search_list_judge' %}">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="Поиск по имени, фамилии или email">
+                    </div>
+                    <div class="mt-4 mb-4">
+                        <button type="submit" class="btn btn-danger">Найти</button> *Чтобы показать всех, нажмите не заполняя поле
+                    </div>
+                </form>
+                <ul id="userList">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Имя</th>
+                                        <th>Фамилия</th>
+                                        <th>Город</th>
+                                        <th>Ссылка</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for judge in judges %}
+                                        <tr>
+                                            <td>{{ judge.user.first_name }}</td>
+                                            <td>{{ judge.user.last_name }}</td>
+                                            <td>{{ judge.user.user_town }}</td>
+                                            <th><a href="{% url 'users:user_detail' judge.user.pk %}">Перейти</a></th>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                </ul>
+
+    </div>
+</div>
+
+
+{% endblock %}
