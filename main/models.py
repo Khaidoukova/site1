@@ -3,6 +3,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
 from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -185,3 +187,21 @@ class Competition(models.Model):
     class Meta:
         verbose_name = 'Соревнование'
         verbose_name_plural = 'Соревнования'
+
+
+@receiver(post_save, sender=Competition)
+def update_max_players(sender, instance, **kwargs):
+    fields = [
+        'count_class_ro_dety',
+        'count_class_ro_shenki',
+        'count_class_ro_debut',
+        'count_class_ro_veterany',
+        'count_class_ro_1',
+        'count_class_ro_2',
+        'count_class_ro_3',
+        'count_class_ro_4',
+    ]
+    max_players = sum(getattr(instance, field) or 0 for field in fields)
+    if instance.max_players != max_players:
+        instance.max_players = max_players
+        Competition.objects.filter(pk=instance.pk).update(max_players=max_players)
