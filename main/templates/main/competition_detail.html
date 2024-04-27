@@ -93,16 +93,14 @@
                 </div>
                 <div class="col-3">
 
-                        {% if conductor.id_conductor %}
+
                             {% if status == 'Открыто' %}
                     <!-- Кнопка для создания участника -->
                         <a href="{% url 'roles:competitor_form' pk=pk %}"  class="btn btn-info btn-sm text-white" name="add_competitor">
                             Добавиться участником
                         </a>
                     {% endif %}
-                        {% else %}
-                            <p>Получите статус Проводника и добавьте собаку для участия в соревнованиях</p>
-                        {% endif %}
+
 
                 </div>
             {% if is_owner or request.user.is_staff  %}
@@ -145,6 +143,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-Дети</h3>
+                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_dety }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -215,6 +214,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-Щенки</h3>
+                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_shenki }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -277,6 +277,7 @@
                     <div class="row">
                     <div class="col-3">
                         <h3>Класс РО-Дебют</h3>
+                        <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_debut }}</p>
                     </div>
                         {% if is_owner or request.user.is_staff  %}
                     <div class="col-3">
@@ -338,6 +339,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-Ветераны</h3>
+                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_veterany }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -399,6 +401,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-1</h3>
+                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_1 }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -460,6 +463,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-2</h3>
+                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_2 }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -521,6 +525,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-3</h3>
+                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_3 }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -582,6 +587,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-4 (мастера)</h3>
+                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_4 }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">

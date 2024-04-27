@@ -76,50 +76,48 @@ def search_dogs(request):
     return JsonResponse(data)
 
 
+
+
 # Привязка собаки к проводнику
+@login_required
 def add_dog_conductor(request):
+    if request.method == 'GET':
+        dogs = Dogs.objects.all().order_by('-id_dog')
+        context = {'dogs': dogs}
+        return render(request, 'add_dog_conductor.html', context)
+
     if request.method == 'POST':
-        conductor_id = request.user.conductor.id_conductor
         try:
-            conductor = Conductor.objects.get(id_conductor=conductor_id, user=request.user)
-            # Получаем объекты проводника и собаки
-            id_dog = request.POST.get('id_dog')
-            try:
-                # Попробуйте искать сначала по id_dog
-                try:
-                    dog = Dogs.objects.get(id_dog=id_dog)
-                except Dogs.DoesNotExist:
-                    # Если не найдено по id_dog, попробуйте искать по home_name
-                    try:
-                        dog = Dogs.objects.get(home_name=id_dog)
-                    except Dogs.DoesNotExist:
-                        # Если не найдено по home_name, ищите по dog_name
-                        try:
-                            dog = Dogs.objects.get(dog_name=id_dog)
-                        except Dogs.DoesNotExist:
-                            # Если не найдено ни по одному из полей, выведите сообщение об ошибке
-                            raise Dogs.DoesNotExist
-                # Добавляем собаку к проводнику
-                conductor.dogs.add(dog)
-                # В случае успеха выведите сообщение об успешном добавлении собаки
-                messages.success(request, f'Собака {dog} успешно добавлена к проводнику.')
-
-            except Dogs.DoesNotExist:
-                # Если собака с таким id не найдена, выводим сообщение об ошибке
-                messages.error(request, 'Собака не найдена или не правильно указаны данные')
+            conductor = request.user.conductor
         except Conductor.DoesNotExist:
-            # Если не найден проводник для текущего пользователя, выводим сообщение об ошибке
-            messages.error(request, 'Произошла ошибка при поиске проводника.')
+            conductor = Conductor(user=request.user)
 
-        # Получаем все собаки из базы данных
-    dogs = Dogs.objects.all().order_by('-id_dog')
+        id_dog = request.POST.get('id_dog')
+        if not id_dog:
+            messages.error(request, 'ID собаки не был передан')
+            dogs = Dogs.objects.all().order_by('-id_dog')
+            context = {'dogs': dogs}
+            return render(request, 'add_dog_conductor.html', context)
 
-    # Передаем собак в контекст шаблона
-    context = {'dogs': dogs}
+        try:
+            dog = Dogs.objects.get(id_dog=id_dog)
+        except Dogs.DoesNotExist:
+            messages.error(request, 'Собака не найдена или не правильно указаны данные')
+            dogs = Dogs.objects.all().order_by('-id_dog')
+            context = {'dogs': dogs}
+            return render(request, 'add_dog_conductor.html', context)
 
-    # Редиректим на страницу профиля пользователя после добавления собаки к проводнику
-    return render(request, 'add_dog_conductor.html', context)
+        if dog in conductor.dogs.all():
+            messages.error(request, 'Эта собака уже добавлена к проводнику')
+            dogs = Dogs.objects.all().order_by('-id_dog')
+            context = {'dogs': dogs}
+            return render(request, 'add_dog_conductor.html', context)
 
+        conductor.dogs.add(dog)
+        messages.success(request, f'Собака {dog} успешно добавлена к проводнику.')
+        conductor.save()
+        # Редиректим на страницу профиля пользователя после добавления собаки к проводнику
+        return redirect('users:user_detail', pk=request.user.pk)
 
 class CreateOrganizationView(View):
     """Получения юзером статуса организатора"""
