@@ -87,11 +87,7 @@ def add_dog_conductor(request):
         return render(request, 'add_dog_conductor.html', context)
 
     if request.method == 'POST':
-        try:
-            conductor = request.user.conductor
-        except Conductor.DoesNotExist:
-            conductor = Conductor(user=request.user)
-
+        conductor, created = Conductor.objects.get_or_create(user=request.user)
         id_dog = request.POST.get('id_dog')
         if not id_dog:
             messages.error(request, 'ID собаки не был передан')
