@@ -29,11 +29,21 @@
             {% if is_owner or user.is_staff%}
             <a href="{% url 'dogs_update' dog_info.pk %}" class="btn btn-primary btn-sm">Изменить</a>
             <a href="{% url 'dogs_delete_com' dog_info.pk %}" class="btn btn-danger btn-sm">Удалить</a>
+
             {% endif %}
         </div>
 
         <div class="col-md-4">
-            <img src="/media/{{ dog_info.pedigree_file }}" alt="фото родословной" class="img-fluid">
+            <h3>Текущие заявки</h3>
+        {% if dog_future_events %}
+            <ul>
+        {% for event in dog_future_events %}
+        <li><a href="{% url 'detail_com' event.competition_id %}" class="link-black">{{ event.competition.date_competition }}, {{ event.competition.name_competition }} - Класс участия: {{ event.get_class_comp_display }}, проводник: {{ event.conductor }}</a></li>
+            {% endfor %}
+        </ul>
+            {% else %}
+            <p>Здесь будет информация о ваших заявках на соревнования</p>
+            {% endif %}
         </div>
 
         <style>

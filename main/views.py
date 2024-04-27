@@ -37,7 +37,7 @@ class CompetitionList(ListView):
         past_limit = today - timedelta(days=7)  # предел для прошедших соревнований (не более 7 дней назад)
         context['past_competitions'] = Competition.objects.filter(date_competition__lt=today,
                                                                   date_competition__gte=past_limit)  # Прошедшие соревнования
-        future_competitions = Competition.objects.filter(date_competition__gte=today)  # Будущие соревнования
+        future_competitions = Competition.objects.filter(date_competition__gte=today).order_by('-date_competition')  # Будущие соревнования
         context['pre_date'] = Competition.objects.filter(date_competition=None)  # если нет конкретной даты
         for competition in future_competitions:
             competition.status = competition.registration_status()
@@ -319,10 +319,7 @@ class CompetitionResult(View):
             else:
                 competitor.place_in_competition = 0
             competitor.save()
-
-        competitors_ro_4 = sorted(competitors.filter(class_comp='ro_4'),
-                                  key=lambda x: (x.points is None, -x.points if x.points is not None else 0),
-                                  reverse=True)
+        competitors_ro_4 = competitors.filter(class_comp='ro_4').order_by('-points')
         # присваиваю каждому участнику в группе дополнительный параметр
         place = 1
         for competitor in competitors_ro_4:

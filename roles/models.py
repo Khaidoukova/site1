@@ -54,10 +54,12 @@ class Conductor(models.Model):
             if last_conductor is None:
                 new_number = 1
             else:
-                last_number = int(last_conductor[3:])
+                try:
+                    last_number = int(last_conductor[3:])
+                except (ValueError, TypeError):
+                    last_number = 0
                 new_number = last_number + 1
             self.id_conductor = f"CON{new_number:05}"
-
         super().save(*args, **kwargs)
 
     def __str__(self):
