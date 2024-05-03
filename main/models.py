@@ -32,7 +32,7 @@ class Competition(models.Model):
         ('Weather', 'По погоде')
     )
 
-    name_competition = models.CharField(max_length=20, verbose_name='Название соревнования')
+    name_competition = models.CharField(max_length=200, verbose_name='Название соревнования')
     image_competition = models.ImageField(upload_to='banner_competition', verbose_name='Баннер соревнования (<1мб, 600х600 px)',
                                           validators=[validate_image_size, FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])], **NULLABLE)
     date_competition = models.DateField(verbose_name='Дата соревнования', **NULLABLE)
