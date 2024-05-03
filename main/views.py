@@ -116,15 +116,24 @@ class CompetitionDetail(DetailView):
         context['status'] = competition.registration_status()
         context['competitors'] = competition.competitor_set.all()
 
-        context['competitors_ro_dety'] = competition.competitor_set.filter(class_comp='ro_dety')
-        context['competitors_ro_shenki'] = competition.competitor_set.filter(class_comp='ro_shenki')
-        context['competitors_ro_debut'] = competition.competitor_set.filter(class_comp='ro_debut')
-        context['competitors_ro_veterany'] = competition.competitor_set.filter(class_comp='ro_veterany')
-        context['competitors_ro_1'] = competition.competitor_set.filter(class_comp='ro_1')
-        context['competitors_ro_2'] = competition.competitor_set.filter(class_comp='ro_2')
-        context['competitors_ro_3'] = competition.competitor_set.filter(class_comp='ro_3')
-        context['competitors_ro_4'] = competition.competitor_set.filter(class_comp='ro_4')
-
+        context['competitors_ro_dety'] = competition.competitor_set.filter(class_comp='ro_dety').order_by('date_added')
+        context['competitors_ro_shenki'] = competition.competitor_set.filter(class_comp='ro_shenki').order_by('date_added')
+        context['competitors_ro_debut'] = competition.competitor_set.filter(class_comp='ro_debut').order_by('date_added')
+        context['competitors_ro_veterany'] = competition.competitor_set.filter(class_comp='ro_veterany').order_by('date_added')
+        context['competitors_ro_1'] = competition.competitor_set.filter(class_comp='ro_1').order_by('date_added')
+        context['competitors_ro_2'] = competition.competitor_set.filter(class_comp='ro_2').order_by('date_added')
+        context['competitors_ro_3'] = competition.competitor_set.filter(class_comp='ro_3').order_by('date_added')
+        context['competitors_ro_4'] = competition.competitor_set.filter(class_comp='ro_4').order_by('date_added')
+        for competitor in context['competitors']:
+            if competitor.selected_dog:
+                competitor.ex_count_ro_dety = competitor.selected_dog.ex_count_ro_dety
+                competitor.ex_count_ro_shenki = competitor.selected_dog.ex_count_ro_shenki
+                competitor.ex_count_ro_debut = competitor.selected_dog.ex_count_ro_debut
+                competitor.ex_count_ro_veterany = competitor.selected_dog.ex_count_ro_veterany
+                competitor.ex_count_ro_1 = competitor.selected_dog.ex_count_ro_1
+                competitor.ex_count_ro_2 = competitor.selected_dog.ex_count_ro_2
+                competitor.ex_count_ro_3 = competitor.selected_dog.ex_count_ro_3
+                competitor.ex_count_ro_4 = competitor.selected_dog.ex_count_ro_4
         # Передаем pk в контекст
         context['pk'] = self.kwargs['pk']
 

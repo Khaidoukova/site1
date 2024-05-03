@@ -143,7 +143,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-Дети</h3>
-                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_dety }}</p>
+                            <p>Максимум участников: {{ object_competition.count_class_ro_dety }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -189,6 +189,7 @@
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>РО-Дети</p>
+                            <p>Кол-во "отлично": {{ competitor.selected_dog.ex_count_ro_dety }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.user.user_town }}</p>
@@ -214,7 +215,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-Щенки</h3>
-                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_shenki }}</p>
+                            <p>Максимум участников: {{ object_competition.count_class_ro_shenki }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -252,6 +253,7 @@
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>РО-Щенки</p>
+                            <p>Кол-во "отлично": {{ competitor.selected_dog.ex_count_ro_shenki }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.user.user_town }}</p>
@@ -277,7 +279,7 @@
                     <div class="row">
                     <div class="col-3">
                         <h3>Класс РО-Дебют</h3>
-                        <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_debut }}</p>
+                        <p>Максимум участников: {{ object_competition.count_class_ro_debut }}</p>
                     </div>
                         {% if is_owner or request.user.is_staff  %}
                     <div class="col-3">
@@ -314,6 +316,7 @@
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>РО-Дебют</p>
+                            <p>Кол-во "отлично": {{ competitor.selected_dog.ex_count_ro_debut }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.user.user_town }}</p>
@@ -339,7 +342,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-Ветераны</h3>
-                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_veterany }}</p>
+                            <p>Максимум участников: {{ object_competition.count_class_ro_veterany }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -376,6 +379,7 @@
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>РО-Ветераны</p>
+                            <p>Кол-во "отлично": {{ competitor.selected_dog.ex_count_ro_veterany }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.user.user_town }}</p>
@@ -401,7 +405,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-1</h3>
-                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_1 }}</p>
+                            <p>Максимум участников: {{ object_competition.count_class_ro_1 }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -438,6 +442,7 @@
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>РО-1</p>
+                            <p>Кол-во "отлично": {{ competitor.selected_dog.ex_count_ro_1 }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.user.user_town }}</p>
@@ -463,7 +468,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-2</h3>
-                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_2 }}</p>
+                            <p>Максимум участников: {{ object_competition.count_class_ro_2 }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -500,6 +505,7 @@
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>РО-2</p>
+                            <p>Кол-во "отлично": {{ competitor.selected_dog.ex_count_ro_2 }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.user.user_town }}</p>
@@ -525,7 +531,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-3</h3>
-                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_3 }}</p>
+                            <p>Максимум участников: {{ object_competition.count_class_ro_3 }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -562,6 +568,7 @@
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>РО-3</p>
+                            <p>Кол-во "отлично": {{ competitor.selected_dog.ex_count_ro_3 }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.user.user_town }}</p>
@@ -587,7 +594,7 @@
                     <div class="row">
                         <div class="col-3">
                             <h3>Класс РО-4 (мастера)</h3>
-                            <p>Максимальное количество участников в группе: {{ object_competition.count_class_ro_4 }}</p>
+                            <p>Максимум участников: {{ object_competition.count_class_ro_4 }}</p>
                         </div>
                         {% if is_owner or request.user.is_staff  %}
                         <div class="col-3">
@@ -624,6 +631,7 @@
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>РО-4</p>
+                            <p>Кол-во "отлично": {{ competitor.selected_dog.ex_count_ro_4 }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.user.user_town }}</p>

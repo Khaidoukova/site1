@@ -1,7 +1,7 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db.models import Max
-
+from django.utils import timezone
 from main.models import Competition
 from users.models import User, Dogs
 
@@ -120,7 +120,7 @@ class Competitor(models.Model):
     competitor_reserve = models.BooleanField(default=False, verbose_name='Участник в резерве')
     competitior_vnezachet = models.BooleanField(default=False, verbose_name='Участник внезачет')
     place_in_competition = models.PositiveIntegerField(verbose_name='Место в соревновании', **NULLABLE)
-
+    date_added = models.DateField(default=timezone.now, verbose_name='дата добавления участником в соревнование')
     # Поля для выставления оценок
     start_field = models.IntegerField(verbose_name='Старт', **NULLABLE)
     finish_field = models.IntegerField(verbose_name='Финиш', **NULLABLE)
@@ -145,6 +145,7 @@ class Competitor(models.Model):
     additional_field_18 = models.IntegerField(verbose_name='Знак 18', **NULLABLE)
     additional_field_19 = models.IntegerField(verbose_name='Знак 19', **NULLABLE)
     additional_field_20 = models.IntegerField(verbose_name='Знак 20', **NULLABLE)
+
 
     def __str__(self):
         return self.user.email
