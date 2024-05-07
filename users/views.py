@@ -34,6 +34,10 @@ class DogsCreate(CreateView):
     def form_valid(self, form):
         self.object = form.save()
         self.object.owner = self.request.user
+        # Получаем или создаем объект Conductor для текущего пользователя
+        conductor, created = Conductor.objects.get_or_create(user=self.request.user)
+        # Добавляем созданную собаку в список собак проводника
+        conductor.dogs.add(self.object)
         self.object.save()
 
         return super().form_valid(form)
@@ -207,6 +211,11 @@ class UserDetailView(DetailView):
         ).order_by('competition__date_competition')
         context['competitor_events'] = competitor_events
 
+        # judge_events = Competition.objects.filter(
+        #     judge_competition__user=user,
+        #     date_competition__gte=today
+        # ).order_by('date_competition')
+        # context['judge_events'] = judge_events
         return context
 
     def post(self, request, *args, **kwargs):

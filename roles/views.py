@@ -186,6 +186,7 @@ class CreateCompetitorView(CreateView):
         conductor = Conductor.objects.get(user=self.request.user)
         kwargs['selected_classes'] = competition.get_selected_classes()
         kwargs['conductor'] = conductor
+        kwargs['initial'] = {'selected_dog': conductor.dogs.first()}  # Устанавливаем первую собаку кондуктора в качестве начального значения
         return kwargs
 
     def get_context_data(self, **kwargs):

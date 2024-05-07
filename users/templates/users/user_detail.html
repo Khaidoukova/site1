@@ -6,6 +6,22 @@
         color: black; /* Черный цвет текста */
         text-decoration: none; /* Убираем подчеркивание */
     }
+
+    /* Увеличиваем размер кнопки в 2,5 раза */
+    .btn-large {
+       padding: 0.75rem 2.00rem;
+    }
+
+    /* Делаем кнопку оранжевой */
+    .btn-orange {
+        background-color: #ff6600;
+        border-color: #ff6600;
+    }
+
+    /* Меняем цвет текста на белый для оранжевой кнопки */
+    .btn-orange.text-white {
+        color: #fff !important;
+    }
 </style>
 
 <div class="container">
@@ -25,6 +41,8 @@
 
             <!-- Правая часть с информацией о юзере -->
             <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-8">
                 <p><b>Имя:</b> {{ object_user.first_name }} </p>
                 <p><b>Фамилия</b> {{ object_user.last_name }}</p>
                 <p><b>Город</b> {{ object_user.user_town }}</p>
@@ -43,7 +61,25 @@
                     {% endif %}
                 {% endif %}
 
-            </div>
+                </div>
+            <div class="col-md-4">
+            <h3>Активные заявки</h3>
+            {% if competitor_events %}
+            <ul>
+                {% for event in competitor_events %}
+                <li><a href="{% url 'detail_com' event.competition_id %}" class="link-black">{{ event.competition.date_competition }}, {{ event.competition.name_competition }} - Класс участия: {{ event.get_class_comp_display }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>Здесь будет информация о ваших заявках на соревнования</p>
+
+            {% endif %}
+                 </div>
+                    </div>
+                </div>
+
+
+
 {% if object_user.phone %}
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
               <li class="nav-item" role="presentation">
@@ -116,8 +152,8 @@
                         {% if conductor.id_conductor %}
                         <p>Ваш ID проводника: {{ conductor.id_conductor }}</p>
                 {% endif %}
-                          <p>Вы можете добавить собаку (свою или чужую из списка зарегистрированных собак) для участия в соревнованиях (стать ее проводником)</p>
-                            <a href="{% url 'roles:add_dog_conductor' %}" class="btn btn-info btn-sm text-white">Добавить собаку для участия</a>
+                          <p>Вы можете добавить собаку другого владельца из списка зарегистрированных собак для участия в соревнованиях (стать ее проводником)</p>
+                            <a href="{% url 'roles:add_dog_conductor' %}" class="btn btn-orange btn-large text-white">Добавить собаку ДРУГОГО владельца для соревнований</a>
                     <div class="m-3">
                                 <p>Уже добавленные собаки:</p>
                                   {% for dog in conductor.dogs.all %}
@@ -140,9 +176,19 @@
                      </div>
 
                         {% else%}
-                            <p>Этот пользователь не имеет ID проводника</p>
+                            <p>Этот пользователь не имеет ID проводника. Для его получения добавьте на свою страницу собаку другого пользователя или свою собаку для участия в соревнованиях. </p>
                         {% endif %}
                     {% endif %}
+
+                <div class="row p-2">
+                    <h4>Результаты прошедших соревнований</h4>
+                    {% if is_owner %}
+                    <div class="col-md-3 p-3">
+                    <p><a href="{% url 'history:history' %}" class="btn btn-primary">Посмотреть результаты</a></p>
+                    </div>
+                    {% endif %}
+
+                </div>
 
               </div>
 
@@ -316,25 +362,7 @@
             </div>
             {% endif %}
         </div>
-    <div class="row p-2">
-        <h4>История соревнований моих собак</h4>
-        {% if is_owner %}
-        <div class="col-md-3 p-3">
-            <p><a href="{% url 'history:history' %}" class="btn btn-primary">История соревнований</a></p>
-        </div>
-        {% endif %}
 
-    </div>
-    <h3>Текущие заявки</h3>
-    {% if competitor_events %}
-    <ul>
-        {% for event in competitor_events %}
-        <li><a href="{% url 'detail_com' event.competition_id %}" class="link-black">{{ event.competition.date_competition }}, {{ event.competition.name_competition }} - Класс участия: {{ event.get_class_comp_display }}</a></li>
-        {% endfor %}
-    </ul>
-    {% else %}
-        <p>Здесь будет информация о ваших заявках на соревнования</p>
 
-    {% endif %}
 
 {% endblock %}

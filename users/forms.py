@@ -35,7 +35,7 @@ class UserRegisterForm(StyleFormMixin, UserCreationForm):
 class UserProfileForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'phone', 'avatar',
+        fields = ('first_name', 'middle_name', 'last_name', 'phone', 'avatar',
                   'user_tegram', 'user_whatsup', 'user_vk', 'user_other',
                   'user_town', 'user_club', 'user_trainer', 'user_about', 'user_hide_info',
                   )
