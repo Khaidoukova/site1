@@ -4,7 +4,7 @@
 
 <div class="container mt-2 mb-2">
 
-    <div class="text-center mt-5"><H1>Поиск юзеров</H1></div>
+    <div class="text-center mt-5"><H1>Поиск Спортсменов</H1></div>
 
     <div class="row">
                 <form id="user" method="POST" action="{% url 'users:search_list_users' %}">
@@ -20,8 +20,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Имя</th>
-                                        <th>Фамилия</th>
+                                        <th>ФИО</th>
                                         <th>Город</th>
                                         <th>Ссылка</th>
                                     </tr>
@@ -29,8 +28,8 @@
                                 <tbody>
                                     {% for user in users %}
                                         <tr>
-                                            <td>{{ user.first_name }}</td>
-                                            <td>{{ user.last_name }}</td>
+                                            <td>{{ user.first_name }} {{ user.last_name }}</td>
+
                                             <td>{{ user.user_town }}</td>
                                             <th><a href="{% url 'users:user_detail' user.pk %}">Перейти</a></th>
                                         </tr>

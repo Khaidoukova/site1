@@ -37,7 +37,7 @@ class CompetitionList(ListView):
         past_limit = today - timedelta(days=7)  # предел для прошедших соревнований (не более 7 дней назад)
         context['past_competitions'] = Competition.objects.filter(date_competition__lt=today,
                                                                   date_competition__gte=past_limit)  # Прошедшие соревнования
-        future_competitions = Competition.objects.filter(date_competition__gte=today).order_by('-date_competition')  # Будущие соревнования
+        future_competitions = Competition.objects.filter(date_competition__gte=today).order_by('date_competition')  # Будущие соревнования
         context['pre_date'] = Competition.objects.filter(date_competition=None)  # если нет конкретной даты
         for competition in future_competitions:
             competition.status = competition.registration_status()
@@ -124,16 +124,7 @@ class CompetitionDetail(DetailView):
         context['competitors_ro_2'] = competition.competitor_set.filter(class_comp='ro_2').order_by('date_added')
         context['competitors_ro_3'] = competition.competitor_set.filter(class_comp='ro_3').order_by('date_added')
         context['competitors_ro_4'] = competition.competitor_set.filter(class_comp='ro_4').order_by('date_added')
-        for competitor in context['competitors']:
-            if competitor.selected_dog:
-                competitor.ex_count_ro_dety = competitor.selected_dog.ex_count_ro_dety
-                competitor.ex_count_ro_shenki = competitor.selected_dog.ex_count_ro_shenki
-                competitor.ex_count_ro_debut = competitor.selected_dog.ex_count_ro_debut
-                competitor.ex_count_ro_veterany = competitor.selected_dog.ex_count_ro_veterany
-                competitor.ex_count_ro_1 = competitor.selected_dog.ex_count_ro_1
-                competitor.ex_count_ro_2 = competitor.selected_dog.ex_count_ro_2
-                competitor.ex_count_ro_3 = competitor.selected_dog.ex_count_ro_3
-                competitor.ex_count_ro_4 = competitor.selected_dog.ex_count_ro_4
+
         # Передаем pk в контекст
         context['pk'] = self.kwargs['pk']
 

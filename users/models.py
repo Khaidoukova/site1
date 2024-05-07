@@ -80,7 +80,7 @@ class Dogs(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.id_dog
+        return f"{self.dog_name} (ID: {self.id_dog})"
 
     class Meta:
         verbose_name = 'Собака'
@@ -92,7 +92,7 @@ class User(AbstractUser):
     """Модель юзера"""
     username = models.CharField(max_length=150, unique=True, verbose_name='Ваш ник нейм', **NULLABLE)
     email = models.EmailField(unique=True, verbose_name='почта')
-
+    middle_name = models.CharField(max_length=100, verbose_name='Отчество', blank=True, null=True)
     phone = models.CharField(max_length=11, verbose_name='телефон (обяз)')
     avatar = models.ImageField(upload_to='users', verbose_name='аватар', **NULLABLE)
 

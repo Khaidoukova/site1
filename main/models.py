@@ -139,12 +139,13 @@ class Competition(models.Model):
 
     max_players = models.IntegerField(default=1, verbose_name='максимиум участников', **NULLABLE)
     more_players = models.BooleanField(default=False, verbose_name='участники сверх максимума', **NULLABLE)
-
+    entry_fee = models.TextField(max_length=300, verbose_name='Стартовый взнос', **NULLABLE)
     comment_for_competition = models.TextField(max_length=500, verbose_name='Комментарии')  # комментарии к соревнованиям
 
     # Тот кто создал соревнование, привязка к аторизованному
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='Создатель соревнования',
                               **NULLABLE)
+
 
     def __str__(self):
         return self.name_competition
@@ -173,15 +174,16 @@ class Competition(models.Model):
         return selected_classes
 
     def registration_status(self):
-
         today = timezone.now().date()
         if not self.start_date_competition or not self.end_date_competition:
+            print(self.end_date_competition)
             return "Запланировано"
         elif today < self.start_date_competition:
             return "Запланировано"
         elif self.start_date_competition <= today <= self.end_date_competition:
             return "Открыто"
-        else:
+
+        elif today > self.end_date_competition:
             return "Завершено"
 
     class Meta:

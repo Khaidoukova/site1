@@ -54,9 +54,9 @@
                 Поиск
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'users:search_list_users' %}">Поиск юзеров</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:search_list_users' %}">Поиск Спортсменов</a></li>
                 <li><a class="dropdown-item" href="{% url 'users:search_list_dogs' %}">Поиск собак</a></li>
-                <li><a class="dropdown-item" href="{% url 'users:search_list_judge' %}">Поиск судей</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:search_list_judge' %}">Список судей</a></li>
               </ul>
             </div>
 
@@ -66,7 +66,7 @@
             {% csrf_token %}
             <button type="submit" class="btn btn-danger me-2">Выйти</button>
           </form>
-          <a class="btn btn-warning" href="{% url 'users:user_detail' pk=user.pk %}">Профиль</a>
+          <a class="btn btn-warning" href="{% url 'users:user_detail' pk=user.pk %}">Моя страница</a>
         </div>
         {% else %}
         <a class="btn btn-outline-dark me-2" href="{% url 'users:login' %}">Войти</a>
