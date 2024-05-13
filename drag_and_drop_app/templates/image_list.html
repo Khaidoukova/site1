@@ -19,10 +19,8 @@
             <div class="card mb-4 box-shadow">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
-                            <p><b></b></p>
-                        </div>
-                        <div class="col-md-3">
+
+                        <div class="col-md-6">
                             <p>Название трассы: {{ image.image_name }}</p>
                         </div>
                         <div class="col-md-1">
@@ -32,7 +30,7 @@
                             <a href="{% url 'drag_and_drop_app:image_update' image.pk %}" class="btn btn-success btn-sm">Добавить</a>
                         </div>
                         <div class="col-md-1">
-                            <a href="" class="btn btn-danger btn-sm">Удалить</a>
+                            <a href="{% url 'drag_and_drop_app:image_delete' image.pk %}" class="btn btn-danger btn-sm">Удалить</a>
                         </div>
                     </div>
                 </div>

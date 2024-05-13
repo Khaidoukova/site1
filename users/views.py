@@ -117,7 +117,7 @@ class DogsUpdateView(UpdateView):
 
 
 class DogsDelete(DeleteView):
-    """Удаление Соревнования"""
+    """Удаление Собаки"""
     model = Dogs
     success_url = reverse_lazy('index')
 

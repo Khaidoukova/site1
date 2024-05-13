@@ -29,13 +29,14 @@
             cursor: move;
         }
     </style>
+
 </head>
 <body>
 <header class="p-3" style="background-color: #e3ffd4;">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img src="/static/logo.webp" alt="Баннер соревнования" class="img-fluid" style="max-width: 70px; max-height: 70px;">
+                <img src="/static/logo.webp" alt="Логотип" class="img-fluid" style="max-width: 70px; max-height: 70px;">
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
             </a>
 
@@ -66,7 +67,8 @@
         </div>
       </div>
     </div>
-  </header>
+</header>
+
 <div class="container mt-2 mb-2">
     <div class="row">
         <!-- Левая часть (8 столбцов) -->
@@ -75,26 +77,34 @@
             <div id="canvas-container" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <canvas id="canvas" width="874" height="614"></canvas>
             </div>
-        </div>
-        <!-- Правая часть (4 столбца) -->
-        <div class="col-md-4">
             <!-- Добавляем список для отображения названий файлов -->
             <h4>Список добавленных изображений:</h4>
             <p class="p-3" id="image-list"></p>
+        </div>
+        <!-- Правая часть (4 столбца) -->
+        <div class="col-md-4">
             <p>Меню иконок(начните с прочего)</p>
+
+
              <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="pills-1-199" data-bs-toggle="pill" data-bs-target="#1-199" type="button" role="tab" aria-controls="pills-home" aria-selected="true">№1-199</button>
+                  <button class="nav-link" id="pills-1-199" data-bs-toggle="pill" data-bs-target="#1-199"
+                          type="button" role="tab" aria-controls="pills-home" aria-selected="false">№1-199</button>
                  </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-200-299" data-bs-toggle="pill" data-bs-target="#200-299" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">№200-299</button>
+                    <button class="nav-link" id="pills-200-299" data-bs-toggle="pill" data-bs-target="#200-299"
+                            type="button" role="tab" aria-controls="pills-200-299" aria-selected="false">№200-299</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-300-399" data-bs-toggle="pill" data-bs-target="#300-399" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">№300-399</button>
+                  <button class="nav-link" id="pills-300-399" data-bs-toggle="pill" data-bs-target="#300-399"
+                          type="button" role="tab" aria-controls="pills-300-399" aria-selected="false">№300-399</button>
                 </li>
                  <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-other" data-bs-toggle="pill" data-bs-target="#other" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Прочее</button>
-                </ul>
+                  <button class="nav-link" id="pills-other" data-bs-toggle="pill" data-bs-target="#other"
+                          type="button" role="tab" aria-controls="pills-other" aria-selected="false">Прочее</button>
+                 </li>
+             </ul>
+
 
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade" id="1-199" role="tabpanel" aria-labelledby="pills-1-199">
@@ -234,7 +244,7 @@
                 <!-- Иконки для добавления -->
             </div>
             </div>
-            <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="pills-other">
+            <div class="tab-pane fade show" id="other" role="tabpanel" aria-labelledby="pills-other">
                 <div id="menu">
                 <img src="{% static 'znaki/(А) Старт.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
                 <img src="{% static 'znaki/(А) Финиш.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
@@ -254,20 +264,13 @@
             <input type="hidden" id="image-list" name="image_list" value="">
             </div>
             <div class="p-3">
-                <button class="btn btn-info btn-sm text-white" onclick="saveImage()">Сохранить изображение и список</button>
+                <a href="{% url 'drag_and_drop_app:image_list' %}" class="btn btn-info btn-sm text-white" onclick="saveImage()">Сохранить изображение и список</a>
             </div>
             {% csrf_token %}
             <div class="p-3">
-            <button class="btn btn-danger btn-sm text-white" onclick="goBack()">Вернуться</button>
+            <a href="{% url 'drag_and_drop_app:image_list' %}" class="btn btn-danger btn-sm text-white">Созданные трассы</a>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
     </div>
 </div>
 
@@ -295,129 +298,6 @@
     }
     // Bind the generatePDF() function to the click event of the button
     document.getElementById("generate-pdf").addEventListener("click", generatePDF);
-  </script>
-
-<script>
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
-    var images = [];
-
-    function allowDrop(event) {
-        event.preventDefault();
-    }
-
-    function redrawCanvas() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        images.forEach(function(item) {
-            ctx.save(); // Сохраняем текущее состояние контекста
-            ctx.translate(item.x + 50, item.y + 50); // Перемещаем начало координат в центр изображения
-            ctx.rotate(item.rotation || 0); // Поворачиваем контекст на угол поворота изображения
-            ctx.drawImage(item.img, -50, -50, 50, 50); // Рисуем изображение, учитывая его центр
-            ctx.restore(); // Восстанавливаем сохраненное состояние контекста
-        });
-    }
-
-    function setDragData(event) {
-        event.dataTransfer.setData("text", event.target.src);
-        var fileName = decodeURIComponent(event.target.src.split('/').pop()); // Извлекаем название файла из пути к изображению
-        event.dataTransfer.setData("file", fileName); // Устанавливаем название файла в качестве значения атрибута "file"
-    }
-
-
-     function updateImageList() {
-        var imageList = document.getElementById('image-list');
-        var imageNames = images.map(item => item.file).join(', '); // Собираем имена изображений в одну строку через запятую
-        imageList.value = imageNames; // Устанавливаем собранные имена в скрытое поле
-
-        imageList.innerHTML = ''; // Очищаем список перед обновлением
-
-        images.forEach(function(item, index) {
-            var listItem = document.createElement('li');
-            listItem.textContent = item.file; // Можно использовать любое другое имя или номер изображения
-            imageList.appendChild(listItem);
-        });
-    }
-
-    function drop(event) {
-        event.preventDefault();
-        var imageUrl = event.dataTransfer.getData("text");
-        var fileName = event.dataTransfer.getData("file"); // Получаем имя файла из drag-and-drop данных
-        var img = new Image();
-        img.onload = function() {
-            var offsetX = event.offsetX;
-            var offsetY = event.offsetY;
-            images.push({img: img, x: offsetX, y: offsetY, file: fileName}); // Сохраняем имя файла в объекте
-            redrawCanvas();
-            updateImageList(); // Добавляем вызов функции updateImageList() для обновления списка изображений
-        }
-        img.src = imageUrl;
-    }
-
-    canvas.addEventListener('mousedown', function(event) {
-        var x = event.offsetX;
-        var y = event.offsetY;
-        var imageToDrag = null;
-
-        images.forEach(function(item) {
-            if (x >= item.x && x <= item.x + 100 && y >= item.y && y <= item.y + 100) {
-                imageToDrag = item;
-            }
-        });
-
-        if (imageToDrag) {
-            canvas.addEventListener('mousemove', dragImage);
-            canvas.addEventListener('mouseup', releaseImage);
-        }
-
-        function dragImage(event) {
-            var newX = event.offsetX - 50;
-            var newY = event.offsetY - 50;
-            imageToDrag.x = newX;
-            imageToDrag.y = newY;
-            redrawCanvas();
-        }
-
-        function releaseImage() {
-            canvas.removeEventListener('mousemove', dragImage);
-            canvas.removeEventListener('mouseup', releaseImage);
-        }
-    });
-
-    canvas.addEventListener('dblclick', function(event) {
-        var x = event.offsetX;
-        var y = event.offsetY;
-        var indexToRemove = null;
-
-        images.forEach(function(item, index) {
-            if (x >= item.x && x <= item.x + 100 && y >= item.y && y <= item.y + 100) {
-                indexToRemove = index;
-            }
-        });
-
-        if (indexToRemove !== null) {
-            images.splice(indexToRemove, 1);
-            redrawCanvas();
-            updateImageList(); // Обновляем список названий после удаления изображения
-        }
-    });
-
-    canvas.addEventListener('contextmenu', function(event) {
-        event.preventDefault();
-        var x = event.offsetX;
-        var y = event.offsetY;
-        var imageToRotate = null;
-
-        images.forEach(function(item) {
-            if (x >= item.x && x <= item.x + 100 && y >= item.y && y <= item.y + 100) {
-                imageToRotate = item;
-            }
-        });
-
-        if (imageToRotate) {
-            imageToRotate.rotation = (imageToRotate.rotation || 0) + Math.PI / 4;
-            redrawCanvas();
-        }
-    });
 </script>
 
 <script>
@@ -449,6 +329,151 @@
         console.error(error);
     });
 }
+</script>
+
+
+<!-- 1. Работа с изображениями -->
+<script>
+    var images = [];
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function setDragData(event) {
+        event.dataTransfer.setData("text", event.target.src);
+        var fileName = decodeURIComponent(event.target.src.split('/').pop());
+        event.dataTransfer.setData("file", fileName);
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        var imageUrl = event.dataTransfer.getData("text");
+        var fileName = event.dataTransfer.getData("file");
+        var img = new Image();
+        img.onload = function() {
+            var offsetX = event.offsetX;
+            var offsetY = event.offsetY;
+            images.push({img: img, x: offsetX, y: offsetY, file: fileName});
+            redrawCanvas();
+            updateImageList();
+        }
+        img.src = imageUrl;
+    }
+
+    canvas.addEventListener('dblclick', function(event) {
+        var x = event.offsetX;
+        var y = event.offsetY;
+        var indexToRemove = null;
+
+        images.forEach(function(item, index) {
+            if (x >= item.x && x <= item.x + 100 && y >= item.y && y <= item.y + 100) {
+                indexToRemove = index;
+            }
+        });
+
+        if (indexToRemove !== null) {
+            images.splice(indexToRemove, 1);
+            redrawCanvas();
+            updateImageList();
+        }
+    });
+
+    canvas.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+        var x = event.offsetX;
+        var y = event.offsetY;
+        var imageToRotate = null;
+
+        images.forEach(function(item) {
+            if (x >= item.x && x <= item.x + 100 && y >= item.y && y <= item.y + 100) {
+                imageToRotate = item;
+            }
+        });
+
+        if (imageToRotate) {
+            imageToRotate.rotation = (imageToRotate.rotation || 0) + Math.PI / 4;
+            redrawCanvas();
+        }
+    });
+</script>
+
+<!-- 2. Обновление списка изображений -->
+<script>
+    function updateImageList() {
+        var imageList = document.getElementById('image-list');
+        imageList.innerHTML = '';
+
+        images.forEach(function(item, index) {
+            var listItem = document.createElement('li');
+
+            var input = document.createElement('input');
+            input.type = 'number';
+            input.placeholder = '№';
+            input.style.width = '6ch';
+            input.style.marginRight = '5px';
+            input.value = item.order || '';
+            input.addEventListener('input', function() {
+                var newOrder = parseInt(input.value) || 0;
+                images[index].order = newOrder;
+                images.sort((a, b) => a.order - b.order);
+                updateImageList();
+            });
+
+            listItem.appendChild(input);
+            listItem.appendChild(document.createTextNode(item.file));
+            imageList.appendChild(listItem);
+        });
+    }
+</script>
+
+<!-- 3. Перемещение изображений -->
+<script>
+    canvas.addEventListener('mousedown', function(event) {
+        var x = event.offsetX;
+        var y = event.offsetY;
+        var imageToDrag = null;
+
+        images.forEach(function(item) {
+            if (x >= item.x && x <= item.x + 100 && y >= item.y && y <= item.y + 100) {
+                imageToDrag = item;
+            }
+        });
+
+        if (imageToDrag) {
+            canvas.addEventListener('mousemove', dragImage);
+            canvas.addEventListener('mouseup', releaseImage);
+        }
+
+        function dragImage(event) {
+            var newX = event.offsetX - 50;
+            var newY = event.offsetY - 50;
+            imageToDrag.x = newX;
+            imageToDrag.y = newY;
+            redrawCanvas();
+        }
+
+        function releaseImage() {
+            canvas.removeEventListener('mousemove', dragImage);
+            canvas.removeEventListener('mouseup', releaseImage);
+        }
+    });
+</script>
+
+<!-- 4. Работа с Canvas -->
+<script>
+    function redrawCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        images.forEach(function(item) {
+            ctx.save();
+            ctx.translate(item.x + 50, item.y + 50);
+            ctx.rotate(item.rotation || 0);
+            ctx.drawImage(item.img, -50, -50, 50, 50); // размер иконок
+            ctx.restore();
+        });
+    }
 </script>
 
 

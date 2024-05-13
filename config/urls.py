@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+
 from users.views import DogsCreate, DogsUpdateView, DogsDetailView, DogsDelete
 from django.views.static import serve
 from django.urls import re_path
@@ -37,7 +38,7 @@ urlpatterns = [
     path('create_dogs', DogsCreate.as_view(), name='create_dogs'),
     path('detail_dogs/<int:pk>', DogsDetailView.as_view(), name='dogs_detail'),
     path('update_dogs/<int:pk>', DogsUpdateView.as_view(), name='dogs_update'),
-    path('dogs_delete/<int:pk>', DogsDelete.as_view(), name='dogs_delete_com'),  # Удаление соревнования
+    path('dogs_delete/<int:pk>', DogsDelete.as_view(), name='dogs_delete_com'),  # Удаление собаки
 
     path('roles/', include('roles.urls', namespace='roles')),  # ссылки ролей
     path('news/', include('news.urls', namespace='news')),  # ссылки новостей
