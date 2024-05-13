@@ -1,5 +1,5 @@
 from django.urls import path
-from drag_and_drop_app.views import create_pdf, DragAndDropAppView, ImageListView, ImageUpdate
+from drag_and_drop_app.views import create_pdf, DragAndDropAppView, ImageListView, ImageUpdate, ImageDeleteView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -10,6 +10,7 @@ urlpatterns = [
     path('create_pdf/', create_pdf, name='create_pdf'),
     path('image_list/', ImageListView.as_view(), name='image_list'),
     path('image_update/<int:pk>', ImageUpdate.as_view(), name='image_update'),
+    path('image_delete/<int:pk>', ImageDeleteView.as_view(), name='image_delete'),
 
 ]
 

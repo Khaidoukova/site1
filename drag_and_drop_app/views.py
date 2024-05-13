@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.views.generic import ListView, UpdateView
+from django.views.generic import ListView, UpdateView, DeleteView
 
 from .forms import ImageUpdateForm
 from .models import Image
@@ -48,7 +48,7 @@ class DragAndDropAppView(View):
                     f.write(img_data)
                 image_url = request.build_absolute_uri(save_path)
                 # Выводим ссылку на изображение в терминал
-                print("Image URL:", image_url)
+                # print("Image URL:", image_url)
                 # Создаем экземпляр класса Image и сохраняем его в базе данных
                 image_instance = Image.objects.create(
                     user=request.user,  # текущий пользователь
@@ -84,9 +84,36 @@ def create_pdf(request):
 
 
 class ImageListView(ListView):
+    """Просмотр списка всех созданных трасс"""
     model = Image
     template_name = 'image_list.html'
     context_object_name = 'image_list'
+
+    def get_queryset(self):
+        # Получаем QuerySet всех объектов Image, отсортированных по полю pk в обратном порядке
+        queryset = super().get_queryset().order_by('-pk')
+        return queryset
+
+
+class ImageDeleteView(DeleteView):
+    """Удаление трассы"""
+    model = Image
+    template_name = 'image_confirm_delete.html'
+    success_url = reverse_lazy('drag_and_drop_app:image_list')
+
+    def delete(self, request, *args, **kwargs):
+        # Получаем объект Image
+        self.object = self.get_object()
+        print(self.object.file_link)
+        # Удаляем файл изображения, если он существует
+        if self.object.file_link:
+            if os.path.exists(self.object.file_link):
+                os.remove(self.object.file_link)
+
+        # Удаляем объект Image
+        self.object.delete()
+
+        return super().delete(request, *args, **kwargs)
 
 
 class ImageUpdate(UpdateView):
