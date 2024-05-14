@@ -78,9 +78,10 @@
 
                 </p>
             {% if is_owner or user.is_staff %}
-                <!-- кнопка добавление трассы
+                <!-- кнопка добавление трассы-->
+                {% if user.is_staff %}
                 <a class="btn btn-info btn-sm text-white" href="{% url 'drag_and_drop_app:image_list' %}">Добавить трассы</a>
-                -->
+                {% endif %}
                 <a href="{% url 'update_com' object_competition.pk %}" class="btn btn-primary btn-sm">Изменить</a>
                 <a href="{% url 'delete_com' object_competition.pk %}" class="btn btn-danger btn-sm">Удалить</a>
             {% endif %}
@@ -174,7 +175,9 @@
                     <div class="row">
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
-                            {{ competitor.user.first_name }}</a></p>
+
+                            {{ competitor.user.first_name }} {% if competitor.user.last_name %}
+                                {{ competitor.user.last_name }} {% endif %}</a></p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             {% if competitor.selected_dog.dog_name %}
@@ -238,7 +241,8 @@
                     <div class="row">
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
-                            {{ competitor.user.first_name }}</a></p>
+                            {{ competitor.user.first_name }} {% if competitor.user.last_name %}
+                                {{ competitor.user.last_name }} {% endif %}</a></p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             {% if competitor.selected_dog.dog_name %}
@@ -301,7 +305,8 @@
                     <div class="row">
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
-                            {{ competitor.user.first_name }}</a></p>
+                            {{ competitor.user.first_name }} {% if competitor.user.last_name %}
+                                {{ competitor.user.last_name }} {% endif %}</a></p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             {% if competitor.selected_dog.dog_name %}
@@ -364,7 +369,8 @@
                     <div class="row">
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
-                            {{ competitor.user.first_name }}</a></p>
+                            {{ competitor.user.first_name }} {% if competitor.user.last_name %}
+                                {{ competitor.user.last_name }} {% endif %}</a></p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             {% if competitor.selected_dog.dog_name %}
@@ -427,7 +433,8 @@
                     <div class="row">
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
-                            {{ competitor.user.first_name }}</a></p>
+                            {{ competitor.user.first_name }} {% if competitor.user.last_name %}
+                                {{ competitor.user.last_name }} {% endif %}</a></p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             {% if competitor.selected_dog.dog_name %}
@@ -490,7 +497,8 @@
                     <div class="row">
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
-                            {{ competitor.user.first_name }}</a></p>
+                            {{ competitor.user.first_name }} {% if competitor.user.last_name %}
+                                {{ competitor.user.last_name }} {% endif %}</a></p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             {% if competitor.selected_dog.dog_name %}
@@ -553,7 +561,8 @@
                     <div class="row">
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
-                            {{ competitor.user.first_name }}</a></p>
+                            {{ competitor.user.first_name }} {% if competitor.user.last_name %}
+                                {{ competitor.user.last_name }} {% endif %}</a></p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             {% if competitor.selected_dog.dog_name %}
@@ -616,7 +625,8 @@
                     <div class="row">
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
-                            {{ competitor.user.first_name }}</a></p>
+                            {{ competitor.user.first_name }} {% if competitor.user.last_name %}
+                                {{ competitor.user.last_name }} {% endif %}</a></p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             {% if competitor.selected_dog.dog_name %}
