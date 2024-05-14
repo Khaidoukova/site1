@@ -71,13 +71,17 @@
                     <div class="row">
                         <div class="col-md-3">
                             <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black"><b>{{ object_competition.name_competition }}</b></a></p>
+                            <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">{{ object_competition.place_competition }}</a></p>
+                        </div>
+                        <div class="col-md-1">
+                                <img src="/media/{{ object_competition.logo_club_organization }}" alt="Лого клуба" class="img-fluid"  width="50">
                         </div>
 
                         <div class="col-md-3">
                              <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Возможно участников:{{ object_competition.max_players }}</a></p>
                         <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">Уже участников:{{ object_competition.competitor_set.count }}</a></p>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             {% if object_competition.date_competition %}
                                 <p><a href="{% url 'detail_com' object_competition.pk %}" class="link-black">{{ object_competition.date_competition }}</a></p>
                             {% else %}
