@@ -24,6 +24,11 @@ class RulesView(View):
         return render(request, 'main/rules.html')
 
 
+class FaqView(View):
+    def get(self, request):
+        return render(request, 'main/faq.html')
+
+
 # Create your views here.
 class CompetitionList(ListView):
     """Показываем все соревнования"""
