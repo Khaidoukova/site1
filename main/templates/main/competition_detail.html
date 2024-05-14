@@ -117,13 +117,16 @@
             <div class="container col-12">
                 <div class="container col-12 rounded border p-3" style="background-color: #e3ffd4;">
                   <div class="row">
+                      <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>№</p>
+                    </div>
                     <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>Проводник</p>
                     </div>
                     <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                         <p>Собака</p>
                     </div>
-                    <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                    <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                         <p>Порода</p>
                     </div>
                     <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
@@ -172,6 +175,9 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ forloop.counter }}</p>
+                        </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
                             {{ competitor.user.first_name }}</a></p>
@@ -184,7 +190,7 @@
                                 {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
                             {% endif %}
                         </div>
-                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.selected_dog.breed_dog }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
@@ -236,6 +242,9 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ forloop.counter }}</p>
+                        </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
                             {{ competitor.user.first_name }}</a></p>
@@ -248,7 +257,7 @@
                                 {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
                             {% endif %}
                         </div>
-                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.selected_dog.breed_dog }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
@@ -299,6 +308,9 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ forloop.counter }}</p>
+                        </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
                             {{ competitor.user.first_name }}</a></p>
@@ -311,7 +323,7 @@
                                 {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
                             {% endif %}
                         </div>
-                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.selected_dog.breed_dog }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
@@ -362,6 +374,9 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ forloop.counter }}</p>
+                        </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
                             {{ competitor.user.first_name }}</a></p>
@@ -374,7 +389,7 @@
                                 {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
                             {% endif %}
                         </div>
-                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.selected_dog.breed_dog }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
@@ -425,6 +440,9 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ forloop.counter }}</p>
+                        </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
                             {{ competitor.user.first_name }}</a></p>
@@ -437,7 +455,7 @@
                                 {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
                             {% endif %}
                         </div>
-                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.selected_dog.breed_dog }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
@@ -488,6 +506,9 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ forloop.counter }}</p>
+                        </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
                             {{ competitor.user.first_name }}</a></p>
@@ -500,7 +521,7 @@
                                 {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
                             {% endif %}
                         </div>
-                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.selected_dog.breed_dog }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
@@ -551,6 +572,9 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ forloop.counter }}</p>
+                        </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
                             {{ competitor.user.first_name }}</a></p>
@@ -563,7 +587,7 @@
                                 {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
                             {% endif %}
                         </div>
-                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.selected_dog.breed_dog }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
@@ -614,6 +638,9 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
+                            <p>{{ forloop.counter }}</p>
+                        </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p><a href="{% url 'users:user_detail' pk=competitor.user.pk %}">
                             {{ competitor.user.first_name }}</a></p>
@@ -626,7 +653,7 @@
                                 {{ competitor.selected_dog.dog_name }} / {{ competitor.selected_dog.home_name }}</a></p>
                             {% endif %}
                         </div>
-                        <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
+                        <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ competitor.selected_dog.breed_dog }}</p>
                         </div>
                         <div class="col-2 rounded border border-dark" style="background-color: #FFFFFF;">
