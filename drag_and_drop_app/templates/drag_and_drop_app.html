@@ -82,195 +82,368 @@
             <p class="p-3" id="image-list"></p>
         </div>
         <!-- Правая часть (4 столбца) -->
+
+<!-- Аккордеон для разделения знаков -->
         <div class="col-md-4">
-            <p>Меню иконок(начните с прочего)</p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Знаки СПб (правила Маньковой)
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+
+                    <p>Меню иконок(начните с инструментов)</p>
+
+                     <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-1-199" data-bs-toggle="pill" data-bs-target="#1-199"
+                                  type="button" role="tab" aria-controls="pills-home" aria-selected="false">№1-199</button>
+                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-200-299" data-bs-toggle="pill" data-bs-target="#200-299"
+                                    type="button" role="tab" aria-controls="pills-200-299" aria-selected="false">№200-299</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-300-399" data-bs-toggle="pill" data-bs-target="#300-399"
+                                  type="button" role="tab" aria-controls="pills-300-399" aria-selected="false">№300-399</button>
+                        </li>
+                         <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-other" data-bs-toggle="pill" data-bs-target="#other"
+                                  type="button" role="tab" aria-controls="pills-other" aria-selected="false">Инструменты</button>
+                         </li>
+                     </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade" id="1-199" role="tabpanel" aria-labelledby="pills-1-199">
+                            <div id="menu">
+                            <img src="{% static 'znaki/№3 (А) Пауза - cидеть.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№4 (А) Пауза -лежать.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№5 (В) Поворот направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№6 (В) Поворот налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№7 (В) Разворот направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№8 (В) Разворот налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№9 (В) 270 ° Направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№10 (В) 270 ° налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№11 (А) 360 ͦ направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№12 (А) 360 ͦ налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№13 (А) Фронт – обход справа – движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№14 (А) Фронт – обход слева – движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№15 (А) Фронт – обход справа – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№16 (А) Фронт – обход слева – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№17  (А) Медленный темп .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№18 (А) Бег .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№19 (А) Нормальный темп .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№20 Боковой шаг вправо .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№21 (В) Спираль правая.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№22 (В) Спираль левая .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№23 (В) Змейка дважды.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№24 (В) Змейка .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№25 (А) Пауза – 1 – 2 – 3 шага назад с паузами .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№26 (А) Фронт – 1 – 2 – 3 шага назад с паузами .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№27 (А) Остановка - лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№28 (А) Пауза – без из сидеть .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№29 (В) Немецкий разворот .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№30 (А) Пауза – сидеть – обойти вокруг собаки.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№31 (А) Пауза – лежать – обойти вокруг собаки.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№32 (В) фигура «8».jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№33 (В) Пауза – синхронный поворот направо – движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                             <img src="{% static 'znaki/№ 34 (В) Пауза – синхронный поворот налево – движение .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№35 (В) Фронт – возврат в рядом.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№36 (А) Пауза – медленный темп из сидеть.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№37 (В) Петля направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№38 (В) Петля налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№39 (В) Диагональ направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№40 (В) Диагональ налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№41 (В) Серпантин справа.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№42 (В) Серпантин слева.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№101  (В) Пауза – разворот направо 180°.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№102 (В) Пауза – разворот налево 180°.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№103 (D) Барьер – проводник проходит мимо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№104  (В) Пауза - проводник  шаг вперед -  поворот направо - один шаг вперед – подзыв - пауза.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№105 (А) Пауза – стоять – обойти вокруг собаку.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№106  (В) Пауза – поворот  направо 90° - пауза.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№107 (В) Пауза – поворот  налево 90° - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№108 (В) Фигура «8» с отвлечениями .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№109  (В) Пауза- боковой шаг вправо - пауза.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№110 (А) Пауза- фронт – возврат справа – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№111 (А) Пауза- фронт – возврат в ОП слева – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№112  (В) Пауза –направо 180° - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№113 (В) Пауза – налево 180° - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№114 (А)  Пауза – лежать - сидеть.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№115 (А) Пауза - стоять .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№116 (В) Пауза - направо на 90º вместе – шаг вперед - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№ 117 (В) Пауза - налево на 90º вместе – шаг вперед - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+
+                            <img src="{% static 'znaki/№118 (А) пауза - оставить – проводник 2 шага вперед - подзыв .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№119 (В) Направо на 90º - собака обходит вокруг - движение .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№120 (В) Налево на 90º - собака обходит вокруг - движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№121  (В) Пауза – оставить -  шаг вперед -  налево 90º - шаг вперед – подзыв - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№122 (А) Пауза – 1 шаг – стоять – 2 шага – пауза – 3 шага - лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№123 (А) Собака рядом – вращение от проводника .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№124 (А) Пауза – стоять – лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№125 (А) Пауза – Стоять – Сидеть  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№126 (А) Двойной немецкий разворот .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№127 (А) Разворот направо – Разворот налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№128 (А) Разворот налево – Разворот направо .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+
+                            <!-- Иконки для добавления -->
+                        </div>
+                        </div>
+                        <div class="tab-pane fade" id="200-299" role="tabpanel" aria-labelledby="pills-200-299">
+                            <div id="menu">
+                            <img src="{% static 'znaki/№201 (А) Остановка из движения – обойти вокруг .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№202 (А) Укладка из движения – обойти вокруг .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№203 (А) Пауза – стоять - оставить собаку .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№204 (А) Фронт - Пауза – 1 шаг – стоять – 2 шага – пауза – 3 шага - лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№205 (А) Пауза- 1шаг назад – Пауза - 2 шага назад-Пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№206 (В) Боковой шаг вправо .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№207 (В) Боковой шаг влево .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№208  (В) Пауза – боковой шаг влево – пауза  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№209 (А) Стоять – собака обходит вокруг направо – Стоять .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№210 (D) Высыл через 2 барьера .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№211 (B) Разворот – Подзыв слева  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№212 (B) Подзыв во фронт – обход  справа – Пауза.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№213 (B) Подзыв во фронт – обход  слева – Пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№214 (B) Остановка – Поворот направо – Движение .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№215 (B) Остановка – Поворот налево – Движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№216 (А) Пауза – Собака обходит направо – Сидеть .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№217 (B) Стоять – разворот направо – стоять .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№218 (B) Стоять – разворот налево – стоять .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№219 (A) Смена стороны За проводником .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№220 (А) Смена стороны под ногой .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№221 (B) Синхронный разворот направо на 180º .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№222 (B) Синхронный разворот налево на 180º .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№223 (А) Пауза – смена стороны сзади – пауза  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№224 (А) Пауза – смена стороны перед проводником – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№225 (B) Разворот навстречу синхронно .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№298 (А) Сидеть – остаться .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
 
 
-             <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-1-199" data-bs-toggle="pill" data-bs-target="#1-199"
-                          type="button" role="tab" aria-controls="pills-home" aria-selected="false">№1-199</button>
-                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-200-299" data-bs-toggle="pill" data-bs-target="#200-299"
-                            type="button" role="tab" aria-controls="pills-200-299" aria-selected="false">№200-299</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-300-399" data-bs-toggle="pill" data-bs-target="#300-399"
-                          type="button" role="tab" aria-controls="pills-300-399" aria-selected="false">№300-399</button>
-                </li>
-                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-other" data-bs-toggle="pill" data-bs-target="#other"
-                          type="button" role="tab" aria-controls="pills-other" aria-selected="false">Прочее</button>
-                 </li>
-             </ul>
+                            <!-- Иконки для добавления -->
+                        </div>
+                        </div>
+                        <div class="tab-pane fade" id="300-399" role="tabpanel" aria-labelledby="pills-300-399">
+                            <div id="menu">
+                            <img src="{% static 'znaki/№301 (B) два боковых шага вправо .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№302 (B) два боковых шага влево .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№303  (B) Пауза – два  боковых шага вправо – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№304  (B) Пауза – два  боковых шага влево – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№305 (B) Разворот друг от друга синхронно .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№306 (А) Смена стороны перед проводником .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№307 (А)  Обход вокруг в движении .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№308 (А) Сидеть из движения – оставить собаку .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№309 (А) Лежать из движения – оставить собаку .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№310 (А) Пауза - высыл вперёд- остановка, движение вперёд, подзыв  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№311 (А) Подзыв во фронт - стоять - движение назад - стоять - движение вперёд - подзыв .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№312 (А) 3 шага назад .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№313 (А) Пауза – Шаги назад_ 1 – стоять – 2– сидеть – 3 лежать.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№314 (B) Пауза - направо 90°- Стоять - направо 90° - Пауза - направо 90° - Лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№315 (B) Пауза - налево 90°- Стоять - налево 90° - Пауза - налево 90° - Лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№316 (А) Подзыв во фронт - Пауза - боковой шаг влево - Пауза, боковой шаг вправо - Пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№317 (А) Поворот налево 90° - Обход конуса .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№318 (А) Поворот направо 90° - Обход конуса .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№319 (А) Посадка из движения - Обойти вокруг .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№320 (А) Пауза - подзыв с прыжком через барьер.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№321 (В) Разворот - подзыв с направлением через барьер по направлениям  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№322 (В) Разворот - Движение назад - Сидеть - Лежать - Подзыв .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/№323 (B) Лист клевера .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+
+                            <!-- Иконки для добавления -->
+                        </div>
+                        </div>
+                        <div class="tab-pane fade show" id="other" role="tabpanel" aria-labelledby="pills-other">
+                            <div id="menu">
+                            <img src="{% static 'znaki/(А) Старт.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/(А) Финиш.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/konus.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/konus2.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/bareier.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                                <img src="{% static 'znaki/bareier1.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <img src="{% static 'znaki/arrows-slim.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                            <!-- Иконки для добавления -->
+                            </div>
+                        </div>
+                    </div>
 
 
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade" id="1-199" role="tabpanel" aria-labelledby="pills-1-199">
-                <div id="menu">
-                <img src="{% static 'znaki/№3 (А) Пауза - cидеть.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№4 (А) Пауза -лежать.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№5 (В) Поворот направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№6 (В) Поворот налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№7 (В) Разворот направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№8 (В) Разворот налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№9 (В) 270 ° Направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№10 (В) 270 ° налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№11 (А) 360 ͦ направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№12 (А) 360 ͦ налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№13 (А) Фронт – обход справа – движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№14 (А) Фронт – обход слева – движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№15 (А) Фронт – обход справа – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№16 (А) Фронт – обход слева – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№17  (А) Медленный темп .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№18 (А) Бег .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№19 (А) Нормальный темп .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№20 Боковой шаг вправо .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№21 (В) Спираль правая.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№22 (В) Спираль левая .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№23 (В) Змейка дважды.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№24 (В) Змейка .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№25 (А) Пауза – 1 – 2 – 3 шага назад с паузами .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№26 (А) Фронт – 1 – 2 – 3 шага назад с паузами .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№27 (А) Остановка - лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№28 (А) Пауза – без из сидеть .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№29 (В) Немецкий разворот .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№30 (А) Пауза – сидеть – обойти вокруг собаки.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№31 (А) Пауза – лежать – обойти вокруг собаки.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№32 (В) фигура «8».jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№33 (В) Пауза – синхронный поворот направо – движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                 <img src="{% static 'znaki/№ 34 (В) Пауза – синхронный поворот налево – движение .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№35 (В) Фронт – возврат в рядом.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№36 (А) Пауза – медленный темп из сидеть.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№37 (В) Петля направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№38 (В) Петля налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№39 (В) Диагональ направо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№40 (В) Диагональ налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№41 (В) Серпантин справа.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№42 (В) Серпантин слева.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№101  (В) Пауза – разворот направо 180°.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№102 (В) Пауза – разворот налево 180°.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№103 (D) Барьер – проводник проходит мимо.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№104  (В) Пауза - проводник  шаг вперед -  поворот направо - один шаг вперед – подзыв - пауза.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№105 (А) Пауза – стоять – обойти вокруг собаку.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№106  (В) Пауза – поворот  направо 90° - пауза.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№107 (В) Пауза – поворот  налево 90° - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№108 (В) Фигура «8» с отвлечениями .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№109  (В) Пауза- боковой шаг вправо - пауза.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№110 (А) Пауза- фронт – возврат справа – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№111 (А) Пауза- фронт – возврат в ОП слева – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№112  (В) Пауза –направо 180° - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№113 (В) Пауза – налево 180° - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№114 (А)  Пауза – лежать - сидеть.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№115 (А) Пауза - стоять .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№116 (В) Пауза - направо на 90º вместе – шаг вперед - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№ 117 (В) Пауза - налево на 90º вместе – шаг вперед - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Знаки FCI
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
 
-                <img src="{% static 'znaki/№118 (А) пауза - оставить – проводник 2 шага вперед - подзыв .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№119 (В) Направо на 90º - собака обходит вокруг - движение .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№120 (В) Налево на 90º - собака обходит вокруг - движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№121  (В) Пауза – оставить -  шаг вперед -  налево 90º - шаг вперед – подзыв - пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№122 (А) Пауза – 1 шаг – стоять – 2 шага – пауза – 3 шага - лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№123 (А) Собака рядом – вращение от проводника .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№124 (А) Пауза – стоять – лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№125 (А) Пауза – Стоять – Сидеть  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№126 (А) Двойной немецкий разворот .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№127 (А) Разворот направо – Разворот налево.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№128 (А) Разворот налево – Разворот направо .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                          <p>Меню иконок(начните с инструментов)</p>
 
-                <!-- Иконки для добавления -->
+                             <ul class="nav nav-pills mb-1" id="pills-tab2" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="pills-1" data-bs-toggle="pill" data-bs-target="#1"
+                                          type="button" role="tab" aria-controls="pills-home" aria-selected="false">№1-299</button>
+                                 </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-20" data-bs-toggle="pill" data-bs-target="#2"
+                                            type="button" role="tab" aria-controls="pills-200-299" aria-selected="false">№300-399</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="pills-3" data-bs-toggle="pill" data-bs-target="#3"
+                                          type="button" role="tab" aria-controls="pills-300-399" aria-selected="false">№400-499</button>
+                                </li>
+                                 <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="pills-other2" data-bs-toggle="pill" data-bs-target="#other2"
+                                          type="button" role="tab" aria-controls="pills-other" aria-selected="false">Инструменты</button>
+                                 </li>
+                             </ul>
+
+                            <div class="tab-content" id="pills-tabContent2">
+                                <div class="tab-pane fade" id="1" role="tabpanel" aria-labelledby="pills-1-199">
+                                    <div id="menu">
+                                    <img src="{% static 'znaki_FCI/101  DOWN (A).jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/102  STOP, DOWN (A).jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/103  STOP, WALK AROUND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/104  STOP, DOWN, WALK AROUND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/105  ABOUT TURN RIGHT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/106  ABOUT TURN LEFT (B).jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/107  LOOP RIGHT (B).jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/108  LOOP LEFT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/109  270° RIGHT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                        <img src="{% static 'znaki_FCI/110  270° LEFT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/111  360° RIGHT (A).jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/112  360° LEFT (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/113  TURN AROUND DOG BEHIND (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/114  STOP, 90° RIGHT TURN, STOP (B).jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/115  STOP, 90° LEFT TURN, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/116  SLOW PACE (A).jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/117  RUN (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/118  NORMAL PACE (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/119  SPIRAL RIGHT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/120  SPIRAL LEFT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/121  SINGLE SLALOM (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/122  DOUBLE SLALOM (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                        <img src="{% static 'znaki_FCI/201  2 x TURN AROUND DOG BEHIND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/202  DOUBLE 180° TURN, RIGHT THEN LEFT (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/203  DOUBLE 180° TURN, LEFT THEN RIGHT (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/204  STOP, DOWN, SIT (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/205  STOP, STAND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/206  STOP, STAND, SIT (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/207  STOP, STAND, DOWN (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/208  STOP, STAND, WALK AROUND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/209  STOP, CALL FRONT STOP, RIGHT TO LEFT, STOP (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/210  STOP, CALL FRONT STOP, LEFT TO LEFT, STOP (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/211  STOP, 1 STEP FORWARD, 90° RIGHT TURN 1 STEP, CALL, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                        <img src="{% static 'znaki_FCI/212  STOP, 1 STEP FORWARD, 90° LEFT TURN 1 STEP, CALL, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/213  STOP, 180° RIGHT TURN, FORWARD (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/214  STOP, 180° LEFT TURN, FORWARD (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/215  STOP, 180° RIGHT TURN, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/216  STOP, 180° LEFT TURN, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/217  STOP, 90° RIGHT TURN 1 STEP, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/218  STOP, 90° LEFT TURN 1 STEP, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/219  STOP, 1 STEP STAND, 2 STEPS STOP, 3 STEPS DOWN (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/220  SPIN (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/221  DISTRACTIONS (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/222  SEND OVER JUMP (D) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+
+                                    <!-- Иконки для добавления -->
+                                </div>
+                                </div>
+                                <div class="tab-pane fade" id="2" role="tabpanel" aria-labelledby="pills-200-299">
+                                    <div id="menu">
+                                    <img src="{% static 'znaki_FCI/301  SIDE STEP RIGHT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/302  SIDE STEP LEFT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/303  STOP, SIDE STEP RIGHT, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/304  STOP, SIDE STEP LEFT, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/305  STOP, 1 STEP BACK STOP, 2 STEPS BACK STOP (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/306  CALL FRONT STOP, 1 STEP BACK STAND, 2 STEPS BACK STOP, 3 STEPS BACK DOWN (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/307  STAND, 180° RIGHT TURN, STAND (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/308  STAND, 180° LEFT TURN, STAND (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/309  STAND, CIRCLE AROUND HANDLER, STAND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/310  TURN TOWARD (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                        <img src="{% static 'znaki_FCI/311  SIDE SHIFT BEHIND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/312  SIDE SHIFT BETWEEN LEGS (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/313  BOTH ABOUT TURN RIGHT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/314  BOTH ABOUT TURN LEFT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/315  STOP, SIDE SHIFT BEHIND, STOP (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/316  STOP, SIDE SHIFT IN FRONT, STOP (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/317  MOVING STAND, WALK AROUND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/318  MOVING DOWN, WALK AROUND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/319  STOP, STAND, WALK FORWARD (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/320  SEND OVER TWO JUMPS (D) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/321  TURN AROUND, RECALL (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/322  TURN AROUND, RECALL FRONT STOP, RIGHT TO LEFT, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/323  TURN AROUND, RECALL FRONT STOP, LEFT TO LEFT, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <!-- Иконки для добавления -->
+                                </div>
+                                </div>
+                                <div class="tab-pane fade" id="3" role="tabpanel" aria-labelledby="pills-300-399">
+                                    <div id="menu">
+                                    <img src="{% static 'znaki_FCI/401  2 SIDE STEPS RIGHT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/402  2 SIDE STEPS LEFT (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/403  STOP, 2 SIDE STEPS RIGHT, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/404  STOP, 2 SIDE STEPS LEFT, STOP (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/405  TURN APART (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/406  SIDE SHIFT IN FRONT (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/407  CIRCLE AROUND HANDLER (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/408  MOVING SIT, WALK FORWARD (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/409  MOVING DOWN, WALK FORWARD (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/410  STOP, SEND AWAY, STAND, WALK FORWARD, RECALL (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/411  CALL FRONT STAND, BACK AWAY, STAND, WALK FORWARD, RECALL (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/412  3 STEPS BACKWARDS (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                        <img src="{% static 'znaki_FCI/413  STOP, 1 STEP BACK STAND, 2 STEPS BACK STOP, 3 STEPS BACK DOWN (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/414  STOP, 90° RIGHT TURN STAND, 90° RIGHT TURN STOP,  90° RIGHT TURN DOWN (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/415  STOP, 90° LEFT TURN STAND, 90° LEFT TURN STOP, 90° LEFT TURN DOWN (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/416  CALL FRONT STOP, SIDE STEP LEFT STOP, SIDE STEP RIGHT STOP (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/417  90° LEFT TURN AROUND CONE (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/418  90° RIGHT TURN AROUND CONE (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/419  MOVING SIT, WALK AROUND (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/420  STOP, RECALL OVER JUMP (A) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/421  TURN AROUND, RECALL OVER JUMP WITH DIRECTIONS (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/422  TURN AROUND, BACK AWAY, SIT, DOWN, RECALL (B) .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <!-- Иконки для добавления -->
+                                </div>
+                                </div>
+                                <div class="tab-pane fade show" id="other2" role="tabpanel" aria-labelledby="pills-other">
+                                    <div id="menu">
+                                    <img src="{% static 'znaki_FCI/1 START (A).jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki_FCI/10 FINISH (A).jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki/konus.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki/konus2.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki/bareier.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                                        <img src="{% static 'znaki/bareier1.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <img src="{% static 'znaki/arrows-slim.png' %}" draggable="true" ondragstart="setDragData(event)" />
+                                    <!-- Иконки для добавления -->
+                                    </div>
+                                </div>
+                            </div>
+
+                  </div>
+                </div>
+              </div>
             </div>
-            </div>
-            <div class="tab-pane fade" id="200-299" role="tabpanel" aria-labelledby="pills-200-299">
-                <div id="menu">
-                <img src="{% static 'znaki/№201 (А) Остановка из движения – обойти вокруг .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№202 (А) Укладка из движения – обойти вокруг .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№203 (А) Пауза – стоять - оставить собаку .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№204 (А) Фронт - Пауза – 1 шаг – стоять – 2 шага – пауза – 3 шага - лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№205 (А) Пауза- 1шаг назад – Пауза - 2 шага назад-Пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№206 (В) Боковой шаг вправо .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№207 (В) Боковой шаг влево .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№208  (В) Пауза – боковой шаг влево – пауза  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№209 (А) Стоять – собака обходит вокруг направо – Стоять .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№210 (D) Высыл через 2 барьера .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№211 (B) Разворот – Подзыв слева  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№212 (B) Подзыв во фронт – обход  справа – Пауза.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№213 (B) Подзыв во фронт – обход  слева – Пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№214 (B) Остановка – Поворот направо – Движение .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№215 (B) Остановка – Поворот налево – Движение.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№216 (А) Пауза – Собака обходит направо – Сидеть .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№217 (B) Стоять – разворот направо – стоять .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№218 (B) Стоять – разворот налево – стоять .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№219 (A) Смена стороны За проводником .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№220 (А) Смена стороны под ногой .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№221 (B) Синхронный разворот направо на 180º .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№222 (B) Синхронный разворот налево на 180º .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№223 (А) Пауза – смена стороны сзади – пауза  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№224 (А) Пауза – смена стороны перед проводником – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№225 (B) Разворот навстречу синхронно .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№298 (А) Сидеть – остаться .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
+<!-- Сохранение трассы -->
 
-
-                <!-- Иконки для добавления -->
-            </div>
-            </div>
-            <div class="tab-pane fade" id="300-399" role="tabpanel" aria-labelledby="pills-300-399">
-                <div id="menu">
-                <img src="{% static 'znaki/№301 (B) два боковых шага вправо .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№302 (B) два боковых шага влево .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№303  (B) Пауза – два  боковых шага вправо – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№304  (B) Пауза – два  боковых шага влево – пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№305 (B) Разворот друг от друга синхронно .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№306 (А) Смена стороны перед проводником .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№307 (А)  Обход вокруг в движении .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№308 (А) Сидеть из движения – оставить собаку .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№309 (А) Лежать из движения – оставить собаку .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№310 (А) Пауза - высыл вперёд- остановка, движение вперёд, подзыв  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№311 (А) Подзыв во фронт - стоять - движение назад - стоять - движение вперёд - подзыв .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№312 (А) 3 шага назад .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№313 (А) Пауза – Шаги назад_ 1 – стоять – 2– сидеть – 3 лежать.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№314 (B) Пауза - направо 90°- Стоять - направо 90° - Пауза - направо 90° - Лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№315 (B) Пауза - налево 90°- Стоять - налево 90° - Пауза - налево 90° - Лежать .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№316 (А) Подзыв во фронт - Пауза - боковой шаг влево - Пауза, боковой шаг вправо - Пауза .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№317 (А) Поворот налево 90° - Обход конуса .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№318 (А) Поворот направо 90° - Обход конуса .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№319 (А) Посадка из движения - Обойти вокруг .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№320 (А) Пауза - подзыв с прыжком через барьер.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№321 (В) Разворот - подзыв с направлением через барьер по направлениям  .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№322 (В) Разворот - Движение назад - Сидеть - Лежать - Подзыв .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/№323 (B) Лист клевера .jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-
-                <!-- Иконки для добавления -->
-            </div>
-            </div>
-            <div class="tab-pane fade show" id="other" role="tabpanel" aria-labelledby="pills-other">
-                <div id="menu">
-                <img src="{% static 'znaki/(А) Старт.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/(А) Финиш.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-               <img src="{% static 'znaki/1_Page44.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/1_Page100.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/dorozhnyj-konus1.png' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/1_Page73.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/1_Page3.jpg' %}" draggable="true" ondragstart="setDragData(event)" />
-                <img src="{% static 'znaki/arrows-slim.png' %}" draggable="true" ondragstart="setDragData(event)" />
-                <!-- Иконки для добавления -->
-            </div>
-            </div>
-        </div>
             <div class="p-3">
-            <label for="image-name">Название изображения:</label>
-            <input type="text" id="image-name" name="image_name">
-            <input type="hidden" id="image-list" name="image_list" value="">
+                <label for="image-name">Название изображения:</label>
+                <input type="text" id="image-name" name="image_name">
+                <input type="hidden" id="image-list" name="image_list" value="">
             </div>
             <div class="p-3">
                 <a href="{% url 'drag_and_drop_app:image_list' %}" class="btn btn-info btn-sm text-white" onclick="saveImage()">Сохранить изображение и список</a>
             </div>
             {% csrf_token %}
             <div class="p-3">
-            <a href="{% url 'drag_and_drop_app:image_list' %}" class="btn btn-danger btn-sm text-white">Созданные трассы</a>
+                <a href="{% url 'drag_and_drop_app:image_list' %}" class="btn btn-danger btn-sm text-white">Созданные трассы</a>
             </div>
         </div>
+        <!--Конец Правая часть (4 столбца) -->
+
+
     </div>
 </div>
 
