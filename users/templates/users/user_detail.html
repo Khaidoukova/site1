@@ -43,8 +43,8 @@
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-8">
-                <p><b>Имя:</b> {{ object_user.first_name }} </p>
-                <p><b>Фамилия</b> {{ object_user.last_name }}</p>
+                <p><b>Имя:</b> {{ object_user.first_name }} <b>Фамилия</b> {{ object_user.last_name }}</p>
+                        <p><b>Отчество</b> {{ object_user.middle_name }}</p>
                 <p><b>Город</b> {{ object_user.user_town }}</p>
                 {% if object_user.user_hide_info == False or user.is_staff %}
                 <p><b>Почта</b> {{ object_user.email }}</p>
@@ -140,12 +140,9 @@
                                             <p>Еще не добавлена ни одна собака</p>
                                         {% endif %}
 
-
-                                        </div>
-
                                   </div>
                             </div>
-
+            </div>
 
             <div class="tab-pane fade  show active" id="pills-conductor" role="tabpanel" aria-labelledby="pills-conductor-tab">
                     {% if is_owner %}
@@ -226,19 +223,21 @@
                                       <p>{{ competitions.name_competition }}</p>
                                   </div>
                                 </div>
-                                  <div class="col-sm-3">
+
+                                <div class="col-sm-3">
                                   <div class="rounded border p-3">
-                                      <p><b>Дата проведения:</b></p>
-                                        <p>
-                                        {% if competitions.date_competition %}
+                                  <p><b>Дата проведения:</b></p>
+                                    <p>
+                                    {% if competitions.date_competition %}
                                         {{ competitions.date_competition }}
-                                        {% else %}
+                                    {% else %}
                                         {{ competitions.pre_date_competition }}
-                                        {% endif %}
-                                        </p>
-                                      </div>
-                                    </div>
-                                  <div class="col-sm-3">
+                                    {% endif %}
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-3">
                                   <div class="rounded border p-3">
                                     <p><b>Максимум участников {{ competitions.max_players }}</b></p>
                                       <p><b>Классы:</b>
@@ -266,15 +265,16 @@
                                             {% if competitions.class_ro_4 %}
                                                 РО-4(мастера)
                                             {% endif %}
-
                                         </p>
                                   </div>
                                 </div>
+
                                 <div class="col-sm-3">
                                   <div class="rounded border p-3">
                                     <a href="{% url 'detail_com' competitions.pk %}" class="btn btn-info btn-sm text-white">Подробнее</a>
                                   </div>
                                 </div>
+
                               </div>
                             </div>
                         </div>
@@ -304,13 +304,42 @@
                         {% else %}
                             <a href="{% url 'roles:create_judge' %}" class="btn btn-info btn-sm text-white">Стать судьей</a>
                         {% endif %}
+
+                {% if judge_comp %}
+                <div class="row">
+                    {% for comp in judge_comp%}
+                                <div class="col-sm-3">
+                                  <div class="rounded border p-3">
+                                    <p><b>Название соревнования</b></p>
+                                      <p>{{ comp.name_competition }}</p>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                  <div class="rounded border p-3">
+                                  <p><b>Дата проведения:</b></p>
+                                    <p>
+                                    {% if comp.date_competition %}
+                                        {{ comp.date_competition }}
+                                    {% else %}
+                                        {{ comp.pre_date_competition }}
+                                    {% endif %}
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                  <div class="rounded border p-3">
+                                    <a href="{% url 'detail_com' comp.pk %}" class="btn btn-info btn-sm text-white">Подробнее</a>
+                                  </div>
+                                </div>
+                    {% endfor %}
+                {% else %}
                         <div class="border p-3 m-3">
                             <p>Здесь будут соревнования, которые вы судили</p>
                         </div>
+                {% endif %}
             </div>
-
-
-
 
             <div class="tab-pane fade" id="pills-trainer" role="tabpanel" aria-labelledby="pills-trainer-tab">
 

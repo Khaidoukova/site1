@@ -195,6 +195,9 @@ class UserDetailView(DetailView):
         judge = Judge.objects.filter(user=user).first()
         context['judge_info'] = judge
 
+        b = Competition.objects.filter(judge_competition=judge.id_judge)
+        context['judge_comp'] = b
+
         conductor = Conductor.objects.filter(user=user).first()
         context['conductor'] = conductor
 
