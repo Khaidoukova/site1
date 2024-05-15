@@ -119,8 +119,29 @@ class CompetitionDetail(DetailView):
 
         context['images_by_class'] = images_by_class
         context['status'] = competition.registration_status()
-        context['competitors'] = competition.competitor_set.all()
+        # Получаем все участников соревнования и считаем их количество
+        competitors = competition.competitor_set.all()
+        total_competitors = competitors.count()
 
+        # Получаем участников из резерва и считаем их количество
+        reserve_competitors = competitors.filter(competitor_reserve=True)
+        reserve_count = reserve_competitors.count()
+
+        # Если количество участников меньше максимального,
+        # то добавляем участников из резерва до достижения максимума
+        max_competitors = competition.max_players
+        if total_competitors < max_competitors:
+            reserve_to_add = min(reserve_count, max_competitors - total_competitors)
+            competitors_to_add = reserve_competitors.order_by('date_added')[:reserve_to_add]
+            for competitor in competitors_to_add:
+                competitor.competitor_reserve = False
+                competitor.save()
+
+        # Получаем всех участников, не включая резерв
+        competitors = competitors.filter(competitor_reserve=False)
+        context['competitors'] = competitors
+
+        # Получаем участников по классам
         context['competitors_ro_dety'] = competition.competitor_set.filter(class_comp='ro_dety').order_by('date_added')
         context['competitors_ro_shenki'] = competition.competitor_set.filter(class_comp='ro_shenki').order_by('date_added')
         context['competitors_ro_debut'] = competition.competitor_set.filter(class_comp='ro_debut').order_by('date_added')

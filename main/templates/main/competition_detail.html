@@ -77,6 +77,9 @@
                     {% endif %}
 
                 </p>
+                {% if object_competition.entry_fee %}
+                <p><b>Вступительный взнос:</b> {{ object_competition.entry_fee }}</p>
+                {% endif %}
             {% if is_owner or user.is_staff %}
                 <!-- кнопка добавление трассы-->
                 {% if user.is_staff %}
