@@ -1,0 +1,78 @@
+{% extends 'main/base.html' %}
+
+{% block content%}
+
+<div class="container">
+{% if current_user.is_staff or current_user.org_status %}
+    <div class="row mt-4 mb-4">
+        <h3>Проводник: {{ user.first_name }} {{ user.last_name }}, ID проводника: {{ user.conductor.id_conductor }}</h3>
+    </div>
+     <div class="row mt-4 mb-4">
+        <h4>Чтобы этого спортсмена в соревнование, выберите собаку и соревнование</h4>
+         <p>Вы {{ current_user.first_name }}</p>
+
+    </div>
+
+    <div class="col-sm-6 p-2">
+        <a href="{% url 'users:search_list_users' %}" class="btn btn-warning text-white">Вернуться в поиск</a>
+    </div>
+
+    <div class="row">
+        <div>
+            <form method="post">
+                {% csrf_token %}
+            <div class="col-sm-6 p-2">
+                <label for="user_dog">Выберите собаку пользователя:</label>
+                <select name="user_dog" id="user_dog">
+                    {% for dog in user_dogs %}
+                        <option value="{{ dog.pk }}">{{ dog.dog_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-6 p-2">
+                <label for="competition">Выберите соревнование:</label>
+                <select name="competition" id="competition">
+                    {% for competition in competitions %}
+                        <option value="{{ competition.pk }}">{{ competition.name_competition }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-sm-6 p-2">
+                <label for="class_comp">Класс участия:</label>
+                <select name="class_comp" id="class_comp">
+                    <option value="ro_dety">РО-дети</option>
+                    <option value="ro_shenki">РО-щенки</option>
+                    <option value="ro_debut">РО-дебют</option>
+                    <option value="ro_veterany">РО-ветераны</option>
+                    <option value="ro_1">РО-1</option>
+                    <option value="ro_2">РО-2</option>
+                    <option value="ro_3">РО-3</option>
+                    <option value="ro_4">РО-4(мастера)</option>
+                </select>
+            </div>
+
+            <div class="col-sm-6 p-2">
+                <label for="vnezachet">Участник внезачет:</label>
+                <input type="checkbox" name="vnezachet" id="vnezachet" value="false">
+            </div>
+
+            <div class="col-sm-6 p-2">
+                <button class="btn btn-success text-white" type="submit">Добавить участника</button>
+            </div>
+            </form>
+        </div>
+
+    </div>
+{% else %}
+
+    <div>
+        <p>Кажется у вас нет прав, чтобы что то делать на этой старнице</p>
+    </div>
+
+{% endif %}
+
+
+</div>
+
+{% endblock %}
