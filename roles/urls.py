@@ -1,6 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
+from roles.competitor_add import CompetitorAddView
 from roles.views import CreateJudgeView, create_conductor, add_dog_conductor, CreateOrganizationView, \
     CreateCompetitorView, search_dogs, CompetitorDeleteView, CompetitorUpdateView
 
@@ -15,6 +16,7 @@ urlpatterns = [
 
     path('delete_competitor/<int:pk>', CompetitorDeleteView.as_view(), name='competitor_confirm_delete'),  # Удаление из участия
     path('competitor_detail/<int:pk>', CompetitorUpdateView.as_view(), name='competitor_detail'),  # страница участника, результаты, оценки
+    path('competitor_add/<int:pk>', CompetitorAddView.as_view(), name='competitor_add'),  # добавление участника админов или организатором
 
     path('search_dogs/', search_dogs, name='search_dogs'),
 

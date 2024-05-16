@@ -22,6 +22,7 @@
                                     <tr>
                                         <th>ФИО</th>
                                         <th>Город</th>
+                                        <th>Соревнование</th>
                                         <th>Ссылка</th>
                                     </tr>
                                 </thead>
@@ -29,9 +30,16 @@
                                     {% for user in users %}
                                         <tr>
                                             <td>{{ user.first_name }} {{ user.last_name }}</td>
-
                                             <td>{{ user.user_town }}</td>
-                                            <th><a href="{% url 'users:user_detail' user.pk %}">Перейти</a></th>
+
+                                            {% if current_user.is_staff or current_user.org_status %}
+                                            <td><a href="{% url 'roles:competitor_add' user.pk %}">Добавить</a></td>
+                                            {% else %}
+                                            <td><p>Нет прав</p></td>
+                                            {% endif %}
+
+
+                                            <td><a href="{% url 'users:user_detail' user.pk %}">Перейти</a></td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

@@ -16,10 +16,13 @@ class SearchListUsersView(TemplateView):
             users = User.objects.filter(first_name__icontains=search_param) | \
                     User.objects.filter(email__icontains=search_param) | \
                     User.objects.filter(last_name__icontains=search_param)
+
         else:
             users = User.objects.all()
 
-        context = {'users': users}
+        current_user = self.request.user
+
+        context = {'users': users, 'current_user': current_user}
         return render(request, self.template_name, context)
 
 
