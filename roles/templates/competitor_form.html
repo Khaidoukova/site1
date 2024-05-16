@@ -5,7 +5,10 @@
 <div class="container">
 
     <div class="row mt-4 mb-4">
-        <h3>Проводник: {{ user.first_name }} {{ user.last_name }}, ID проводника: {{ user.conductor.id_conductor }}</h3>
+        <h3>Проводник: {{ user.last_name }} {{ user.first_name }}
+            {% if user.middle_name %}
+                                {{ user.middle_name }},
+                            {% endif %} ID проводника: {{ user.conductor.id_conductor }}</h3>
     </div>
      <div class="row mt-4 mb-4">
         <h3>Чтобы принять участие в соревнованиях, выберите собаку</h3>

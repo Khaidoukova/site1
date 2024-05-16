@@ -49,6 +49,9 @@
           <li class="nav-item">
           <a class="nav-link text-dark" href="/faq/">Тех.вопросы</a>
         </li>
+          <li class="nav-item">
+          <a class="nav-link text-dark" href="/map/">Карта</a>
+        </li>
       </ul>
       <div class="d-flex">
           <!-- Выпадающий поиск -->
@@ -57,7 +60,7 @@
                 Поиск
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'users:search_list_users' %}">Поиск Спортсменов</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:search_list_users' %}">Поиск спортсменов</a></li>
                 <li><a class="dropdown-item" href="{% url 'users:search_list_dogs' %}">Поиск собак</a></li>
                 <li><a class="dropdown-item" href="{% url 'users:search_list_judge' %}">Список судей</a></li>
               </ul>
@@ -109,34 +112,28 @@
     <div class="col mb-3">
       <h5>Меню</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-body-secondary">Home</a></li>
+        <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-body-secondary">Главная</a></li>
         <li class="nav-item mb-2"><a href="/news/" class="nav-link p-0 text-body-secondary">Новости</a></li>
         <li class="nav-item mb-2"><a href="/rules/" class="nav-link p-0 text-body-secondary">Правила</a></li>
         <li class="nav-item mb-2"><a href="https://calendar.yandex.ru/week?uid=1892071114" class="nav-link p-0 text-body-secondary">Календарь</a></li>
+        <li class="nav-item mb-2"><a href="/faq/" class="nav-link p-0 text-body-secondary">Тех.вопросы</a></li>
+        <li class="nav-item mb-2"><a href="/map/" class="nav-link p-0 text-body-secondary">Карта</a></li>
+
       </ul>
     </div>
 
 
     <div class="col mb-3">
       <h5>Контакты</h5>
-      <ul class="nav flex-column">
-        <li class="nav-item mb-2"><p>Контактная информация</p></li>
-
-      </ul>
+      <ul class="list-unstyled">
+          <li>Яна: <p><a href="https://wa.me/79067614114" target="_blank"><i class="fab fa-whatsapp text-success fa-3x"></i></a> <a href="https://t.me/+79067614114" target="_blank"><i class="fab fa-telegram text-primary fa-3x"></i></a></p></li>
+            <li>Елена: <p><a href="https://wa.me/79057631028" target="_blank"><i class="fab fa-whatsapp text-success fa-3x"></i></a> <a href="https://t.me/+79057631028" target="_blank"><i class="fab fa-telegram text-primary fa-3x"></i></a><p></li>
+           <li>Электронная почта: <a href="mailto:Rocrudoc@yandex.ru">Rocrudoc@yandex.ru</a> </li>
+        </ul>
     </div>
 
     <div class="col mb-3">
-          <h5>Соц.сети</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2">
-                <a href="https://vk.com" target="_blank" class="rounded-circle d-inline-block p-2" ">
-                    <i class="fab fa-vk text-dark fa-3x"></i>
-                </a>
-                <a href="https://wa.me/your_phone_number" target="_blank" class="rounded-circle d-inline-block p-2"">
-                    <i class="fab fa-whatsapp text-dark fa-3x"></i>
-                </a>
-            </li>
-          </ul>
+
         </div>
 
 </footer>
