@@ -171,12 +171,7 @@
                         {% endif %}
                     </div>
                     {% for competitor in competitors_ro_dety %}
-                    <div class="row">
-                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
-                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
+
 
                     <div class="row">
                         <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
@@ -223,6 +218,12 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -245,13 +246,7 @@
                         {% endif %}
                     </div>
                     {% for competitor in competitors_ro_shenki %}
-                    <div class="row">
 
-                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
-                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ forloop.counter }}</p>
@@ -296,6 +291,12 @@
                             {% endif %}
                         </div>
                     </div>
+                     <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -318,12 +319,7 @@
                         {% endif %}
                     </div>
                     {% for competitor in competitors_ro_debut %}
-                    <div class="row">
-                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
-                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ forloop.counter }}</p>
@@ -368,6 +364,12 @@
                             {% endif %}
                         </div>
                     </div>
+                     <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -390,12 +392,7 @@
                         {% endif %}
                     </div>
                     {% for competitor in competitors_ro_veterany %}
-                    <div class="row">
-                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
-                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ forloop.counter }}</p>
@@ -440,6 +437,12 @@
                             {% endif %}
                         </div>
                     </div>
+                     <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -462,12 +465,7 @@
                         {% endif %}
                     </div>
                     {% for competitor in competitors_ro_1 %}
-                    <div class="row">
-                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
-                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ forloop.counter }}</p>
@@ -512,6 +510,12 @@
                             {% endif %}
                         </div>
                     </div>
+                     <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -534,12 +538,7 @@
                         {% endif %}
                     </div>
                     {% for competitor in competitors_ro_2 %}
-                    <div class="row">
-                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
-                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ forloop.counter }}</p>
@@ -584,6 +583,12 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -606,12 +611,7 @@
                         {% endif %}
                     </div>
                     {% for competitor in competitors_ro_3 %}
-                    <div class="row">
-                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
-                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ forloop.counter }}</p>
@@ -656,6 +656,12 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -678,12 +684,7 @@
                         {% endif %}
                     </div>
                     {% for competitor in competitors_ro_4 %}
-                    <div class="row">
-                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
-                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-1 rounded border border-dark" style="background-color: #FFFFFF;">
                             <p>{{ forloop.counter }}</p>
@@ -725,6 +726,12 @@
                             {% endif %}
                             {% if is_owner or request.user.is_staff  %}
                             <a href="{% url 'roles:competitor_detail' competitor.pk %}">Выставить оценки</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">{% if current_user_pk == competitor.user.pk or request.user.is_staff%}
+                            <p> <a href="{% url 'roles:competitor_confirm_delete' competitor.pk %}">Не участвовать</a></p>
                             {% endif %}
                         </div>
                     </div>

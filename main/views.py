@@ -29,6 +29,11 @@ class FaqView(View):
         return render(request, 'main/faq.html')
 
 
+class MapView(View):
+    def get(self, request):
+        return render(request, 'main/map.html')
+
+
 # Create your views here.
 class CompetitionList(ListView):
     """Показываем все соревнования"""
