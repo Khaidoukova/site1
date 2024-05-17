@@ -158,7 +158,7 @@ class Competition(models.Model):
         if self.class_ro_shenki:
             selected_classes.append(('ro_shenki', 'РО-щенки'))
         if self.class_ro_debut:
-            selected_classes.append(('ro_class_ro_debut', 'РО-дебют'))
+            selected_classes.append(('ro_debut', 'РО-дебют'))
         if self.class_ro_veterany:
             selected_classes.append(('ro_veterany', 'РО-ветераны'))
         if self.class_ro_1:
@@ -169,14 +169,14 @@ class Competition(models.Model):
             selected_classes.append(('ro_3', 'РО-3'))
         if self.class_ro_4:
             selected_classes.append(('ro_4', 'РО-4(мастера)'))
-        print(selected_classes)
+
 
         return selected_classes
 
     def registration_status(self):
         today = timezone.now().date()
         if not self.start_date_competition or not self.end_date_competition:
-            print(self.end_date_competition)
+
             return "Запланировано"
         elif today < self.start_date_competition:
             return "Запланировано"
