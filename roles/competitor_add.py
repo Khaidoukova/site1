@@ -20,7 +20,7 @@ class CompetitorAddView(View):
             competitions = Competition.objects.filter(owner=current_user.pk)  # фильруем соревнования по организатору(текущему юзеру)
 
         # Получаем объект проводника текущего пользователя
-        conductor = get_object_or_404(Conductor, user=current_user)
+        conductor = get_object_or_404(Conductor, user=user)
 
         # Получаем все собаки проводника
         user_dogs = conductor.dogs.all()
